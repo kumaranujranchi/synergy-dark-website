@@ -4250,9 +4250,11 @@ p.sec-descrption {
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   z-index: -1;
+  width: 22%;
 }
 .banner-section .hero-img img {
-  max-width: inherit;
+  width: 100%;
+  height: auto;
 }
 .banner-section .follow-us {
   text-align: center;
@@ -9907,7 +9909,7 @@ Start sass Icon Single Box
 .contact-section {
   padding: 85px 0 112px;
   position: relative;
-  background: url(../images/main-home/bg.png);
+  background: url(../images/main-home/bg-orange.png);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
