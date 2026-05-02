@@ -289,7 +289,7 @@ ul {
 
 b,
 strong {
-  color: #333;
+  color: var(--headings-color);
   font-weight: var(--body-font-weight-bold);
 }
 
