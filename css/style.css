@@ -12897,7 +12897,7 @@ Progress Bar
   height: 200px;
   width: 200px;
   line-height: 200px;
-  background: var(--theme-color1);
+  background: #000;
   border-radius: 50%;
   text-align: center;
   float: right;
