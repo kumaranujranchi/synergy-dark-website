@@ -94,31 +94,31 @@ var THEMEMASCOT = {};
   }
 
   //Mobile Nav Hide Show
-  if ($(".mobile-menu").length) {
+  if ($(".main-header .main-menu .navigation").length) {
     var mobileMenuContent = $(".main-header .main-menu .navigation").html();
-
-    $(".mobile-menu .navigation").append(mobileMenuContent);
-    $(".sticky-header .navigation").append(mobileMenuContent);
-    $(".mobile-menu .close-btn").on("click", function () {
-      $("body").removeClass("mobile-menu-visible");
-    });
-
-    //Dropdown Button
-    $(".mobile-menu li.dropdown .dropdown-btn").on("click", function () {
-      $(this).prev("ul").slideToggle(500);
-      $(this).toggleClass("active");
-    });
-
-    //Menu Toggle Btn
-    $(".mobile-nav-toggler").on("click", function () {
-      $("body").addClass("mobile-menu-visible");
-    });
-
-    //Menu Toggle Btn
-    $(".mobile-menu .menu-backdrop, .mobile-menu .close-btn").on("click", function () {
-      $("body").removeClass("mobile-menu-visible");
-    });
+    if ($(".mobile-menu").length) {
+      $(".mobile-menu .navigation").append(mobileMenuContent);
+    }
+    if ($(".sticky-header").length) {
+      $(".sticky-header .navigation").append(mobileMenuContent);
+    }
   }
+
+  //Menu Toggle Btn
+  $(document).on("click", ".mobile-nav-toggler", function () {
+    $("body").addClass("mobile-menu-visible");
+  });
+
+  //Close Menu Btn
+  $(document).on("click", ".mobile-menu .menu-backdrop, .mobile-menu .close-btn", function () {
+    $("body").removeClass("mobile-menu-visible");
+  });
+
+  //Dropdown Button (Delegated)
+  $(document).on("click", ".mobile-menu li.dropdown .dropdown-btn", function () {
+    $(this).prev("ul").slideToggle(500);
+    $(this).toggleClass("active");
+  });
 
   //Header Search
   if ($(".search-btn").length) {
