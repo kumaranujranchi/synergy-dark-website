@@ -91,6 +91,7 @@ export default function NewContentPage() {
     toolbar: [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{ 'align': [] }],
       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
       ['link', 'image', 'video'],
       ['clean']
@@ -146,13 +147,35 @@ export default function NewContentPage() {
 
             <div>
               <label className="block text-sm font-semibold text-slate-700 mb-1">Content <span className="text-red-500">*</span></label>
-              <div className="rounded-lg overflow-hidden border border-slate-200">
+              
+              <style dangerouslySetInnerHTML={{__html: `
+                .quill-custom-container .ql-toolbar {
+                  position: sticky;
+                  top: 0;
+                  z-index: 50;
+                  background-color: white;
+                  border-top-left-radius: 0.5rem;
+                  border-top-right-radius: 0.5rem;
+                }
+                .quill-custom-container .ql-container {
+                  resize: vertical;
+                  overflow-y: auto;
+                  min-height: 400px;
+                  border-bottom-left-radius: 0.5rem;
+                  border-bottom-right-radius: 0.5rem;
+                }
+                .quill-custom-container .ql-editor {
+                  min-height: 400px;
+                }
+              `}} />
+
+              <div className="rounded-lg overflow-hidden border border-slate-200 quill-custom-container relative">
                 <ReactQuill 
                   theme="snow"
                   value={formData.body}
                   onChange={(content) => setFormData({...formData, body: content})}
                   modules={modules}
-                  className="bg-white min-h-[400px]"
+                  className="bg-white"
                   placeholder="Write your amazing article here..."
                 />
               </div>
