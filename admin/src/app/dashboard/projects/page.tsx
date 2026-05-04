@@ -32,7 +32,7 @@ export default function ProjectsPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Projects Portfolio</h1>
+          <h1 className="text-3xl font-bold text-slate-900 font-heading">Projects Portfolio</h1>
           <p className="text-slate-500">Showcase your best work to potential clients.</p>
         </div>
         <Link 

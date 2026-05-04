@@ -56,6 +56,14 @@ export default defineSchema({
     salaryRange: v.optional(v.string()),
     isActive: v.boolean(),
     postedAt: v.number(),
+    customQuestions: v.optional(
+      v.array(
+        v.object({
+          question: v.string(),
+          required: v.boolean(),
+        })
+      )
+    ),
   }).index("by_active", ["isActive", "postedAt"]),
 
   // Role Management & Users (Legacy)
@@ -70,4 +78,25 @@ export default defineSchema({
     token: v.string(),
     createdAt: v.number(),
   }).index("by_token", ["token"]),
+
+  // Job Applications
+  jobApplications: defineTable({
+    jobId: v.id("jobs"),
+    name: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    resumeUrl: v.optional(v.string()), // For future use with file storage
+    portfolioUrl: v.optional(v.string()),
+    message: v.optional(v.string()),
+    status: v.string(), // "pending", "reviewed", "interviewing", "hired", "rejected"
+    appliedAt: v.number(),
+    answers: v.optional(
+      v.array(
+        v.object({
+          question: v.string(),
+          answer: v.string(),
+        })
+      )
+    ),
+  }).index("by_job", ["jobId"]),
 });

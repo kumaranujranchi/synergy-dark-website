@@ -21,6 +21,7 @@ const navigation = [
   { name: "Content (Blog/News)", href: "/dashboard/content", icon: FileText },
   { name: "Projects", href: "/dashboard/projects", icon: FolderKanban },
   { name: "Careers", href: "/dashboard/jobs", icon: Briefcase },
+  { name: "Applications", href: "/dashboard/applications", icon: FileText },
   { name: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 

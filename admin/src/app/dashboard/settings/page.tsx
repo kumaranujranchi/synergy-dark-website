@@ -6,14 +6,14 @@ export default function SettingsPage() {
   return (
     <div className="max-w-4xl space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-slate-900">System Settings</h1>
+        <h1 className="text-3xl font-bold text-slate-900 font-heading">System Settings</h1>
         <p className="text-slate-500">Manage access control and system configurations.</p>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-8">
         <div className="flex items-center space-x-3 mb-6">
           <Shield className="w-6 h-6 text-orange-600" />
-          <h2 className="text-xl font-bold text-slate-900">Role-Based Access Control (RBAC)</h2>
+          <h2 className="text-xl font-bold text-slate-900 font-heading">Role-Based Access Control (RBAC)</h2>
         </div>
         
         <div className="space-y-6">

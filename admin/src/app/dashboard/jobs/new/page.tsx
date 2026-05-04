@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, Save, Briefcase, MapPin, Clock } from "lucide-react";
+import { ChevronLeft, Save, Briefcase, Plus, Trash2, HelpCircle } from "lucide-react";
 import Link from "next/link";
 
 export default function NewJobPage() {
@@ -22,15 +22,34 @@ export default function NewJobPage() {
     isActive: true,
   });
 
+  const [questions, setQuestions] = useState<{ question: string; required: boolean }[]>([]);
+
+  const addQuestion = () => {
+    setQuestions([...questions, { question: "", required: true }]);
+  };
+
+  const removeQuestion = (index: number) => {
+    setQuestions(questions.filter((_, i) => i !== index));
+  };
+
+  const updateQuestion = (index: number, field: string, value: any) => {
+    const newQuestions = [...questions];
+    newQuestions[index] = { ...newQuestions[index], [field]: value };
+    setQuestions(newQuestions);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await postJob(formData);
+      await postJob({
+        ...formData,
+        customQuestions: questions.length > 0 ? questions : undefined,
+      });
       router.push("/dashboard/jobs");
     } catch (error) {
       console.error(error);
-      alert("Failed to post job. Please check if all required fields are filled.");
+      alert("Failed to post job. Please fill all required fields.");
     } finally {
       setLoading(false);
     }
@@ -94,7 +113,7 @@ export default function NewJobPage() {
               <label className="block text-sm font-medium text-slate-700 mb-1">Job Description*</label>
               <textarea
                 required
-                rows={10}
+                rows={8}
                 className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none"
                 placeholder="Detail the roles, responsibilities, and requirements..."
                 value={formData.description}
@@ -102,11 +121,73 @@ export default function NewJobPage() {
               />
             </div>
           </div>
+
+          {/* Custom Questions Section */}
+          <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 space-y-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <HelpCircle className="w-5 h-5 text-orange-600" />
+                <h3 className="text-lg font-bold text-slate-900 font-heading">Custom Application Questions</h3>
+              </div>
+              <button
+                type="button"
+                onClick={addQuestion}
+                className="flex items-center text-sm font-bold text-orange-600 hover:text-orange-700"
+              >
+                <Plus className="w-4 h-4 mr-1" />
+                Add Question
+              </button>
+            </div>
+            
+            <p className="text-sm text-slate-500">Add specific questions you want candidates to answer when they apply.</p>
+
+            <div className="space-y-4 mt-4">
+              {questions.map((q, index) => (
+                <div key={index} className="p-4 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1 mr-4">
+                      <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Question {index + 1}</label>
+                      <input
+                        type="text"
+                        required
+                        className="w-full px-3 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none"
+                        placeholder="e.g. Do you have experience with React?"
+                        value={q.question}
+                        onChange={(e) => updateQuestion(index, "question", e.target.value)}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeQuestion(index)}
+                      className="mt-6 text-slate-400 hover:text-red-500 transition-colors"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                  <div className="flex items-center">
+                    <input
+                      type="checkbox"
+                      id={`req-${index}`}
+                      className="w-4 h-4 text-orange-600 border-slate-300 rounded focus:ring-orange-500"
+                      checked={q.required}
+                      onChange={(e) => updateQuestion(index, "required", e.target.checked)}
+                    />
+                    <label htmlFor={`req-${index}`} className="ml-2 text-sm text-slate-600">Mark as mandatory</label>
+                  </div>
+                </div>
+              ))}
+              {questions.length === 0 && (
+                <div className="text-center py-6 text-slate-400 text-sm italic">
+                  No custom questions added.
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         <div className="space-y-6">
           <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 space-y-4">
-            <h3 className="font-bold text-slate-900 mb-2">Job Details</h3>
+            <h3 className="font-bold text-slate-900 mb-2 font-heading">Job Details</h3>
             
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1">Job Type*</label>
@@ -118,9 +199,8 @@ export default function NewJobPage() {
               >
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
-                <option value="Contract">Contract</option>
-                <option value="Internship">Internship</option>
                 <option value="Remote">Remote</option>
+                <option value="Internship">Internship</option>
               </select>
             </div>
 
@@ -135,14 +215,14 @@ export default function NewJobPage() {
               />
             </div>
 
-            <div className="flex items-center justify-between py-2">
+            <div className="flex items-center justify-between pt-2">
               <span className="text-sm font-medium text-slate-700">Set as Active</span>
               <button
                 type="button"
                 onClick={() => setFormData({ ...formData, isActive: !formData.isActive })}
-                className={`w-12 h-6 rounded-full transition-colors relative ${formData.isActive ? "bg-green-500" : "bg-slate-300"}`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${formData.isActive ? "bg-orange-600" : "bg-slate-200"}`}
               >
-                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-all ${formData.isActive ? "left-7" : "left-1"}`}></div>
+                <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${formData.isActive ? "translate-x-6" : "translate-x-1"}`} />
               </button>
             </div>
 

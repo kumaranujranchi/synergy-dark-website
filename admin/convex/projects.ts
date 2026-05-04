@@ -1,6 +1,11 @@
 import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
+// Generate upload URL for images
+export const generateUploadUrl = mutation(async (ctx) => {
+  return await ctx.storage.generateUploadUrl();
+});
+
 // Add a new project
 export const addProject = mutation({
   args: {
@@ -20,7 +25,15 @@ export const addProject = mutation({
 // List all projects (Ordered)
 export const listProjects = query({
   handler: async (ctx) => {
-    return await ctx.db.query("projects").order("asc").collect();
+    const projects = await ctx.db.query("projects").order("asc").collect();
+    return Promise.all(
+      projects.map(async (project) => ({
+        ...project,
+        imageUrl: project.imageUrl.startsWith("http") 
+          ? project.imageUrl 
+          : (await ctx.storage.getUrl(project.imageUrl as any)) || project.imageUrl,
+      }))
+    );
   },
 });
 

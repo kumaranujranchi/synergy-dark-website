@@ -26,7 +26,7 @@ export default function LeadsPage() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-slate-900">Leads Management</h1>
+        <h1 className="text-3xl font-bold text-slate-900 font-heading">Leads Management</h1>
         <Badge variant="outline" className="bg-white text-slate-600">
           Total: {leads.length}
         </Badge>

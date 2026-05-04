@@ -25,7 +25,7 @@ export default function ContentPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Blog & News</h1>
+          <h1 className="text-3xl font-bold text-slate-900 font-heading">Blog & News</h1>
           <p className="text-slate-500">Manage your website articles and news updates.</p>
         </div>
         <Link 

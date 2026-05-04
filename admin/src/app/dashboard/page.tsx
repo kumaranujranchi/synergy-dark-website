@@ -15,12 +15,14 @@ export default function DashboardHome() {
   const subscribers = useQuery(api.subscribers.listSubscribers);
   const content = useQuery(api.content.listAll);
   const projects = useQuery(api.projects.listProjects);
+  const applications = useQuery(api.jobs.listApplications);
 
   const stats = [
     { name: "Total Leads", value: leads?.length ?? "-", icon: Users, color: "bg-[#f05a28]" },
     { name: "Subscribers", value: subscribers?.length ?? "-", icon: Mail, color: "bg-blue-600" },
     { name: "Blog/News", value: content?.length ?? "-", icon: FileText, color: "bg-green-600" },
     { name: "Projects", value: projects?.length ?? "-", icon: FolderKanban, color: "bg-purple-600" },
+    { name: "Applications", value: applications?.length ?? "-", icon: Briefcase, color: "bg-pink-600" },
   ];
 
   return (
@@ -30,7 +32,7 @@ export default function DashboardHome() {
         <p className="text-slate-500 mt-2">Welcome back! Here is what's happening today.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
         {stats.map((stat) => (
           <div key={stat.name} className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between">

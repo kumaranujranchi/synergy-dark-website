@@ -23,7 +23,7 @@ export default function SubscribersPage() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-slate-900">Email Subscribers</h1>
+          <h1 className="text-3xl font-bold text-slate-900 font-heading">Email Subscribers</h1>
           <p className="text-slate-500">View and export your newsletter audience.</p>
         </div>
         <button className="flex items-center px-4 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900 transition-colors">

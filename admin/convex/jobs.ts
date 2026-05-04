@@ -11,6 +11,14 @@ export const postJob = mutation({
     description: v.string(),
     salaryRange: v.optional(v.string()),
     isActive: v.boolean(),
+    customQuestions: v.optional(
+      v.array(
+        v.object({
+          question: v.string(),
+          required: v.boolean(),
+        })
+      )
+    ),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("jobs", {
@@ -32,5 +40,46 @@ export const toggleJobStatus = mutation({
   args: { id: v.id("jobs"), isActive: v.boolean() },
   handler: async (ctx, args) => {
     await ctx.db.patch(args.id, { isActive: args.isActive });
+  },
+});
+
+// Submit a job application
+export const submitApplication = mutation({
+  args: {
+    jobId: v.id("jobs"),
+    name: v.string(),
+    email: v.string(),
+    phone: v.string(),
+    portfolioUrl: v.optional(v.string()),
+    message: v.optional(v.string()),
+    answers: v.optional(
+      v.array(
+        v.object({
+          question: v.string(),
+          answer: v.string(),
+        })
+      )
+    ),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert("jobApplications", {
+      ...args,
+      status: "pending",
+      appliedAt: Date.now(),
+    });
+  },
+});
+
+// List applications for a job
+export const listApplications = query({
+  args: { jobId: v.optional(v.id("jobs")) },
+  handler: async (ctx, args) => {
+    if (args.jobId) {
+      return await ctx.db
+        .query("jobApplications")
+        .withIndex("by_job", (q) => q.eq("jobId", args.jobId!))
+        .collect();
+    }
+    return await ctx.db.query("jobApplications").order("desc").collect();
   },
 });

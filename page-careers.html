@@ -481,6 +481,52 @@
     <script src="js/SplitText.min.js"></script>
     <script src="js/custom-gsap.js"></script>
     <script src="js/script.js"></script>
+    <!-- Apply Job Modal -->
+    <div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: #1a1a1a; border: 1px solid #333; border-radius: 24px; color: #fff;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title font-heading fw-bold" id="applyModalLabel" style="font-size: 24px;">Apply for <span id="modal-job-title" style="color: #ff5e14;">Position</span></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="application-form" class="row g-3">
+                        <input type="hidden" id="job-id-input">
+                        <div class="col-12">
+                            <label class="form-label small text-white-50">Full Name*</label>
+                            <input type="text" id="app-name" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-white-50">Email*</label>
+                            <input type="email" id="app-email" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-white-50">Phone Number*</label>
+                            <input type="tel" id="app-phone" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small text-white-50">Portfolio Link (Optional)</label>
+                            <input type="url" id="app-portfolio" class="form-control" style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;" placeholder="https://...">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small text-white-50">Why should we hire you?*</label>
+                            <textarea id="app-message" class="form-control" rows="3" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;"></textarea>
+                        </div>
+                        <div id="custom-questions-container" class="col-12 p-0">
+                            <!-- Custom questions will be injected here -->
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button type="submit" id="submit-app-btn" class="btn w-100 py-3" style="background: #ff5e14; color: #fff; font-weight: 800; border-radius: 12px;">Submit Application</button>
+                        </div>
+                    </form>
+                    <div id="app-success" class="mt-3 text-success text-center d-none">
+                        <i class="fa-solid fa-circle-check me-2"></i> Application submitted successfully!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Convex Integration -->
     <script src="js/convex-config.js"></script>
     <script src="js/convex-integration.js"></script>
