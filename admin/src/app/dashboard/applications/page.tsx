@@ -6,7 +6,7 @@ import { format } from "date-fns";
 import { Mail, Phone, ExternalLink, User, Calendar, Briefcase } from "lucide-react";
 
 export default function ApplicationsPage() {
-  const applications = useQuery(api.jobs.listApplications);
+  const applications = useQuery(api.jobs.listApplications, {});
   const jobs = useQuery(api.jobs.listJobs);
 
   if (!applications || !jobs) {
