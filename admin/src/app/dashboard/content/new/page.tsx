@@ -64,7 +64,8 @@ export default function NewContentPage() {
         });
         
         const { storageId } = await result.json();
-        finalImageUrl = await generateFileUrl({ storageId });
+        const generatedUrl = await generateFileUrl({ storageId });
+        finalImageUrl = generatedUrl || "";
       }
 
       setUploadStatus("Publishing content...");
