@@ -99,4 +99,13 @@ export default defineSchema({
       )
     ),
   }).index("by_job", ["jobId"]),
+  // Case Studies
+  caseStudies: defineTable({
+    title: v.string(),
+    client: v.string(),
+    category: v.string(), // e.g., "SEO", "Web Dev", "Branding"
+    description: v.string(),
+    imageUrl: v.string(),
+    publishedAt: v.number(),
+  }).index("by_category", ["category"]),
 });

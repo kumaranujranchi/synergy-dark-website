@@ -30,7 +30,7 @@ async function renderDynamicBlogs() {
     if (!container) return;
 
     try {
-        const blogs = await fetchFromConvex('content/listAll');
+        const blogs = await fetchFromConvex('content:listAll');
         const publishedBlogs = blogs.filter(b => b.isPublished && b.type === 'blog');
         
         if (publishedBlogs.length === 0) return;
@@ -62,7 +62,7 @@ async function renderDynamicProjects() {
     if (!container) return;
 
     try {
-        const projects = await fetchFromConvex('projects/listProjects');
+        const projects = await fetchFromConvex('projects:listProjects');
         if (projects.length === 0) return;
 
         container.innerHTML = projects.map(proj => `
@@ -89,7 +89,7 @@ async function renderDynamicJobs() {
     if (!container) return;
 
     try {
-        const jobs = await fetchFromConvex('jobs/listJobs');
+        const jobs = await fetchFromConvex('jobs:listJobs');
         const activeJobs = jobs.filter(j => j.isActive);
         activeJobsList = activeJobs;
         
@@ -200,7 +200,7 @@ async function setupApplicationForm() {
         };
 
         try {
-            const result = await mutationToConvex('jobs/submitApplication', applicationData);
+            const result = await mutationToConvex('jobs:submitApplication', applicationData);
             if (result) {
                 form.classList.add('d-none');
                 document.getElementById('app-success').classList.remove('d-none');
@@ -213,6 +213,45 @@ async function setupApplicationForm() {
         }
     });
 }
+
+async function renderDynamicCaseStudies() {
+    const container = document.getElementById('dynamic-case-studies-container');
+    if (!container) return;
+
+    try {
+        const caseStudies = await fetchFromConvex('caseStudies:listCaseStudies');
+        if (caseStudies.length === 0) {
+            container.innerHTML = '<div class="col-12 text-center text-white-50 p-5">Coming soon! We are documenting our latest success stories.</div>';
+            return;
+        }
+
+        container.innerHTML = caseStudies.map(cs => `
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
+                <div class="project-box-style-4">
+                    <div class="images-box">
+                        <img src="${cs.imageUrl}" alt="${cs.title}">
+                        <div class="icon"><a href="#" style="color:#fff;"><i class="fa fa-arrow-right"></i></a></div>
+                    </div>
+                    <div class="content">
+                        <span class="post-box" style="color: #ff5e14; font-weight: 700; font-size: 12px; letter-spacing: 1px; text-decoration: none;">${cs.client.toUpperCase()} • ${cs.category.toUpperCase()}</span>
+                        <h4 class="title mt-2" style="font-weight: 800; color: #fff;">${cs.title}</h4>
+                        <p class="text-white-50 mt-2" style="font-size: 14px; line-height: 1.6;">${cs.description}</p>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error("Error loading case studies:", error);
+    }
+}
+
+// Initial fetch on page load
+document.addEventListener('DOMContentLoaded', () => {
+    renderDynamicBlogs();
+    renderDynamicProjects();
+    renderDynamicJobs();
+    renderDynamicCaseStudies();
+});
 
 $(document).ready(function() {
     renderDynamicBlogs();
