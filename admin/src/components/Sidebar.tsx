@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/clerk-react";
 import { 
   LayoutDashboard, 
   Users, 
@@ -53,7 +53,7 @@ export function Sidebar() {
       
       <div className="p-4 border-t border-slate-800">
         <div className="flex items-center space-x-3 px-4 py-2">
-          <UserButton afterSignOutUrl="/" />
+          <UserButton />
           <span className="text-sm font-medium text-slate-300">Profile</span>
         </div>
       </div>

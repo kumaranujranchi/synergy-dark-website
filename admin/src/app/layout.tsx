@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClientClerkProvider } from "@/components/ClientClerkProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
 
 export const metadata: Metadata = {
@@ -31,11 +31,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ClerkProvider>
+        <ClientClerkProvider>
           <ConvexClientProvider>
             {children}
           </ConvexClientProvider>
-        </ClerkProvider>
+        </ClientClerkProvider>
+
       </body>
     </html>
   );

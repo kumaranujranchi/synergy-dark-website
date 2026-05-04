@@ -1,0 +1,124 @@
+
+> admin@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/anujkumar/Downloads/test theme/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/anujkumar/Downloads/test theme/admin/package-lock.json
+
+▲ Next.js 16.2.4 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 3 errors:
+./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs:14:1
+Export default doesn't exist in target module
+  [90m12 |[0m [36mimport[0m { eventMethodCalled } [36mfrom[0m [32m"../telemetry-wqMDWlvR.mjs"[0m;
+  [90m13 |[0m [36mimport[0m [33mReact[0m, { useCallback, useEffect, useMemo, useRef, useState, use...
+[31m[1m>[0m [90m14 |[0m [36mimport[0m useSWR, { [33mSWRConfig[0m, useSWRConfig } [36mfrom[0m [32m"swr"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m15 |[0m [36mimport[0m useSWRInfinite [36mfrom[0m [32m"swr/infinite"[0m;
+  [90m16 |[0m [36mimport[0m { dequal } [36mfrom[0m [32m"dequal"[0m;
+  [90m17 |[0m [36mimport[0m useSWRMutation [36mfrom[0m [32m"swr/mutation"[0m;
+
+The export default was not found in module [project]/admin/node_modules/swr/dist/index/react-server.mjs [app-rsc] (ecmascript).
+Did you mean to import unstable_serialize?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Server Component:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-BUI34B34.mjs
+    ./admin/src/app/dashboard/layout.tsx
+
+  Client Component Browser:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs [Client Component Browser]
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-THNCS7QR.mjs [Client Component Browser]
+    ./admin/src/components/Sidebar.tsx [Client Component Browser]
+    ./admin/src/components/Sidebar.tsx [Server Component]
+    ./admin/src/app/dashboard/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs [Client Component SSR]
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-THNCS7QR.mjs [Client Component SSR]
+    ./admin/src/components/Sidebar.tsx [Client Component SSR]
+    ./admin/src/components/Sidebar.tsx [Server Component]
+    ./admin/src/app/dashboard/layout.tsx [Server Component]
+
+
+./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs:15:1
+Export default doesn't exist in target module
+  [90m13 |[0m [36mimport[0m [33mReact[0m, { useCallback, useEffect, useMemo, useRef, useState, use...
+  [90m14 |[0m [36mimport[0m useSWR, { [33mSWRConfig[0m, useSWRConfig } [36mfrom[0m [32m"swr"[0m;
+[31m[1m>[0m [90m15 |[0m [36mimport[0m useSWRInfinite [36mfrom[0m [32m"swr/infinite"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m16 |[0m [36mimport[0m { dequal } [36mfrom[0m [32m"dequal"[0m;
+  [90m17 |[0m [36mimport[0m useSWRMutation [36mfrom[0m [32m"swr/mutation"[0m;
+  [90m18 |[0m
+
+The export default was not found in module [project]/admin/node_modules/swr/dist/infinite/react-server.mjs [app-rsc] (ecmascript).
+Did you mean to import unstable_serialize?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Server Component:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-BUI34B34.mjs
+    ./admin/src/app/dashboard/layout.tsx
+
+  Client Component Browser:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs [Client Component Browser]
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-THNCS7QR.mjs [Client Component Browser]
+    ./admin/src/components/Sidebar.tsx [Client Component Browser]
+    ./admin/src/components/Sidebar.tsx [Server Component]
+    ./admin/src/app/dashboard/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs [Client Component SSR]
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-THNCS7QR.mjs [Client Component SSR]
+    ./admin/src/components/Sidebar.tsx [Client Component SSR]
+    ./admin/src/components/Sidebar.tsx [Server Component]
+    ./admin/src/app/dashboard/layout.tsx [Server Component]
+
+
+./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs:14:1
+Export useSWRConfig doesn't exist in target module
+  [90m12 |[0m [36mimport[0m { eventMethodCalled } [36mfrom[0m [32m"../telemetry-wqMDWlvR.mjs"[0m;
+  [90m13 |[0m [36mimport[0m [33mReact[0m, { useCallback, useEffect, useMemo, useRef, useState, use...
+[31m[1m>[0m [90m14 |[0m [36mimport[0m useSWR, { [33mSWRConfig[0m, useSWRConfig } [36mfrom[0m [32m"swr"[0m;
+  [90m   |[0m [31m[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  [90m15 |[0m [36mimport[0m useSWRInfinite [36mfrom[0m [32m"swr/infinite"[0m;
+  [90m16 |[0m [36mimport[0m { dequal } [36mfrom[0m [32m"dequal"[0m;
+  [90m17 |[0m [36mimport[0m useSWRMutation [36mfrom[0m [32m"swr/mutation"[0m;
+
+The export useSWRConfig was not found in module [project]/admin/node_modules/swr/dist/index/react-server.mjs [app-rsc] (ecmascript).
+Did you mean to import SWRConfig?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  Server Component:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-BUI34B34.mjs
+    ./admin/src/app/dashboard/layout.tsx
+
+  Client Component Browser:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs [Client Component Browser]
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-THNCS7QR.mjs [Client Component Browser]
+    ./admin/src/components/Sidebar.tsx [Client Component Browser]
+    ./admin/src/components/Sidebar.tsx [Server Component]
+    ./admin/src/app/dashboard/layout.tsx [Server Component]
+
+  Client Component SSR:
+    ./admin/node_modules/@clerk/clerk-react/node_modules/@clerk/shared/dist/runtime/react/index.mjs [Client Component SSR]
+    ./admin/node_modules/@clerk/clerk-react/dist/chunk-THNCS7QR.mjs [Client Component SSR]
+    ./admin/src/components/Sidebar.tsx [Client Component SSR]
+    ./admin/src/components/Sidebar.tsx [Server Component]
+    ./admin/src/app/dashboard/layout.tsx [Server Component]
+
+
+    at ignore-listed frames
