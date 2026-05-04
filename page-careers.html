@@ -286,73 +286,8 @@
                     </div>
                 </div>
 
-                <div class="row g-4">
-                    <!-- Job Card template -->
-                    <div class="col-12 wow fadeInUp" data-wow-delay=".2s">
-                        <div class="job-card p-5 d-md-flex align-items-center justify-content-between" style="background: #1a1a1a; border: 1px solid #333; border-radius: 30px; transition: 0.4s;">
-                            <div class="job-info">
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border: 1px solid rgba(255, 94, 20, 0.3); padding: 8px 15px; border-radius: 50px;">Full-Time</span>
-                                    <span class="badge" style="background: rgba(66, 133, 244, 0.1); color: #4285f4; border: 1px solid rgba(66, 133, 244, 0.3); padding: 8px 15px; border-radius: 50px;">Design</span>
-                                </div>
-                                <h3 style="font-weight: 800; color: #fff; margin-bottom: 10px;">Video Editor</h3>
-                                <div class="text-white-50"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Patna, Bihar | Posted 4/30/2026</div>
-                            </div>
-                            <div class="job-action text-md-end mt-4 mt-md-0 d-flex align-items-center gap-5">
-                                <div class="salary">
-                                    <div class="small text-white-50">Range</div>
-                                    <div class="fw-bold" style="font-size: 22px; color: #fff;">₹25k - 50k</div>
-                                </div>
-                                <a href="contact.html" class="theme-btn-main" style="background: #ff5e14; color: #fff; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;">
-                                    Apply Now <i class="fa-solid fa-arrow-right ms-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 wow fadeInUp" data-wow-delay=".4s">
-                        <div class="job-card p-5 d-md-flex align-items-center justify-content-between" style="background: #1a1a1a; border: 1px solid #333; border-radius: 30px; transition: 0.4s;">
-                            <div class="job-info">
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border: 1px solid rgba(255, 94, 20, 0.3); padding: 8px 15px; border-radius: 50px;">Full-Time</span>
-                                    <span class="badge" style="background: rgba(40, 167, 69, 0.1); color: #28a745; border: 1px solid rgba(40, 167, 69, 0.3); padding: 8px 15px; border-radius: 50px;">Operations</span>
-                                </div>
-                                <h3 style="font-weight: 800; color: #fff; margin-bottom: 10px;">Full Stack Developer</h3>
-                                <div class="text-white-50"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Patna, Bihar | Posted 4/30/2026</div>
-                            </div>
-                            <div class="job-action text-md-end mt-4 mt-md-0 d-flex align-items-center gap-5">
-                                <div class="salary">
-                                    <div class="small text-white-50">Range</div>
-                                    <div class="fw-bold" style="font-size: 22px; color: #fff;">₹35k - 40k</div>
-                                </div>
-                                <a href="contact.html" class="theme-btn-main" style="background: #ff5e14; color: #fff; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;">
-                                    Apply Now <i class="fa-solid fa-arrow-right ms-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 wow fadeInUp" data-wow-delay=".6s">
-                        <div class="job-card p-5 d-md-flex align-items-center justify-content-between" style="background: #1a1a1a; border: 1px solid #333; border-radius: 30px; transition: 0.4s;">
-                            <div class="job-info">
-                                <div class="d-flex gap-2 mb-3">
-                                    <span class="badge" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border: 1px solid rgba(255, 94, 20, 0.3); padding: 8px 15px; border-radius: 50px;">Full-Time</span>
-                                    <span class="badge" style="background: rgba(216, 27, 96, 0.1); color: #d81b60; border: 1px solid rgba(216, 27, 96, 0.3); padding: 8px 15px; border-radius: 50px;">Sales</span>
-                                </div>
-                                <h3 style="font-weight: 800; color: #fff; margin-bottom: 10px;">Business Development Manager</h3>
-                                <div class="text-white-50"><i class="fa-solid fa-location-dot me-2 text-warning"></i> Patna, Bihar | Posted 4/30/2026</div>
-                            </div>
-                            <div class="job-action text-md-end mt-4 mt-md-0 d-flex align-items-center gap-5">
-                                <div class="salary">
-                                    <div class="small text-white-50">Range</div>
-                                    <div class="fw-bold" style="font-size: 22px; color: #fff;">₹18k - 20k</div>
-                                </div>
-                                <a href="contact.html" class="theme-btn-main" style="background: #ff5e14; color: #fff; padding: 15px 35px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block;">
-                                    Apply Now <i class="fa-solid fa-arrow-right ms-2"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row g-4" id="dynamic-jobs-container">
+                    <!-- Dynamic Jobs will be injected here -->
                 </div>
             </div>
         </section>
@@ -546,5 +481,9 @@
     <script src="js/SplitText.min.js"></script>
     <script src="js/custom-gsap.js"></script>
     <script src="js/script.js"></script>
+    <!-- Convex Integration -->
+    <script src="js/convex-config.js"></script>
+    <script src="js/convex-integration.js"></script>
+    <script src="js/convex-fetch.js"></script>
 </body>
 </html>

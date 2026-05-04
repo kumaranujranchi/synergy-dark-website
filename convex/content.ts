@@ -1,0 +1,52 @@
+import { mutation, query } from "./_generated/server";
+import { v } from "convex/values";
+
+// Add new content (Blog or News)
+export const addContent = mutation({
+  args: {
+    title: v.string(),
+    slug: v.string(),
+    body: v.string(),
+    imageUrl: v.optional(v.string()),
+    type: v.string(), // "blog" or "news"
+    author: v.string(),
+    isPublished: v.boolean(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.insert("content", {
+      ...args,
+      publishedAt: Date.now(),
+    });
+  },
+});
+
+// Get content by slug (For main site)
+export const getBySlug = query({
+  args: { slug: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("content")
+      .withIndex("by_slug", (q) => q.eq("slug", args.slug))
+      .first();
+  },
+});
+
+// List published content by type (For main site)
+export const listPublished = query({
+  args: { type: v.string() },
+  handler: async (ctx, args) => {
+    return await ctx.db
+      .query("content")
+      .withIndex("by_type", (q) => q.eq("type", args.type))
+      .filter((q) => q.eq(q.field("isPublished"), true))
+      .order("desc")
+      .collect();
+  },
+});
+
+// List all (For Admin Panel)
+export const listAll = query({
+  handler: async (ctx) => {
+    return await ctx.db.query("content").order("desc").collect();
+  },
+});

@@ -1,0 +1,12 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/admin/*"
+  to = "https://your-admin-site.netlify.app/:splat"
+  status = 200
+
+[header]
+  for = "/*.html"
+  [header.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
