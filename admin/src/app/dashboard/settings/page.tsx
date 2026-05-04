@@ -41,7 +41,7 @@ export default function SettingsPage() {
             <div>
               <p className="text-sm font-bold text-orange-800">Developer Note</p>
               <p className="text-xs text-orange-700 mt-1">
-                To enforce these roles in the backend, use the Clerk Dashboard to add `{"role": "admin"}` to the user's **Public Metadata**. The system is ready to read these values.
+                To enforce these roles in the backend, use the Clerk Dashboard to add <code>{`{"role": "admin"}`}</code> to the user's **Public Metadata**. The system is ready to read these values.
               </p>
             </div>
           </div>

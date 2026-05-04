@@ -5,3 +5,5 @@ download_deep.py
 download_missing.sh
 download_assets.sh
 process_html.sh
+
+.env.local
