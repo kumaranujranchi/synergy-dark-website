@@ -7,10 +7,10 @@ import { useRouter } from "next/navigation";
 import { ChevronLeft, Save, Image as ImageIcon, UploadCloud, Globe } from "lucide-react";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 
 // Dynamically import ReactQuill to avoid SSR issues
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
 export default function NewContentPage() {
   const router = useRouter();
