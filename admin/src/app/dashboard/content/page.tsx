@@ -1,9 +1,9 @@
 "use client";
 
-import { useQuery } from "convex/react";
+import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import Link from "next/link";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
+import { Plus, Edit, Trash2, Eye, CheckCircle, XCircle } from "lucide-react";
 import { 
   Table, 
   TableBody, 
@@ -16,6 +16,27 @@ import { Badge } from "@/components/ui/badge";
 
 export default function ContentPage() {
   const content = useQuery(api.content.listAll);
+  const deleteContent = useMutation(api.content.deleteContent);
+  const togglePublish = useMutation(api.content.togglePublish);
+
+  const handleDelete = async (id: any) => {
+    if (window.confirm("Are you sure you want to delete this article?")) {
+      try {
+        await deleteContent({ id });
+      } catch (error) {
+        console.error(error);
+        alert("Failed to delete article.");
+      }
+    }
+  };
+
+  const handleTogglePublish = async (id: any, currentStatus: boolean) => {
+    try {
+      await togglePublish({ id, isPublished: !currentStatus });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (content === undefined) {
     return <div className="flex items-center justify-center h-64 text-slate-500">Loading content...</div>;
@@ -61,22 +82,40 @@ export default function ContentPage() {
                   </Badge>
                 </TableCell>
                 <TableCell>
-                  <Badge className={item.isPublished ? "bg-green-100 text-green-700" : "bg-slate-100 text-slate-700"}>
-                    {item.isPublished ? "Published" : "Draft"}
-                  </Badge>
+                  <button 
+                    onClick={() => handleTogglePublish(item._id, item.isPublished)}
+                    className={`flex items-center px-2 py-1 rounded-full text-xs font-bold transition-colors ${
+                      item.isPublished 
+                        ? "bg-green-100 text-green-700 hover:bg-green-200" 
+                        : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    }`}
+                  >
+                    {item.isPublished ? (
+                      <><CheckCircle className="w-3 h-3 mr-1" /> Published</>
+                    ) : (
+                      <><XCircle className="w-3 h-3 mr-1" /> Draft</>
+                    )}
+                  </button>
                 </TableCell>
                 <TableCell className="text-sm text-slate-500">
                   {new Date(item.publishedAt).toLocaleDateString()}
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <button className="p-2 text-slate-400 hover:text-blue-600 transition-colors">
+                    <Link 
+                      href={`/blog-details.html?slug=${item.slug}`} 
+                      target="_blank"
+                      className="p-2 text-slate-400 hover:text-blue-600 transition-colors"
+                    >
                       <Eye className="w-4 h-4" />
-                    </button>
+                    </Link>
                     <button className="p-2 text-slate-400 hover:text-orange-600 transition-colors">
                       <Edit className="w-4 h-4" />
                     </button>
-                    <button className="p-2 text-slate-400 hover:text-red-600 transition-colors">
+                    <button 
+                      onClick={() => handleDelete(item._id)}
+                      className="p-2 text-slate-400 hover:text-red-600 transition-colors"
+                    >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>

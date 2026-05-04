@@ -53,3 +53,19 @@ export const listAll = query({
     return await ctx.db.query("content").order("desc").collect();
   },
 });
+
+// Delete content
+export const deleteContent = mutation({
+  args: { id: v.id("content") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
+  },
+});
+
+// Toggle publish status
+export const togglePublish = mutation({
+  args: { id: v.id("content"), isPublished: v.boolean() },
+  handler: async (ctx, args) => {
+    await ctx.db.patch(args.id, { isPublished: args.isPublished });
+  },
+});
