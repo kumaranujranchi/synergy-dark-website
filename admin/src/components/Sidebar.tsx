@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { UserButton } from "@clerk/clerk-react";
+import { useAuth } from "@/components/AuthProvider";
 import { 
   LayoutDashboard, 
   Users, 
@@ -10,7 +10,8 @@ import {
   FileText, 
   Briefcase, 
   FolderKanban, 
-  Settings 
+  Settings,
+  LogOut
 } from "lucide-react";
 
 const navigation = [
@@ -25,6 +26,7 @@ const navigation = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const { logout } = useAuth();
 
   return (
     <div className="flex flex-col w-64 bg-slate-900 text-white min-h-screen">
@@ -52,10 +54,13 @@ export function Sidebar() {
       </nav>
       
       <div className="p-4 border-t border-slate-800">
-        <div className="flex items-center space-x-3 px-4 py-2">
-          <UserButton />
-          <span className="text-sm font-medium text-slate-300">Profile</span>
-        </div>
+        <button
+          onClick={() => logout()}
+          className="flex items-center w-full space-x-3 px-4 py-2 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-slate-800"
+        >
+          <LogOut className="w-5 h-5 text-slate-500" />
+          <span className="text-sm font-medium">Log out</span>
+        </button>
       </div>
     </div>
   );

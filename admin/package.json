@@ -9,7 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^5.61.6",
     "class-variance-authority": "^0.7.1",
     "clerk": "^1.0.3",
     "clsx": "^2.1.1",

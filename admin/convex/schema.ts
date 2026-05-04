@@ -55,11 +55,16 @@ export default defineSchema({
     postedAt: v.number(),
   }).index("by_active", ["isActive", "postedAt"]),
 
-  // Role Management & Users
+  // Role Management & Users (Legacy)
   users: defineTable({
     name: v.string(),
     email: v.string(),
-    clerkId: v.string(), // Integration with Clerk Auth
     role: v.string(), // "super_admin", "editor", "viewer"
-  }).index("by_clerkId", ["clerkId"]),
+  }),
+
+  // Authentication Sessions
+  sessions: defineTable({
+    token: v.string(),
+    createdAt: v.number(),
+  }).index("by_token", ["token"]),
 });

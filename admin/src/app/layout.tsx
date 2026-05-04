@@ -12,8 +12,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-import { ClientClerkProvider } from "@/components/ClientClerkProvider";
 import { ConvexClientProvider } from "@/components/ConvexClientProvider";
+import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   title: "Synergy Brand Architect - Admin Dashboard",
@@ -31,12 +31,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ClientClerkProvider>
-          <ConvexClientProvider>
+        <ConvexClientProvider>
+          <AuthProvider>
             {children}
-          </ConvexClientProvider>
-        </ClientClerkProvider>
-
+          </AuthProvider>
+        </ConvexClientProvider>
       </body>
     </html>
   );
