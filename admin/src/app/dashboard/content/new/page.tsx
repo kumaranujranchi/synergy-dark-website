@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useMutation } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, Save, Image as ImageIcon, UploadCloud } from "lucide-react";
+import { ChevronLeft, Save, Image as ImageIcon, UploadCloud, Globe } from "lucide-react";
 import Link from "next/link";
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
