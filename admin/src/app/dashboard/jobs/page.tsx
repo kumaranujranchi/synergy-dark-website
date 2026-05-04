@@ -2,6 +2,7 @@
 
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
+import Link from "next/link";
 import { Plus, MapPin, Briefcase, Clock, ToggleLeft, ToggleRight } from "lucide-react";
 import { 
   Table, 
@@ -32,10 +33,13 @@ export default function JobsPage() {
           <h1 className="text-3xl font-bold text-slate-900">Job Postings</h1>
           <p className="text-slate-500">Manage your agency's career opportunities.</p>
         </div>
-        <button className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+        <Link 
+          href="/dashboard/jobs/new"
+          className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+        >
           <Plus className="w-4 h-4 mr-2" />
           Post New Job
-        </button>
+        </Link>
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">

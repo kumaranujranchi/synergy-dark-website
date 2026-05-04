@@ -35,10 +35,13 @@ export default function ProjectsPage() {
           <h1 className="text-3xl font-bold text-slate-900">Projects Portfolio</h1>
           <p className="text-slate-500">Showcase your best work to potential clients.</p>
         </div>
-        <button className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
+        <Link 
+          href="/dashboard/projects/new"
+          className="flex items-center px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+        >
           <Plus className="w-4 h-4 mr-2" />
           Add Project
-        </button>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
