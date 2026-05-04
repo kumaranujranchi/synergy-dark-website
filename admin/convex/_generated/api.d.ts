@@ -12,6 +12,7 @@ import type * as content from "../content.js";
 import type * as jobs from "../jobs.js";
 import type * as leads from "../leads.js";
 import type * as projects from "../projects.js";
+import type * as seed from "../seed.js";
 import type * as subscribers from "../subscribers.js";
 
 import type {
@@ -25,6 +26,7 @@ declare const fullApi: ApiFromModules<{
   jobs: typeof jobs;
   leads: typeof leads;
   projects: typeof projects;
+  seed: typeof seed;
   subscribers: typeof subscribers;
 }>;
 
