@@ -1,0 +1,7 @@
+{
+  "name": "synergy-brand-architect",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "mkdir -p dist && cp -r css images js fonts *.html dist/ && cd admin && npm install && npm run build && cd .. && mkdir -p dist/admin && cp -r admin/out/* dist/admin/"
+  }
+}
