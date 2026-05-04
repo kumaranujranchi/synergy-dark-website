@@ -1,1 +1,2 @@
-const CONVEX_URL = "https://qualified-duck-586.convex.cloud";
+// Convex configuration
+const CONVEX_URL = "https://knowing-caribou-214.convex.cloud";
