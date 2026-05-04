@@ -15,7 +15,7 @@ export default function DashboardHome() {
   const subscribers = useQuery(api.subscribers.listSubscribers);
   const content = useQuery(api.content.listAll);
   const projects = useQuery(api.projects.listProjects);
-  const applications = useQuery(api.jobs.listApplications);
+  const applications = useQuery(api.jobs.listApplications, {});
 
   const stats = [
     { name: "Total Leads", value: leads?.length ?? "-", icon: Users, color: "bg-[#f05a28]" },
