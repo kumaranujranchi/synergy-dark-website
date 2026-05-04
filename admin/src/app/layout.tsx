@@ -28,9 +28,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${notoSans.variable} ${plusJakartaSans.variable} h-full antialiased dark`}
+      className={`${notoSans.variable} ${plusJakartaSans.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#111111] text-[#a1a1a1] font-sans">
+      <body className="min-h-full flex flex-col font-sans">
         <ConvexClientProvider>
           <AuthProvider>
             {children}
