@@ -23,6 +23,9 @@ export default defineSchema({
     slug: v.string(),
     body: v.string(), // Markdown or HTML content
     imageUrl: v.optional(v.string()),
+    imageAltText: v.optional(v.string()),
+    metaTitle: v.optional(v.string()),
+    metaDescription: v.optional(v.string()),
     type: v.string(), // "blog" or "news"
     author: v.string(),
     isPublished: v.boolean(),
