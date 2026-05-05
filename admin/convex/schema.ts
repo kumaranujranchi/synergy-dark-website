@@ -30,6 +30,7 @@ export default defineSchema({
     author: v.string(),
     isPublished: v.boolean(),
     publishedAt: v.number(), // Timestamp
+    tags: v.optional(v.array(v.string())),
   })
     .index("by_type", ["type"])
     .index("by_slug", ["slug"])
@@ -108,4 +109,13 @@ export default defineSchema({
     imageUrl: v.string(),
     publishedAt: v.number(),
   }).index("by_category", ["category"]),
+  // Comments Management
+  comments: defineTable({
+    contentId: v.id("content"),
+    name: v.string(),
+    email: v.string(),
+    comment: v.string(),
+    isApproved: v.boolean(),
+    createdAt: v.number(),
+  }).index("by_content", ["contentId", "isApproved"]),
 });

@@ -400,8 +400,29 @@ async function renderContentDetails() {
         const bodyEl = document.getElementById('details-body');
         if (bodyEl) bodyEl.innerHTML = content.body;
 
+        // Render tags
+        const tagsEl = document.getElementById('details-tags');
+        if (tagsEl) {
+            if (content.tags && content.tags.length > 0) {
+                tagsEl.innerHTML = `<span>Tags</span> ` + content.tags.map(t => `<a href="#">${t}</a>`).join(' ');
+                tagsEl.style.display = 'block';
+            } else {
+                tagsEl.style.display = 'none';
+            }
+        }
+
         // Render sidebar
         renderSidebarLatestPosts(content.type);
+        renderSidebarRecentComments();
+
+        // Render adjacent posts
+        renderAdjacentPosts(content._id, content.type);
+
+        // Render comments
+        renderComments(content._id);
+
+        // Setup comment form
+        setupCommentForm(content._id);
 
     } catch (error) {
         console.error("Error rendering content details:", error);
@@ -428,6 +449,133 @@ async function renderSidebarLatestPosts(type) {
         `).join('');
     } catch (error) {
         console.error("Error rendering sidebar posts:", error);
+    }
+}
+
+// 9. Render Adjacent Posts (Next/Prev)
+async function renderAdjacentPosts(currentId, type) {
+    const container = document.getElementById('nav-links');
+    if (!container) return;
+
+    try {
+        const adjacent = await fetchFromConvex('content/getAdjacent', { currentId, type });
+        if (!adjacent) return;
+
+        let html = '';
+        if (adjacent.prev) {
+            html += `
+                <div class="prev">
+                    <a href="${type === 'blog' ? 'blog-details.html' : 'news-details.html'}?slug=${adjacent.prev.slug}" rel="prev">${adjacent.prev.title}</a>
+                </div>
+            `;
+        }
+        if (adjacent.next) {
+            html += `
+                <div class="next">
+                    <a href="${type === 'blog' ? 'blog-details.html' : 'news-details.html'}?slug=${adjacent.next.slug}" rel="next">${adjacent.next.title}</a>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    } catch (error) {
+        console.error("Error rendering adjacent posts:", error);
+    }
+}
+
+// 10. Render Comments
+async function renderComments(contentId) {
+    const container = document.getElementById('comments-container');
+    const countEl = document.getElementById('comments-count');
+    if (!container) return;
+
+    try {
+        const comments = await fetchFromConvex('comments/listComments', { contentId });
+        if (countEl) countEl.innerText = `${comments.length} Comments`;
+
+        if (comments.length === 0) {
+            container.innerHTML = '<p class="text-white-50">No comments yet. Be the first to comment!</p>';
+            return;
+        }
+
+        container.innerHTML = comments.map(c => `
+            <div class="comment-one__single">
+                <div class="comment-one__image"> <img src="images/inner/author-2.jpg" alt=""> </div>
+                <div class="comment-one__content">
+                    <h3>${c.name}</h3>
+                    <p>${c.comment}</p>
+                    <a href="#" class="theme-btn btn-style-one comment-one__btn"><span class="btn-title">Reply</span></a>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error("Error rendering comments:", error);
+    }
+}
+
+// 11. Setup Comment Form
+function setupCommentForm(contentId) {
+    const form = document.getElementById('comment-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = {
+            contentId,
+            name: formData.get('form_name'),
+            email: formData.get('form_email'),
+            comment: formData.get('form_message'),
+        };
+
+        if (!data.name || !data.email || !data.comment) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        try {
+            const btn = form.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="btn-title">Posting...</span>';
+            btn.disabled = true;
+
+            await fetchFromConvex('comments/addComment', data);
+            
+            alert("Comment posted successfully!");
+            form.reset();
+            renderComments(contentId);
+            
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        } catch (error) {
+            console.error("Error posting comment:", error);
+            alert("Failed to post comment. Please try again.");
+        }
+    });
+}
+
+// 12. Render Sidebar Recent Comments
+async function renderSidebarRecentComments() {
+    const container = document.getElementById('sidebar-recent-comments');
+    if (!container) return;
+
+    try {
+        const comments = await fetchFromConvex('comments/listRecentGlobal');
+        if (comments.length === 0) {
+            container.innerHTML = '<li><p class="text-white-50">No recent comments.</p></li>';
+            return;
+        }
+
+        container.innerHTML = comments.map(c => `
+            <li>
+                <div class="sidebar__comments-icon"> <i class="fas fa-comments"></i> </div>
+                <div class="sidebar__comments-text-box">
+                    <p><span>${c.name}</span> on post:</p>
+                    <h5>${c.comment.substring(0, 40)}${c.comment.length > 40 ? '...' : ''}</h5>
+                </div>
+            </li>
+        `).join('');
+    } catch (error) {
+        console.error("Error rendering sidebar comments:", error);
     }
 }
 

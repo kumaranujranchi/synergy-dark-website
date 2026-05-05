@@ -11,9 +11,9 @@ export const addContent = mutation({
     imageAltText: v.optional(v.string()),
     metaTitle: v.optional(v.string()),
     metaDescription: v.optional(v.string()),
-    type: v.string(), // "blog" or "news"
     author: v.string(),
     isPublished: v.boolean(),
+    tags: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("content", {
@@ -67,5 +67,25 @@ export const togglePublish = mutation({
   args: { id: v.id("content"), isPublished: v.boolean() },
   handler: async (ctx, args) => {
     await ctx.db.patch(args.id, { isPublished: args.isPublished });
+  },
+});
+
+// Get Next/Prev content
+export const getAdjacent = query({
+  args: { currentId: v.id("content"), type: v.string() },
+  handler: async (ctx, args) => {
+    const all = await ctx.db
+      .query("content")
+      .withIndex("by_type", (q) => q.eq("type", args.type))
+      .filter((q) => q.eq(q.field("isPublished"), true))
+      .order("desc")
+      .collect();
+
+    const currentIndex = all.findIndex(item => item._id === args.currentId);
+    
+    return {
+      prev: currentIndex > 0 ? all[currentIndex - 1] : null,
+      next: currentIndex < all.length - 1 ? all[currentIndex + 1] : null,
+    };
   },
 });
