@@ -44,6 +44,7 @@ export default defineSchema({
     client: v.optional(v.string()),
     imageUrl: v.string(),
     projectUrl: v.optional(v.string()),
+    features: v.optional(v.array(v.string())),
     order: v.number(), // For custom sorting
   }).index("by_order", ["order"]),
 

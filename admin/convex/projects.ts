@@ -15,6 +15,7 @@ export const addProject = mutation({
     imageUrl: v.string(),
     client: v.optional(v.string()),
     projectUrl: v.optional(v.string()),
+    features: v.optional(v.array(v.string())),
     order: v.number(),
   },
   handler: async (ctx, args) => {

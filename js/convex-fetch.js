@@ -88,18 +88,23 @@ async function renderDynamicProjects() {
         if (projects.length === 0) return;
 
         container.innerHTML = projects.map(proj => `
-            <div class="col-lg-4 col-md-6 wow fadeInUp">
-                <div class="project-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image">
-                                <a href="page-project-details.html?id=${proj._id}"><img src="${proj.imageUrl}" alt="${proj.title}"></a>
-                            </figure>
-                        </div>
-                        <div class="content-box">
-                            <div class="text">${proj.category}</div>
-                            <h4 class="title"><a href="page-project-details.html?id=${proj._id}">${proj.title}</a></h4>
-                        </div>
+            <div class="col-xl-6 col-lg-6 col-md-12 wow fadeInUp">
+                <div class="premium-project-card">
+                    <div class="image-wrapper">
+                        <span class="category-badge">${proj.category}</span>
+                        <img src="${proj.imageUrl}" alt="${proj.title}">
+                    </div>
+                    <div class="content">
+                        <h3 class="title">${proj.title}</h3>
+                        <p class="description">${proj.description}</p>
+                        <ul class="features-list">
+                            ${(proj.features && proj.features.length > 0 ? proj.features : ['Modern UI/UX Design', 'Full-stack Development', 'Performance Optimized']).map(f => `
+                                <li><i class="fas fa-check-circle"></i> ${f}</li>
+                            `).join('')}
+                        </ul>
+                        <a href="${proj.projectUrl || '#'}" target="_blank" class="visit-btn">
+                            Visit Website <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>
