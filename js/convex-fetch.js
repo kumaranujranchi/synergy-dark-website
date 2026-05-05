@@ -44,15 +44,13 @@ async function mutationToConvex(funcName, args = {}) {
     }
 }
 
-// 1. Render Dynamic Blogs
+// 1. Render Dynamic Blogs (Home Page - Limit 3)
 async function renderDynamicBlogs() {
     const container = document.getElementById('dynamic-blogs-container');
     if (!container) return;
 
     try {
-        const blogs = await fetchFromConvex('content/listAll');
-        const publishedBlogs = blogs.filter(b => b.isPublished && b.type === 'blog');
-        
+        const publishedBlogs = await fetchFromConvex('content/listPublished', { type: 'blog' });
         if (publishedBlogs.length === 0) return;
 
         container.innerHTML = publishedBlogs.slice(0, 3).map(blog => `
@@ -277,10 +275,137 @@ async function renderDynamicCaseStudies() {
     }
 }
 
+// 5. Render Blogs Grid (blog.html)
+async function renderBlogsGrid() {
+    const container = document.getElementById('dynamic-blogs-grid');
+    if (!container) return;
+
+    try {
+        const publishedBlogs = await fetchFromConvex('content/listPublished', { type: 'blog' });
+        if (publishedBlogs.length === 0) {
+            container.innerHTML = '<div class="col-12 text-center text-white-50 p-5">No blogs found. Check back later!</div>';
+            return;
+        }
+
+        container.innerHTML = publishedBlogs.map(blog => `
+            <div class="news-block col-lg-4 col-md-6 wow fadeInUp">
+                <div class="blog-single-box style_two">
+                    <div class="image-box">
+                        <figure class="image">
+                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/home-2/blog1.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
+                        </figure>
+                    </div>
+                    <div class="content-box">
+                        <span class="date">${new Date(blog.publishedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                        <h4 class="title">
+                            <a href="blog-details.html?slug=${blog.slug}">${blog.title}</a>
+                        </h4>
+                        <div class="blog-author">
+                            <span>By - <a href="#" class="read-more">${blog.author}</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error("Error rendering blogs grid:", error);
+    }
+}
+
+// 6. Render News Grid (news-grid.html)
+async function renderNewsGrid() {
+    const container = document.getElementById('dynamic-news-grid');
+    if (!container) return;
+
+    try {
+        const publishedNews = await fetchFromConvex('content/listPublished', { type: 'news' });
+        if (publishedNews.length === 0) {
+            container.innerHTML = '<div class="col-12 text-center text-white-50 p-5">No news updates found. Check back later!</div>';
+            return;
+        }
+
+        container.innerHTML = publishedNews.map(news => `
+            <div class="news-block col-lg-4 col-md-6 wow fadeInUp">
+                <div class="blog-single-box style_two">
+                    <div class="image-box">
+                        <figure class="image">
+                            <a href="news-details.html?slug=${news.slug}"><img src="${news.imageUrl || 'images/home-2/blog1.jpg'}" alt="${news.imageAltText || news.title}"></a>
+                        </figure>
+                    </div>
+                    <div class="content-box">
+                        <span class="date">${new Date(news.publishedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+                        <h4 class="title">
+                            <a href="news-details.html?slug=${news.slug}">${news.title}</a>
+                        </h4>
+                        <div class="blog-author">
+                            <span>By - <a href="#" class="read-more">${news.author}</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error("Error rendering news grid:", error);
+    }
+}
+
+// 7. Render Content Details (blog-details.html / news-details.html)
+async function renderContentDetails() {
+    const titleEl = document.getElementById('details-title');
+    if (!titleEl) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const slug = urlParams.get('slug');
+    if (!slug) return;
+
+    try {
+        const response = await fetch(`${CONVEX_URL}/api/run/content/getBySlug`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ args: { slug }, format: "json" })
+        });
+        const result = await response.json();
+        const content = result.value;
+
+        if (!content) {
+            titleEl.innerText = "Content not found";
+            return;
+        }
+
+        // Update basic info
+        titleEl.innerText = content.title;
+        document.title = content.metaTitle || content.title;
+        
+        const imgEl = document.getElementById('details-image');
+        if (imgEl) imgEl.src = content.imageUrl || 'images/inner/news-details.jpg';
+
+        const dateEl = document.getElementById('details-date');
+        if (dateEl) {
+            const date = new Date(content.publishedAt);
+            dateEl.innerHTML = `
+                <span class="day">${date.getDate()}</span>
+                <span class="month">${date.toLocaleString('en-US', { month: 'short' })}</span>
+            `;
+        }
+
+        const authorEl = document.getElementById('details-author');
+        if (authorEl) authorEl.innerHTML = `<i class="fas fa-user-circle"></i> ${content.author}`;
+
+        const bodyEl = document.getElementById('details-body');
+        if (bodyEl) bodyEl.innerHTML = content.body;
+
+    } catch (error) {
+        console.error("Error rendering content details:", error);
+    }
+}
+
 // Initializations
 document.addEventListener('DOMContentLoaded', () => {
     renderDynamicBlogs();
     renderDynamicProjects();
     renderDynamicJobs();
     renderDynamicCaseStudies();
+    renderBlogsGrid();
+    renderNewsGrid();
+    renderContentDetails();
 });
