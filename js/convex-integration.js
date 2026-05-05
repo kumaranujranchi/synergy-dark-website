@@ -4,27 +4,35 @@
  */
 
 async function submitLead(formData) {
-    const response = await fetch(`${CONVEX_URL}/api/mutation/leads/addLead`, {
+    const response = await fetch(`${CONVEX_URL}/api/run/leads/addLead`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            name: formData.get("form_name") || "",
-            email: formData.get("form_email") || "",
-            phone: formData.get("form_phone") || "",
-            subject: formData.get("form_subject") || "",
-            message: formData.get("form_message") || "",
+            args: {
+                name: formData.get("full_name") || "",
+                email: formData.get("form_email") || "",
+                phone: formData.get("phone") || "",
+                subject: formData.get("subject") || "",
+                message: formData.get("message") || "",
+            },
+            format: "json"
         }),
     });
-    return response.json();
+    const result = await response.json();
+    return result.value || result;
 }
 
 async function subscribeNewsletter(email) {
-    const response = await fetch(`${CONVEX_URL}/api/mutation/subscribers/addSubscriber`, {
+    const response = await fetch(`${CONVEX_URL}/api/run/subscribers/addSubscriber`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({
+            args: { email },
+            format: "json"
+        }),
     });
-    return response.json();
+    const result = await response.json();
+    return result.value || result;
 }
 
 // Global initialization
