@@ -50,6 +50,7 @@ export const submitApplication = mutation({
     name: v.string(),
     email: v.string(),
     phone: v.string(),
+    resumeUrl: v.optional(v.string()),
     portfolioUrl: v.optional(v.string()),
     message: v.optional(v.string()),
     answers: v.optional(

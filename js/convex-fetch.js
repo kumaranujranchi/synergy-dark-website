@@ -179,28 +179,62 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.getElementById('submit-app-btn');
-            submitBtn.innerText = 'Submitting...';
+            submitBtn.innerText = 'Uploading Resume...';
             submitBtn.disabled = true;
 
-            const customAnswers = [];
-            document.querySelectorAll('.custom-q').forEach(input => {
-                customAnswers.push({
-                    question: input.dataset.question,
-                    answer: input.value
-                });
-            });
-
-            const applicationData = {
-                jobId: document.getElementById('job-id-input').value,
-                name: document.getElementById('app-name').value,
-                email: document.getElementById('app-email').value,
-                phone: document.getElementById('app-phone').value,
-                portfolioUrl: document.getElementById('app-portfolio').value,
-                message: document.getElementById('app-message').value,
-                answers: customAnswers
-            };
-
             try {
+                // 1. Handle Resume Upload
+                let resumeUrl = "";
+                const resumeFile = document.getElementById('app-resume').files[0];
+                if (resumeFile) {
+                    // Get upload URL
+                    const uploadUrlResponse = await fetch(`${CONVEX_URL}/api/run/upload/generateUploadUrl`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ args: {}, format: "json" })
+                    });
+                    const uploadUrlResult = await uploadUrlResponse.json();
+                    const uploadUrl = uploadUrlResult.value;
+
+                    // Upload file
+                    const uploadResponse = await fetch(uploadUrl, {
+                        method: "POST",
+                        headers: { "Content-Type": resumeFile.type },
+                        body: resumeFile,
+                    });
+                    const { storageId } = await uploadResponse.json();
+
+                    // Get public URL
+                    const fileUrlResponse = await fetch(`${CONVEX_URL}/api/run/upload/generateFileUrl`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ args: { storageId }, format: "json" })
+                    });
+                    const fileUrlResult = await fileUrlResponse.json();
+                    resumeUrl = fileUrlResult.value;
+                }
+
+                submitBtn.innerText = 'Submitting...';
+
+                const customAnswers = [];
+                document.querySelectorAll('.custom-q').forEach(input => {
+                    customAnswers.push({
+                        question: input.dataset.question,
+                        answer: input.value
+                    });
+                });
+
+                const applicationData = {
+                    jobId: document.getElementById('job-id-input').value,
+                    name: document.getElementById('app-name').value,
+                    email: document.getElementById('app-email').value,
+                    phone: document.getElementById('app-phone').value,
+                    resumeUrl: resumeUrl,
+                    portfolioUrl: document.getElementById('app-portfolio').value,
+                    message: document.getElementById('app-message').value,
+                    answers: customAnswers
+                };
+
                 const result = await mutationToConvex('jobs/submitApplication', applicationData);
                 if (result) {
                     form.classList.add('d-none');
