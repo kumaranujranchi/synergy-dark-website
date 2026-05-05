@@ -375,6 +375,12 @@ async function renderContentDetails() {
         // Update basic info
         titleEl.innerText = content.title;
         document.title = content.metaTitle || content.title;
+
+        const breadcrumbTitle = document.getElementById('breadcrumb-title');
+        if (breadcrumbTitle) breadcrumbTitle.innerText = content.title;
+
+        const breadcrumbType = document.getElementById('breadcrumb-type');
+        if (breadcrumbType) breadcrumbType.innerText = content.type.charAt(0).toUpperCase() + content.type.slice(1);
         
         const imgEl = document.getElementById('details-image');
         if (imgEl) imgEl.src = content.imageUrl || 'images/inner/news-details.jpg';
@@ -394,8 +400,34 @@ async function renderContentDetails() {
         const bodyEl = document.getElementById('details-body');
         if (bodyEl) bodyEl.innerHTML = content.body;
 
+        // Render sidebar
+        renderSidebarLatestPosts(content.type);
+
     } catch (error) {
         console.error("Error rendering content details:", error);
+    }
+}
+
+// 8. Render Sidebar Latest Posts
+async function renderSidebarLatestPosts(type) {
+    const container = document.getElementById('sidebar-latest-posts');
+    if (!container) return;
+
+    try {
+        const published = await fetchFromConvex('content/listPublished', { type });
+        if (published.length === 0) return;
+
+        container.innerHTML = published.slice(0, 3).map(item => `
+            <li>
+                <div class="sidebar__post-image"> <img src="${item.imageUrl || 'images/inner/news-23.jpg'}" alt="${item.title}"> </div>
+                <div class="sidebar__post-content">
+                    <h3> <span class="sidebar__post-content-meta"><i class="fas fa-user-circle"></i>${item.author}</span> <a href="${type === 'blog' ? 'blog-details.html' : 'news-details.html'}?slug=${item.slug}">${item.title}</a>
+                    </h3>
+                </div>
+            </li>
+        `).join('');
+    } catch (error) {
+        console.error("Error rendering sidebar posts:", error);
     }
 }
 

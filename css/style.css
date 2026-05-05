@@ -18044,3 +18044,31 @@ Sidebar
   max-width: 180px;
   height: auto;
 }
+
+/* Dynamic Content Styling Override */
+#details-body {
+  color: #ffffff !important;
+}
+#details-body * {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+#details-body a {
+  color: #f05a28 !important;
+  text-decoration: underline !important;
+}
+#details-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+#details-body h1, #details-body h2, #details-body h3, #details-body h4, #details-body h5, #details-body h6 {
+  color: #ffffff !important;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+#details-body p {
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
