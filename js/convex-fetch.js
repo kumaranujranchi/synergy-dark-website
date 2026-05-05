@@ -13,7 +13,7 @@ async function fetchFromConvex(funcName, args = {}) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(args)
+            body: JSON.stringify({ args, format: "json" })
         });
         const result = await response.json();
         return result.value || [];
@@ -34,7 +34,7 @@ async function mutationToConvex(funcName, args = {}) {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(args)
+            body: JSON.stringify({ args, format: "json" })
         });
         const result = await response.json();
         return result.value;

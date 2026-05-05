@@ -18,7 +18,8 @@ export default function LoginPage() {
     try {
       await login(password);
     } catch (err: any) {
-      setError(err.message || "Invalid password");
+      console.error("Login failed:", err);
+      setError("Incorrect password. Please try again.");
       setIsSubmitting(false);
     }
   };
