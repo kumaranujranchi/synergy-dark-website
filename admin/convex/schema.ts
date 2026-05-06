@@ -121,4 +121,28 @@ export default defineSchema({
     isApproved: v.boolean(),
     createdAt: v.number(),
   }).index("by_content", ["contentId", "isApproved"]),
+
+  // Dynamic SEO Configurations & AI Tracking
+  seo_configs: defineTable({
+    page: v.string(), // "home", "contact", "blog", "careers", "about"
+    metaTitle: v.string(),
+    metaDescription: v.string(),
+    keywords: v.array(v.string()),
+    heroHeadline: v.string(),
+    heroSubheadline: v.string(),
+    marqueeKeywords: v.array(v.string()),
+    lastAnalyzed: v.number(),
+    lastUpdated: v.number(),
+    autoPilotEnabled: v.boolean(),
+    pendingReview: v.optional(
+      v.object({
+        metaTitle: v.string(),
+        metaDescription: v.string(),
+        heroHeadline: v.string(),
+        heroSubheadline: v.string(),
+        marqueeKeywords: v.array(v.string()),
+        reasoning: v.string(),
+      })
+    ),
+  }).index("by_page", ["page"]),
 });

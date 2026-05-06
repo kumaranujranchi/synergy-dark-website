@@ -17,6 +17,7 @@ import type * as jobs from "../jobs.js";
 import type * as leads from "../leads.js";
 import type * as projects from "../projects.js";
 import type * as seed from "../seed.js";
+import type * as seo from "../seo.js";
 import type * as subscribers from "../subscribers.js";
 import type * as upload from "../upload.js";
 
@@ -36,6 +37,7 @@ declare const fullApi: ApiFromModules<{
   leads: typeof leads;
   projects: typeof projects;
   seed: typeof seed;
+  seo: typeof seo;
   subscribers: typeof subscribers;
   upload: typeof upload;
 }>;

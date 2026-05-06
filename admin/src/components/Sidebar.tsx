@@ -13,13 +13,15 @@ import {
   Settings,
   LogOut,
   BookOpen,
-  Bot
+  Bot,
+  LineChart
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Leads", href: "/dashboard/leads", icon: Users },
   { name: "AI Chatbot Leads", href: "/dashboard/chatbot-leads", icon: Bot },
+  { name: "SEO Strategy", href: "/dashboard/seo", icon: LineChart },
   { name: "Subscribers", href: "/dashboard/subscribers", icon: Mail },
   { name: "Content (Blog/News)", href: "/dashboard/content", icon: FileText },
   { name: "Projects", href: "/dashboard/projects", icon: FolderKanban },
