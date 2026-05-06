@@ -10,6 +10,8 @@
 
 import type * as auth from "../auth.js";
 import type * as caseStudies from "../caseStudies.js";
+import type * as chat from "../chat.js";
+import type * as comments from "../comments.js";
 import type * as content from "../content.js";
 import type * as jobs from "../jobs.js";
 import type * as leads from "../leads.js";
@@ -27,6 +29,8 @@ import type {
 declare const fullApi: ApiFromModules<{
   auth: typeof auth;
   caseStudies: typeof caseStudies;
+  chat: typeof chat;
+  comments: typeof comments;
   content: typeof content;
   jobs: typeof jobs;
   leads: typeof leads;

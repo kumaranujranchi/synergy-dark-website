@@ -593,4 +593,12 @@ document.addEventListener('DOMContentLoaded', () => {
     renderBlogsGrid();
     renderNewsGrid();
     renderContentDetails();
+    
+    // Auto-inject AI Assistant globally across all pages
+    if (!document.getElementById('synergy-ai-script') && !document.querySelector('script[src="js/ai-assistant.js"]')) {
+        const script = document.createElement('script');
+        script.id = 'synergy-ai-script';
+        script.src = 'js/ai-assistant.js';
+        document.body.appendChild(script);
+    }
 });
