@@ -9535,13 +9535,13 @@ Start sass Icon Single Box
   visibility: visible;
 }
 .team-single-box .inner-box:hover .name a {
-  color: var(--theme-color-black);
+  color: #ff5e14;
 }
 .team-single-box .inner-box:hover .designation {
-  color: var(--theme-color-black);
+  color: #ff5e14;
 }
 .team-single-box .inner-box:hover .designation:before {
-  background: var(--theme-color-black);
+  background: #ff5e14;
 }
 .team-single-box .inner-box:hover .nexella-hover-bx {
   opacity: 1;
