@@ -221,6 +221,18 @@ export default function NewContentPage() {
                 />
               </div>
             </div>
+
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-1">Author Name <span className="text-red-500">*</span></label>
+              <input 
+                type="text"
+                value={formData.author}
+                onChange={(e) => setFormData({...formData, author: e.target.value})}
+                className="w-full px-3 py-2 text-sm rounded-lg border border-slate-200 focus:ring-1 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all text-slate-700"
+                placeholder="Enter author's name..."
+                required
+              />
+            </div>
           </div>
 
           {/* Thumbnail Upload */}

@@ -10552,16 +10552,16 @@ Start sass Icon Single Box
 .news-block .blog-single-box.style_two .content-box .title strong {
   font-weight: 500;
 }
-.news-block .blog-single-box.style_two .content-box .blog-author {
+.news-block .blog-single-box .content-box .blog-author {
   margin-top: 12px;
 }
-.news-block .blog-single-box.style_two .content-box .blog-author span {
+.news-block .blog-single-box .content-box .blog-author span {
   font-weight: 500;
   font-size: 18px;
   color: var(--theme-color-white);
   font-family: var(--heading-font-family);
 }
-.news-block .blog-single-box.style_two .content-box .blog-author span a {
+.news-block .blog-single-box .content-box .blog-author span a {
   color: var(--theme-color1);
 }
 .news-block .blog-single-box.style_two .title a {
@@ -18095,7 +18095,8 @@ Sidebar
 
 .premium-project-card .image-wrapper {
     position: relative;
-    height: 380px;
+    --image-wrapper-height: 380px;
+    height: var(--image-wrapper-height);
     overflow: hidden;
     background: #000;
     border-bottom: 1px solid #333;
@@ -18110,7 +18111,7 @@ Sidebar
 }
 
 .premium-project-card:hover .image-wrapper img {
-    transform: translateY(calc(-100% + 380px));
+    transform: translateY(calc(-100% + var(--image-wrapper-height)));
 }
 
 .premium-project-card .category-badge {
@@ -18194,4 +18195,32 @@ Sidebar
 
 .premium-project-card .visit-btn i {
     font-size: 14px;
+}
+
+@media only screen and (min-width: 992px) {
+    .premium-project-card .image-wrapper {
+        --image-wrapper-height: 280px;
+    }
+    .premium-project-card .content {
+        padding: 24px;
+    }
+    .premium-project-card .title {
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .premium-project-card .description {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+    .premium-project-card .features-list {
+        margin-bottom: 25px;
+    }
+    .premium-project-card .features-list li {
+        font-size: 13px;
+        margin-bottom: 8px;
+    }
+    .premium-project-card .visit-btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
 }

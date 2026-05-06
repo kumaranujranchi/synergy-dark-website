@@ -9,7 +9,7 @@ import Link from "next/link";
 
 export default function NewCaseStudyPage() {
   const router = useRouter();
-  const generateUploadUrl = useMutation(api.caseStudies.generateUploadUrl);
+  const generateUploadUrl = useMutation(api.upload.generateUploadUrl);
   const addCaseStudy = useMutation(api.caseStudies.addCaseStudy);
   
   const fileInputRef = useRef<HTMLInputElement>(null);

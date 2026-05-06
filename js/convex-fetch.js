@@ -55,7 +55,7 @@ async function renderDynamicBlogs() {
 
         container.innerHTML = publishedBlogs.slice(0, 3).map(blog => `
             <div class="news-block col-lg-4 col-md-6 wow fadeInUp">
-                <div class="blog-single-box style_two">
+                <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
                             <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/home-2/blog1.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
@@ -88,7 +88,7 @@ async function renderDynamicProjects() {
         if (projects.length === 0) return;
 
         container.innerHTML = projects.map(proj => `
-            <div class="col-xl-6 col-lg-6 col-md-12 wow fadeInUp">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="premium-project-card">
                     <div class="image-wrapper">
                         <span class="category-badge">${proj.category}</span>
@@ -294,7 +294,7 @@ async function renderBlogsGrid() {
 
         container.innerHTML = publishedBlogs.map(blog => `
             <div class="news-block col-lg-4 col-md-6 wow fadeInUp">
-                <div class="blog-single-box style_two">
+                <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
                             <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/home-2/blog1.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
@@ -331,7 +331,7 @@ async function renderNewsGrid() {
 
         container.innerHTML = publishedNews.map(news => `
             <div class="news-block col-lg-4 col-md-6 wow fadeInUp">
-                <div class="blog-single-box style_two">
+                <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
                             <a href="news-details.html?slug=${news.slug}"><img src="${news.imageUrl || 'images/home-2/blog1.jpg'}" alt="${news.imageAltText || news.title}"></a>
