@@ -58,6 +58,19 @@ export default function ChatbotLeadsPage() {
     });
   };
 
+  // Render Markdown formatter (to replace **bold** with strong HTML, and support clean list bullets/linebreaks)
+  const renderFormattedText = (text: string | undefined) => {
+    if (!text) return "";
+    
+    // Replace **bold text** with strong tags inheriting colors safely
+    let html = text.replace(/\*\*(.*?)\*\*/g, '<strong class="font-extrabold text-inherit">$1</strong>');
+    
+    // Clean up carriage returns and map remaining newlines to br
+    html = html.replace(/\r/g, "").replace(/\n/g, "<br />");
+    
+    return <span dangerouslySetInnerHTML={{ __html: html }} />;
+  };
+
   return (
     <div className="space-y-6 h-[calc(100vh-120px)] flex flex-col">
       {/* Page Header */}
@@ -204,8 +217,8 @@ export default function ChatbotLeadsPage() {
                     </h3>
                     <div className="border-l-4 border-orange-500 bg-orange-500/5 rounded-r-xl p-5 text-slate-700 text-sm leading-relaxed border border-y-slate-200/50 border-r-slate-200/50">
                       {activeLead.chatSummary ? (
-                        <div className="space-y-2 whitespace-pre-line">
-                          {activeLead.chatSummary}
+                        <div className="space-y-2 text-slate-700">
+                          {renderFormattedText(activeLead.chatSummary)}
                         </div>
                       ) : (
                         <div className="italic text-slate-500 flex items-center">
@@ -240,8 +253,8 @@ export default function ChatbotLeadsPage() {
                               }`}>
                                 {chatBubble.sender}
                               </div>
-                              <div className="whitespace-pre-line">
-                                {chatBubble.text}
+                              <div className="whitespace-pre-line text-inherit">
+                                {renderFormattedText(chatBubble.text)}
                               </div>
                             </div>
                           </div>
