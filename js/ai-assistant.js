@@ -732,6 +732,39 @@
     scrollToBottom();
   });
 
+  // Helper to validate genuine mobile numbers (Option 1 - Custom RegEx & Patterns)
+  function validateMobileNumber(phone) {
+    const cleanPhone = phone.replace(/[^0-9]/g, "");
+
+    // 1. Must be exactly 10 digits
+    if (cleanPhone.length !== 10) {
+      return { isValid: false, message: "Please enter a valid 10-digit mobile number." };
+    }
+
+    // 2. Must start with 6, 7, 8, or 9 (Indian telecom standard)
+    const firstDigit = cleanPhone[0];
+    if (!["6", "7", "8", "9"].includes(firstDigit)) {
+      return { isValid: false, message: "Mobile number must start with 6, 7, 8, or 9." };
+    }
+
+    // 3. Block repetitive digits (e.g., 9999999999, 0000000000)
+    if (/^(.)\1{9}$/.test(cleanPhone)) {
+      return { isValid: false, message: "This mobile number appears to be invalid or fake." };
+    }
+
+    // 4. Block obvious sequential patterns (e.g., 1234567890, 9876543210, 0123456789)
+    if (cleanPhone === "1234567890" || cleanPhone === "9876543210" || cleanPhone === "0123456789") {
+      return { isValid: false, message: "Please enter a genuine mobile number. Sequential patterns are not allowed." };
+    }
+
+    // 5. Block repetitive sub-patterns (e.g., 9876598765, 1234512345)
+    if (cleanPhone.slice(0, 5) === cleanPhone.slice(5)) {
+      return { isValid: false, message: "Please enter a genuine, unique mobile number." };
+    }
+
+    return { isValid: true };
+  }
+
   // Attach lead generation form validation + submission flow
   bindLeadFormEvent();
 
@@ -742,13 +775,26 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const submitBtn = form.querySelector(".synergy-lead-submit");
-      submitBtn.innerText = "Activating Deep-Learning System...";
-      submitBtn.disabled = true;
+      const phoneInput = document.getElementById("lead-phone");
 
+      // Reset custom validation
+      phoneInput.setCustomValidity("");
+
+      const phoneVal = phoneInput.value.trim();
       const nameVal = document.getElementById("lead-name").value.trim();
       const emailVal = document.getElementById("lead-email").value.trim();
-      const phoneVal = document.getElementById("lead-phone").value.trim();
       const cityVal = document.getElementById("lead-city").value.trim();
+
+      // Advanced Phone validation
+      const validation = validateMobileNumber(phoneVal);
+      if (!validation.isValid) {
+        phoneInput.setCustomValidity(validation.message);
+        phoneInput.reportValidity();
+        return;
+      }
+
+      submitBtn.innerText = "Activating Deep-Learning System...";
+      submitBtn.disabled = true;
 
       try {
         // Post Lead collection directly to Convex leads:addLead mutation via global fetchFromConvex helper
