@@ -12,12 +12,14 @@ import {
   FolderKanban, 
   Settings,
   LogOut,
-  BookOpen
+  BookOpen,
+  Bot
 } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { name: "Leads", href: "/dashboard/leads", icon: Users },
+  { name: "AI Chatbot Leads", href: "/dashboard/chatbot-leads", icon: Bot },
   { name: "Subscribers", href: "/dashboard/subscribers", icon: Mail },
   { name: "Content (Blog/News)", href: "/dashboard/content", icon: FileText },
   { name: "Projects", href: "/dashboard/projects", icon: FolderKanban },

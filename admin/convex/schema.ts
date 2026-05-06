@@ -10,6 +10,8 @@ export default defineSchema({
     subject: v.optional(v.string()),
     message: v.string(),
     status: v.string(), // "new", "contacted", "qualified", "closed"
+    chatSummary: v.optional(v.string()),
+    chatTranscript: v.optional(v.string()),
   }).index("by_status", ["status"]),
 
   // Email Subscribers

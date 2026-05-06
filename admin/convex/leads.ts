@@ -9,6 +9,8 @@ export const addLead = mutation({
     phone: v.optional(v.string()),
     subject: v.optional(v.string()),
     message: v.string(),
+    chatSummary: v.optional(v.string()),
+    chatTranscript: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const leadId = await ctx.db.insert("leads", {

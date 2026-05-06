@@ -516,48 +516,17 @@
   let isDragging = false;
   let hasActiveLead = localStorage.getItem("synergy_lead_collected") === "true";
   let leadData = hasActiveLead ? JSON.parse(localStorage.getItem("synergy_lead_data") || "{}") : null;
+  let freeMessagesCount = 0;
+  let leadCaptureState = "IDLE"; // IDLE, ASKING_NAME, ASKING_PHONE, ASKING_EMAIL, ASKING_CITY
+  let tempLeadData = { name: "", phone: "", email: "", city: "" };
 
   // Initialize widget container
   const widgetContainer = document.createElement("div");
   widgetContainer.className = "synergy-chat-widget";
   widgetContainer.id = "synergy-chat-widget";
 
-  // Form HTML layout or empty welcome message
-  let innerBodyHtml = "";
-
-  if (!hasActiveLead) {
-    innerBodyHtml = `
-      <div class="synergy-lead-form" id="synergy-lead-form">
-        <div class="synergy-lead-header">
-          <h3>Connect with Synergy 💬</h3>
-          <p>Please enter your professional details to unlock full conversation capabilities and real-time support.</p>
-        </div>
-        <form class="synergy-lead-fields" id="synergy-form">
-          <div class="synergy-lead-input-grp">
-            <label>Name</label>
-            <input type="text" class="synergy-lead-input" id="lead-name" placeholder="E.g., Aman Verma" required autocomplete="name">
-          </div>
-          <div class="synergy-lead-input-grp">
-            <label>Email Address</label>
-            <input type="email" class="synergy-lead-input" id="lead-email" placeholder="name@company.com" required autocomplete="email">
-          </div>
-          <div class="synergy-lead-input-grp">
-            <label>Mobile Number</label>
-            <input type="tel" class="synergy-lead-input" id="lead-phone" placeholder="10-digit mobile number" required pattern="[0-9]{10}" autocomplete="tel">
-          </div>
-          <div class="synergy-lead-input-grp">
-            <label>City</label>
-            <input type="text" class="synergy-lead-input" id="lead-city" placeholder="E.g., Patna" required autocomplete="address-level2">
-          </div>
-          <button type="submit" class="synergy-lead-submit">Start Conversation Now 🚀</button>
-        </form>
-      </div>
-    `;
-  } else {
-    innerBodyHtml = renderSystemWelcomeBubble();
-  }
-
-  // Set initial layouts
+  // Initialize inner body with the interactive welcome bubble directly
+  let innerBodyHtml = renderSystemWelcomeBubble();
   widgetContainer.innerHTML = `
     <!-- Draggable circular floating button -->
     <div class="synergy-chat-btn" id="synergy-chat-btn">
@@ -579,6 +548,9 @@
           </div>
         </div>
         <div class="synergy-chat-actions">
+          <button class="synergy-chat-header-btn" id="synergy-chat-reset-btn" title="Reset Conversation">
+            <i class="fa-solid fa-rotate-left"></i>
+          </button>
           <button class="synergy-chat-header-btn" id="synergy-chat-max-btn" title="Maximize">
             <i class="fa-regular fa-window-maximize"></i>
           </button>
@@ -594,7 +566,7 @@
       </div>
 
       <!-- Text Input Area -->
-      <div class="synergy-chat-footer" id="synergy-chat-footer" style="${!hasActiveLead ? 'display: none;' : ''}">
+      <div class="synergy-chat-footer" id="synergy-chat-footer">
         <div class="synergy-chat-input-wrapper">
           <input type="text" class="synergy-chat-input" id="synergy-chat-input" placeholder="Type a message..." autocomplete="off">
           <button class="synergy-chat-send-btn" id="synergy-chat-send-btn">
@@ -612,6 +584,7 @@
   const chatWindow = document.getElementById("synergy-chat-window");
   const closeBtn = document.getElementById("synergy-chat-close-btn");
   const maxBtn = document.getElementById("synergy-chat-max-btn");
+  const resetBtn = document.getElementById("synergy-chat-reset-btn");
   const chatBody = document.getElementById("synergy-chat-body");
   const chatInput = document.getElementById("synergy-chat-input");
   const sendBtn = document.getElementById("synergy-chat-send-btn");
@@ -732,6 +705,37 @@
     scrollToBottom();
   });
 
+  // Reset Conversation to original welcome state and clear active lead flags for immediate testing
+  resetBtn.addEventListener("click", () => {
+    // 1. Clear lead collected variables from local storage
+    localStorage.removeItem("synergy_lead_collected");
+    localStorage.removeItem("synergy_lead_data");
+    
+    // 2. Reset local Javascript state variables
+    hasActiveLead = false;
+    leadData = null;
+    freeMessagesCount = 0;
+    leadCaptureState = "IDLE";
+    tempLeadData = { name: "", phone: "", email: "", city: "" };
+    chatHistory = [];
+    
+    // 3. Reset welcome bubble inside chat body
+    chatBody.innerHTML = renderSystemWelcomeBubble();
+    
+    // 4. Reset input and restore footer
+    chatFooter.style.display = "flex";
+    chatInput.value = "";
+    
+    // Add a quick feedback animation to the reset button icon
+    const resetIcon = resetBtn.querySelector("i");
+    resetIcon.classList.add("fa-spin");
+    setTimeout(() => {
+      resetIcon.classList.remove("fa-spin");
+    }, 500);
+
+    scrollToBottom();
+  });
+
   // Helper to validate genuine mobile numbers (Option 1 - Custom RegEx & Patterns)
   function validateMobileNumber(phone) {
     const cleanPhone = phone.replace(/[^0-9]/g, "");
@@ -765,69 +769,7 @@
     return { isValid: true };
   }
 
-  // Attach lead generation form validation + submission flow
-  bindLeadFormEvent();
-
-  function bindLeadFormEvent() {
-    const form = document.getElementById("synergy-form");
-    if (!form) return;
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const submitBtn = form.querySelector(".synergy-lead-submit");
-      const phoneInput = document.getElementById("lead-phone");
-
-      // Reset custom validation
-      phoneInput.setCustomValidity("");
-
-      const phoneVal = phoneInput.value.trim();
-      const nameVal = document.getElementById("lead-name").value.trim();
-      const emailVal = document.getElementById("lead-email").value.trim();
-      const cityVal = document.getElementById("lead-city").value.trim();
-
-      // Advanced Phone validation
-      const validation = validateMobileNumber(phoneVal);
-      if (!validation.isValid) {
-        phoneInput.setCustomValidity(validation.message);
-        phoneInput.reportValidity();
-        return;
-      }
-
-      submitBtn.innerText = "Activating Deep-Learning System...";
-      submitBtn.disabled = true;
-
-      try {
-        // Post Lead collection directly to Convex leads:addLead mutation via global fetchFromConvex helper
-        const leadId = await mutationToConvex("leads/addLead", {
-          name: nameVal,
-          email: emailVal,
-          phone: phoneVal,
-          subject: "AI Support Engagement",
-          message: `Lead collected via AI Chat widget. Customer resides in: ${cityVal}.`,
-        });
-
-        if (leadId) {
-          // Store onboarding credentials in LocalStorage to skip on subsequent visits
-          leadData = { name: nameVal, email: emailVal, phone: phoneVal, city: cityVal };
-          localStorage.setItem("synergy_lead_collected", "true");
-          localStorage.setItem("synergy_lead_data", JSON.stringify(leadData));
-          hasActiveLead = true;
-
-          // Transition lead form smoothly to chat UI
-          chatBody.innerHTML = renderSystemWelcomeBubble();
-          chatFooter.style.display = "flex";
-          chatInput.focus();
-        } else {
-          throw new Error("Could not register lead");
-        }
-      } catch (err) {
-        console.error("Lead submission error:", err);
-        alert("Verification server busy. Please try again in a second!");
-        submitBtn.innerText = "Start Conversation Now 🚀";
-        submitBtn.disabled = false;
-      }
-    });
-  }
+  // (Note: Static HTML forms are completely removed. We now prioritize a 100% natural, conversational AI messaging intake.)
 
   // Rate Limiter logic (Client-side localStorage guard)
   // Max 10 messages per hour to protect DeepSeek API from spam attacks
@@ -857,7 +799,167 @@
 
     chatInput.value = "";
 
-    // Append User message
+    // 1. Conversational Lead Collection State Machine
+    if (!hasActiveLead && leadCaptureState !== "IDLE") {
+      // Append User's answer bubble
+      appendBubble(query, "user");
+
+      if (leadCaptureState === "ASKING_NAME") {
+        let inputName = query.trim();
+        
+        // Strip common conversational prefixes to extract pure name
+        const prefixRegex = /^(?:my\s+name\s+is|i\s+am|i'm|this\s+is|mera\s+naam\s+hai|mera\s+naam|myself|hello|hi|hey|yo)\s+/i;
+        inputName = inputName.replace(prefixRegex, "").trim();
+
+        // Keywords that suggest the user is asking a business question rather than giving their name
+        const invalidKeywords = ["website", "commerce", "shop", "service", "work", "grow", "show", "price", "budget", "cost", "how", "what", "why", "who", "where", "development", "design", "marketing", "seo", "app", "software"];
+        const containsInvalidKeyword = invalidKeywords.some(keyword => inputName.toLowerCase().includes(keyword));
+        
+        // Reject names with digits, special characters, invalid keywords, or improper length
+        const isValidName = /^[a-zA-Z\s]{2,35}$/.test(inputName) && !containsInvalidKeyword;
+
+        if (!isValidName) {
+          const dots = showTypingIndicator();
+          setTimeout(() => {
+            dots.remove();
+            appendBubble(`Arey, please aage badhne se pehle apna sahi naam (**Name**) enter karein, taaki main aapko personally assist kar sakoon! 😊`, "system");
+          }, 800);
+          return;
+        }
+
+        // Format name to Title Case (e.g. "rahul kumar" -> "Rahul Kumar")
+        tempLeadData.name = inputName.split(/\s+/).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(" ");
+
+        const dots = showTypingIndicator();
+        setTimeout(() => {
+          dots.remove();
+          appendBubble(`Aapka swagat hai, **${tempLeadData.name}**! 😊\n\nAapki business enquiry register karne aur is discussion ko save karne ke liye, please apna **10-digit mobile number** share karein.`, "system");
+          leadCaptureState = "ASKING_PHONE";
+        }, 1200);
+        return;
+      }
+
+      if (leadCaptureState === "ASKING_PHONE") {
+        const phoneMatch = query.replace(/[^0-9]/g, "");
+        if (phoneMatch.length !== 10) {
+          const dots = showTypingIndicator();
+          setTimeout(() => {
+            dots.remove();
+            appendBubble(`Arey **${tempLeadData.name}**, lagta hai ye number galat hai. Please ek valid **10-digit mobile number** (e.g., 9525230232) enter karein taaki hum aapse coordinate kar sakein! 📱`, "system");
+          }, 800);
+          return;
+        }
+
+        // Advanced validation checklist (pattern matching check)
+        const validation = validateMobileNumber(phoneMatch);
+        if (!validation.isValid) {
+          const dots = showTypingIndicator();
+          setTimeout(() => {
+            dots.remove();
+            appendBubble(`Arey **${tempLeadData.name}**, ${validation.message} Please ek real business contact number share karein!`, "system");
+          }, 800);
+          return;
+        }
+
+        tempLeadData.phone = phoneMatch;
+
+        const dots = showTypingIndicator();
+        setTimeout(() => {
+          dots.remove();
+          appendBubble(`Dhanyawad, **${tempLeadData.name}**! 🌟\n\nAb please apna **Email Address** enter karein taaki main portfolio link aur details aapko mail kar sakoon.`, "system");
+          leadCaptureState = "ASKING_EMAIL";
+        }, 1200);
+        return;
+      }
+
+      if (leadCaptureState === "ASKING_EMAIL") {
+        const emailMatch = query.match(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/);
+        if (!emailMatch) {
+          const dots = showTypingIndicator();
+          setTimeout(() => {
+            dots.remove();
+            appendBubble(`Arey **${tempLeadData.name}**, please ek valid email id enter karein (e.g., name@company.com) taaki hum portfolio documents bhej sakein! ✉️`, "system");
+          }, 800);
+          return;
+        }
+        tempLeadData.email = emailMatch[0];
+
+        const dots = showTypingIndicator();
+        setTimeout(() => {
+          dots.remove();
+          appendBubble(`Perfect! 🗺️\n\nLast question—Aap kis **City** se belongs karte hain (e.g., Patna, Delhi, Ranchi)?`, "system");
+          leadCaptureState = "ASKING_CITY";
+        }, 1200);
+        return;
+      }
+
+      if (leadCaptureState === "ASKING_CITY") {
+        tempLeadData.city = query;
+        const dots = showTypingIndicator();
+
+        try {
+          // 1. Generate premium sales-focused chat summary via Convex HTTP Action API
+          let summaryVal = "No summary generated.";
+          try {
+            const summaryResp = await fetch(`${CONVEX_URL}/api/run/chat/summarizeChat`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                args: { history: chatHistory },
+                format: "json"
+              })
+            });
+            if (summaryResp.ok) {
+              const summaryJson = await summaryResp.json();
+              summaryVal = summaryJson.value || "No summary generated.";
+            }
+          } catch (e) {
+            console.error("Error fetching chat summary:", e);
+          }
+
+          // 2. Format complete conversation transcript
+          const transcriptVal = chatHistory.map(msg => `${msg.role === "user" ? "Client" : "Synergy AI"}: ${msg.content}`).join("\n\n");
+
+          // 3. Push complete lead details with summary and transcript to Convex database
+          await mutationToConvex("leads/addLead", {
+            name: tempLeadData.name,
+            email: tempLeadData.email,
+            phone: tempLeadData.phone,
+            subject: "AI Support Conversational Onboarding",
+            message: `Lead collected via 100% conversational AI chat flow. City: ${tempLeadData.city}.`,
+            chatSummary: summaryVal,
+            chatTranscript: transcriptVal,
+          });
+
+          // Commit registration state
+          leadData = tempLeadData;
+          localStorage.setItem("synergy_lead_collected", "true");
+          localStorage.setItem("synergy_lead_data", JSON.stringify(leadData));
+          hasActiveLead = true;
+          leadCaptureState = "IDLE";
+
+          setTimeout(() => {
+            dots.remove();
+            appendBubble(`Great, **${tempLeadData.name}** from **${tempLeadData.city}**! ✓ Aapki details successfully safe and secure register ho gayi hain.\n\nHamara conversation ab poori tarah se unlocked hai! Aap Synergy ki high-converting marketing campaigns, premium designs aur rates ke baare me bejhijhak pooch sakte hain. 🚀`, "system");
+          }, 1200);
+        } catch (err) {
+          console.error("Convex inline save error:", err);
+          // Gracefully unlock anyway for premium feel
+          leadData = tempLeadData;
+          localStorage.setItem("synergy_lead_collected", "true");
+          localStorage.setItem("synergy_lead_data", JSON.stringify(leadData));
+          hasActiveLead = true;
+          leadCaptureState = "IDLE";
+          setTimeout(() => {
+            dots.remove();
+            appendBubble(`Great, **${tempLeadData.name}**! Hamari chat unlocked ho chuki hai. Aap core services ke baare me kuch bhi aage pooch sakte hain! 🚀`, "system");
+          }, 1200);
+        }
+        return;
+      }
+    }
+
+    // 2. Standard Message Submission Flow
     appendBubble(query, "user");
 
     // Rate Limiter Guard verification
@@ -869,7 +971,6 @@
       return;
     }
 
-    // Trigger Typing Dot Animation indicator
     const typingDots = showTypingIndicator();
 
     try {
@@ -908,6 +1009,18 @@
         if (chatHistory.length > 20) {
           chatHistory = chatHistory.slice(-20);
         }
+
+        // 3. Conversational lead gate trigger after the user receives their FIRST AI answer
+        if (!hasActiveLead && leadCaptureState === "IDLE") {
+          setTimeout(() => {
+            const dots = showTypingIndicator();
+            setTimeout(() => {
+              dots.remove();
+              appendBubble("Bohot hi badhiya question! 😊\n\nAage ki custom digital pricing, package list aur quotes discuss karne se pehle, kya main aapka subh naam (**Name**) jaan sakta hoon?", "system");
+              leadCaptureState = "ASKING_NAME";
+            }, 1000);
+          }, 2000);
+        }
       } else {
         appendBubble("Arey, lagta hai servers thode busy hain. Ek baar dobara send karein please!", "system");
       }
@@ -935,13 +1048,13 @@
       ? `Aapka swagat hai, **${leadData.name}** (${leadData.city})! 🌟`
       : "Aapka swagat hai! 🌟";
 
-    const content = `${personalizedGreeting} Main Synergy Support Assistant hoon.\n\nAap humare business operations, services (web dev, digital marketing, premium branding), active team members (Aman Verma, Kriti Sharma, Aditya Mishra) aur careers page par open jobs ke baare me kuch bhi pooch sakte hain!`;
+    const content = `${personalizedGreeting} Main Synergy Support Assistant hoon. 🚀\n\nHum high-performance growth aur 10x leads generate karne me expert hain. Aap humare core business services ke baare me pooch sakte hain:\n- **Digital Marketing & Performance Ads**\n- **Search Engine Optimization (SEO)**\n- **Premium Website Design & Development**\n- **Brand Building & Workflow Automation**\n\nLet's discuss how we can grow your business and scale your sales!`;
 
     const suggestedPrompts = [
       "What services does Synergy offer?",
+      "How can Synergy grow my business?",
       "Show me your completed projects.",
-      "Are you hiring? What jobs are open?",
-      "Who is in the Synergy team?",
+      "How do I get a free consultation?",
     ];
 
     return `
@@ -986,6 +1099,11 @@
     if (!mdText) return "";
     let html = mdText;
 
+    // Headings (using multiline anchors and safe RGB style tags to prevent regex feedback loop)
+    html = html.replace(/^###\s*(.*)$/gm, '<strong style="color: rgb(255, 94, 20); display: block; margin-top: 10px; font-size: 14px;">$1</strong>');
+    html = html.replace(/^##\s*(.*)$/gm, '<strong style="color: rgb(255, 94, 20); display: block; margin-top: 12px; font-size: 15px;">$1</strong>');
+    html = html.replace(/^#\s*(.*)$/gm, '<strong style="color: rgb(255, 94, 20); display: block; margin-top: 14px; font-size: 16px;">$1</strong>');
+
     // Line break & paragraph wrappers
     html = html.replace(/\n\n/g, "</p><p>");
     html = html.replace(/\n/g, "<br>");
@@ -1013,4 +1131,43 @@
       handleSend();
     }
   });
+
+  // Proactive Sales Agent - Programmatic Auto-Open with Session Storage Check
+  function initAutoOpenSalesAgent() {
+    const currentPath = window.location.pathname.toLowerCase();
+    
+    // Blog and News page exclusion (blog.html, blog-details.html, news-grid.html, news-details.html)
+    const isBlogOrNewsPage = currentPath.includes("blog") || currentPath.includes("news");
+    if (isBlogOrNewsPage) {
+      console.log("[Sales Agent] Excluded page detected, disabling auto-open popup.");
+      return;
+    }
+
+    // Session check: only open once per browser tab session to keep experience premium
+    const hasAutoOpened = sessionStorage.getItem("synergy_chat_auto_opened") === "true";
+    if (hasAutoOpened) {
+      return;
+    }
+
+    // Set premium 4-second delay after page loads
+    setTimeout(() => {
+      // Re-evaluate in case they navigated quickly
+      const freshOpened = sessionStorage.getItem("synergy_chat_auto_opened") === "true";
+      if (freshOpened) return;
+
+      sessionStorage.setItem("synergy_chat_auto_opened", "true");
+      
+      // Open the chat programmatically
+      if (!chatWindow.classList.contains("active")) {
+        chatWindow.classList.add("active");
+        chatBtn.querySelector("i").className = "fa-solid fa-comment-dots";
+        if (hasActiveLead) {
+          chatInput.focus();
+        }
+        scrollToBottom();
+      }
+    }, 4000);
+  }
+
+  initAutoOpenSalesAgent();
 })();

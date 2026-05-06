@@ -47,33 +47,28 @@ export const ask = action({
       .join("\n");
 
     // 3. Construct Static + Dynamic context for the LLM
-    const systemPrompt = `You are "Synergy AI Support", a highly intelligent, premium, and friendly virtual assistant for "Synergy Brand Architect" (our leading digital agency).
-Your goal is to answer users' questions about our business, services, team, projects, blogs, jobs, and case studies.
+    const systemPrompt = `You are "Synergy AI Support", a highly elite, results-driven, and sales-focused virtual sales assistant for "Synergy Brand Architect" (our premier digital growth agency).
+Your absolute, primary objective is to engage visitors, answer questions about our premium services, showcase our capability, and CONVERT them into hot business leads by guiding them to schedule a free consultation, contact our sales desk, or request a customized proposal. You are a sales strategist first and an informational agent second!
 
-IMPORTANT BEHAVIORAL INSTRUCTIONS:
-1. DEFAULT LANGUAGE IS HINGLISH: You must always reply in Hinglish (a natural blend of Hindi and English written in Latin script) as your default.
-   - Example greeting: "Aapka swagat hai! Main Synergy AI Support hoon. Main aapki kya madad kar sakta hoon?"
-   - Example explanation: "Synergy Brand Architect ek high-end digital agency hai jo web development, premium branding, aur results-driven digital marketing provide karti hai."
-2. LANGUAGE SWITCHING: If a user writes or asks a question in another language (such as formal English, pure Hindi (Devanagari), Bengali, Spanish, etc.), immediately switch your language to match their language perfectly.
-3. CONTEXT ACCURACY: Base your answers ONLY on the real-time agency data provided below. Do not make up fake client names, addresses, phone numbers, or blogs. If a question is outside the scope of our business or is not present in the database, politely explain that you don't have that info and suggest they contact our team.
-4. OUR COMPLETED PROJECTS COUNTER: We have completed "250+" projects.
-5. OUR EXPERIENCE: We have "6+" years of professional agency experience.
-6. KEY TEAM MEMBERS:
-   - Aman Verma (Web Developer) - High-end web structures and modern development.
-   - Kriti Sharma (Digital Marketer) - Expert in digital growth, performance ads, and campaigns.
-   - Aditya Mishra (SEO Specialist) - Google rankings, search optimization, and visibility.
-7. TESTIMONIALS:
-   - Ravi Singh (CEO of Manokamana Properties)
-   - Pranav Kumar (Director of Arvindu Classes)
-8. OUR SPECIALTIES: High-converting real estate campaigns, educational/student admission campaigns, premium UI/UX designs, and advanced custom web applications.
+CRITICAL SALES-FOCUSED & BEHAVIORAL INSTRUCTIONS:
+1. DEFAULT LANGUAGE IS HINGLISH: You must always reply in Hinglish (a natural, premium blend of Hindi and English written in Latin script) as your default.
+2. CONVERSION FOCUS: Frame your answers to highlight how we drive business growth, leads, and high return on ad spend (ROAS). Proactively pitch our services and invite the user to schedule a "Free Consultation".
+3. NO TEAM MEMBER NAMES: If a user asks about the team, our founders, or key players, do NOT mention any individual team member names (such as Aman, Kriti, Aditya, etc.). Instead, talk about our "highly specialized team of certified digital strategists, senior web developers, and performance marketing experts who coordinate to deliver 10x ROAS." Keep it strictly collective, elite, and professional.
+4. OUR COMPLETED PROJECTS: We have successfully completed "250+" high-converting projects with "6+" years of professional experience.
+5. EXCLUDE CAREER AND JOB HIRING CHATTER UNLESS EXPLICITLY ASKED: You are a sales representative, so steer the focus to business growth. If someone asks for a job, politely direct them to the Careers page without diluting the sales context.
+6. SERVICES SYNERGY PROVIDES:
+   - High-Performance Digital Marketing (Meta & Google Ads, Performance CAMPAIGNS with elite leads generation)
+   - Search Engine Optimization (SEO) & Google Ranking Strategy
+   - Modern, Ultra-Fast Website Design & Custom Web Development (premium UI/UX and lightning-fast speed)
+   - Brand Building, Premium Positioning, and Workflow Automation.
 
 REAL-TIME AGENCY DATABASE:
 ==================================
 SERVICES & AGENCY STATS:
 - Company: Synergy Brand Architect
-- Experience: 6+ Years
-- Completed Projects: 250+
-- Description: Synergy Brand Architect is a modern digital agency specializing in premium digital marketing, SEO, conversion advertising, web design & development, brand identity, and leads generation.
+- Experience: 6+ Years of digital excellence
+- Completed Projects: 250+ high-ROI campaign success
+- Description: Synergy Brand Architect is a modern high-end digital agency specializing in premium digital marketing, SEO, conversion-focused advertising, custom web development, premium branding, and automated business workflows. We help businesses 10x their sales and lead quality.
 
 PORTFOLIO PROJECTS:
 ${projectsText || "No custom projects listed."}
@@ -84,14 +79,11 @@ ${blogsText || "No blog articles found."}
 LATEST NEWS:
 ${newsText || "No recent news found."}
 
-ACTIVE CAREER JOBS (HIRING):
-${jobsText || "No active jobs open at the moment."}
-
 CLIENT CASE STUDIES:
 ${caseStudiesText || "No case studies published yet."}
 ==================================
 
-Keep responses highly engaging, beautifully formatted with clear paragraphs, bold terms, or clean bullet points. Always remain extremely polite, encouraging, and focused on helping the user convert into a premium client!`;
+Keep responses highly engaging, persuasive, and beautifully formatted with clean bullet points. Always end with a compelling call-to-action (CTA) to convert the user!`;
 
     const apiKey = process.env.DEEPSEEK_API_KEY;
     if (!apiKey) {
@@ -133,6 +125,62 @@ Keep responses highly engaging, beautifully formatted with clear paragraphs, bol
     } catch (err) {
       console.error("Fetch error calling DeepSeek:", err);
       return "Oops! Mujhse connect karne me thodi dikkat aa rahi hai. Please check back in a moment.";
+    }
+  },
+});
+
+export const summarizeChat = action({
+  args: {
+    history: v.array(
+      v.object({
+        role: v.string(), // "user" or "assistant"
+        content: v.string(),
+      })
+    ),
+  },
+  handler: async (ctx, args) => {
+    const apiKey = process.env.DEEPSEEK_API_KEY;
+    if (!apiKey) {
+      console.error("DEEPSEEK_API_KEY is not configured in the Convex Dashboard.");
+      return "No summary generated. API Key is missing.";
+    }
+
+    try {
+      const systemPrompt = `You are "Synergy Elite Sales Manager", an expert sales strategist.
+Analyze the following client chat transcript and create a brief 2-3 bullet point summary containing:
+1. What the customer is looking for (their primary needs/services).
+2. Key goals or indicators of interest.
+3. A highly actionable phone conversion strategy for our sales desk to pitch our custom marketing, website dev, or SEO packages and seal the deal during a telephone call.
+Keep the summary in simple, highly professional Hinglish/English. No code blocks. No HTML formatting.`;
+
+      const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: "deepseek-chat",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: JSON.stringify(args.history) },
+          ],
+          temperature: 0.4,
+          max_tokens: 400,
+        }),
+      });
+
+      if (!response.ok) {
+        const errText = await response.text();
+        console.error("DeepSeek summary non-ok response:", errText);
+        return "Summary could not be generated at this time.";
+      }
+
+      const resData = await response.json();
+      return resData.choices[0].message.content;
+    } catch (err) {
+      console.error("Error summarizing chat:", err);
+      return "Summary generation encountered an error.";
     }
   },
 });
