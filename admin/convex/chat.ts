@@ -2,6 +2,8 @@ import { action } from "./_generated/server";
 import { api } from "./_generated/api";
 import { v } from "convex/values";
 
+const anyApi = api as any;
+
 export const ask = action({
   args: {
     message: v.string(),
@@ -15,11 +17,11 @@ export const ask = action({
   handler: async (ctx, args) => {
     // 1. Fetch dynamic content from Convex queries in parallel
     const [blogs, news, projects, jobs, caseStudies] = await Promise.all([
-      ctx.runQuery(api.content.listPublished, { type: "blog" }),
-      ctx.runQuery(api.content.listPublished, { type: "news" }),
-      ctx.runQuery(api.projects.listProjects),
-      ctx.runQuery(api.jobs.listJobs),
-      ctx.runQuery(api.caseStudies.listCaseStudies),
+      ctx.runQuery(anyApi.content.listPublished, { type: "blog" }),
+      ctx.runQuery(anyApi.content.listPublished, { type: "news" }),
+      ctx.runQuery(anyApi.projects.listProjects),
+      ctx.runQuery(anyApi.jobs.listJobs),
+      ctx.runQuery(anyApi.caseStudies.listCaseStudies),
     ]);
 
     // 2. Format database content for the AI's context window

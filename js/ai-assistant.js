@@ -529,7 +529,7 @@
     innerBodyHtml = `
       <div class="synergy-lead-form" id="synergy-lead-form">
         <div class="synergy-lead-header">
-          <h3>Activate Synergy AI 🤖</h3>
+          <h3>Connect with Synergy 💬</h3>
           <p>Please enter your professional details to unlock full conversation capabilities and real-time support.</p>
         </div>
         <form class="synergy-lead-fields" id="synergy-form">
@@ -549,7 +549,7 @@
             <label>City</label>
             <input type="text" class="synergy-lead-input" id="lead-city" placeholder="E.g., Patna" required autocomplete="address-level2">
           </div>
-          <button type="submit" class="synergy-lead-submit">Start AI Chat Now 🚀</button>
+          <button type="submit" class="synergy-lead-submit">Start Conversation Now 🚀</button>
         </form>
       </div>
     `;
@@ -574,7 +574,7 @@
             <div class="synergy-chat-avatar-status"></div>
           </div>
           <div class="synergy-chat-title">
-            <h4>Synergy AI Support</h4>
+            <h4>Synergy Support</h4>
             <span>Online • Active Assistant</span>
           </div>
         </div>
@@ -777,7 +777,7 @@
       } catch (err) {
         console.error("Lead submission error:", err);
         alert("Verification server busy. Please try again in a second!");
-        submitBtn.innerText = "Start AI Chat Now 🚀";
+        submitBtn.innerText = "Start Conversation Now 🚀";
         submitBtn.disabled = false;
       }
     });
@@ -817,7 +817,7 @@
     // Rate Limiter Guard verification
     if (!verifyRateLimit()) {
       appendBubble(
-        "**System Warning:** Dost, aapne is ghante ki free AI usage limit (10 queries/hour) exceed kar di hai. Spam aur misuse se bachne ke liye ye ceiling lagayi gayi hai. 🔒\n\nAap directly humare WhatsApp/Call support ya [Contact Page](contact.html) par humein reach out kar sakte hain!",
+        "**System Warning:** Dost, aapne is ghante ki free chat usage limit (10 queries/hour) exceed kar di hai. Spam aur misuse se bachne ke liye ye ceiling lagayi gayi hai. 🔒\n\nAap directly humare WhatsApp/Call support ya [Contact Page](contact.html) par humein reach out kar sakte hain!",
         "system"
       );
       return;
@@ -889,7 +889,7 @@
       ? `Aapka swagat hai, **${leadData.name}** (${leadData.city})! 🌟`
       : "Aapka swagat hai! 🌟";
 
-    const content = `${personalizedGreeting} Main Synergy AI Support assistant hoon.\n\nAap humare business operations, services (web dev, digital marketing, premium branding), active team members (Aman Verma, Kriti Sharma, Aditya Mishra) aur careers page par open jobs ke baare me kuch bhi pooch sakte hain!`;
+    const content = `${personalizedGreeting} Main Synergy Support Assistant hoon.\n\nAap humare business operations, services (web dev, digital marketing, premium branding), active team members (Aman Verma, Kriti Sharma, Aditya Mishra) aur careers page par open jobs ke baare me kuch bhi pooch sakte hain!`;
 
     const suggestedPrompts = [
       "What services does Synergy offer?",
