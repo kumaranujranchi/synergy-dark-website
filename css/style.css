@@ -10491,6 +10491,8 @@ Start sass Icon Single Box
   position: relative;
   margin-bottom: 30px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 .news-block .blog-single-box {
   position: relative;
@@ -10502,6 +10504,10 @@ Start sass Icon Single Box
   background: var(--body-bg);
   padding: 25px 25px 36px 25px;
   border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
 }
 @media (max-width: 575.98px) {
   .news-block .blog-single-box {
@@ -10553,7 +10559,8 @@ Start sass Icon Single Box
   font-weight: 500;
 }
 .news-block .blog-single-box .content-box .blog-author {
-  margin-top: 12px;
+  margin-top: auto;
+  padding-top: 15px;
 }
 .news-block .blog-single-box .content-box .blog-author span {
   font-weight: 500;
@@ -10622,6 +10629,9 @@ Start sass Icon Single Box
 .news-block .content-box {
   margin-top: 30px;
   margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 .news-block .content-box .date {
   font-family: var(--heading-font-family);
