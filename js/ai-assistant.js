@@ -2,6 +2,16 @@
 // Includes: Draggable float button, Lead onboarding form, Maximize/Minimize toggles, Rate Limiter, and full Mobile Responsiveness.
 
 (function () {
+  // Prevent loading on blog pages (to respect informational intent)
+  const currentPath = window.location.pathname.toLowerCase();
+  if (currentPath.includes("blog")) {
+    console.log("Synergy AI Support deactivated on blog pages.");
+    return;
+  }
+
+  // Resilient fallback for CONVEX_URL
+  const convexUrl = typeof CONVEX_URL !== "undefined" ? CONVEX_URL : "https://qualified-duck-586.convex.cloud";
+
   // 1. Premium Styles Injection
   const styles = `
     .synergy-chat-widget {
@@ -901,7 +911,7 @@
           // 1. Generate premium sales-focused chat summary via Convex HTTP Action API
           let summaryVal = "No summary generated.";
           try {
-            const summaryResp = await fetch(`${CONVEX_URL}/api/run/chat/summarizeChat`, {
+            const summaryResp = await fetch(`${convexUrl}/api/run/chat/summarizeChat`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
@@ -974,7 +984,7 @@
     const typingDots = showTypingIndicator();
 
     try {
-      const endpoint = `${CONVEX_URL}/api/run/chat/ask`;
+      const endpoint = `${convexUrl}/api/run/chat/ask`;
 
       // Call the live deployed cloud Convex HTTP Action
       const response = await fetch(endpoint, {
