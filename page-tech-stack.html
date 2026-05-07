@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Technology Stack | Custom Web & App Development Experts - Synergy Brand Architect Patna</title>
+    <meta name="description" content="Explore Synergy Brand Architect's high-performance technology stack. Our dedicated frontend, backend, mobile, and cloud developers build scalable digital products.">
+    <meta name="keywords" content="Technology stack patna, Dedicated react developer, Nodejs developers patna, Web app development technology, Software agency bihar">
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { background: #0f0f0f; color: #fff; }
+        .tech-card { transition: 0.3s; border-radius: 24px; }
+        .tech-card:hover { transform: translateY(-8px); background: #222222 !important; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        .tech-logo-wrapper {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            padding: 10px;
+        }
+        .tech-logo-wrapper:hover {
+            transform: scale(1.1) rotate(2deg);
+            border-color: #ff5e14;
+            box-shadow: 0 8px 24px rgba(255, 94, 20, 0.25);
+        }
+        .tech-logo-wrapper img {
+            max-width: 80%;
+            max-height: 80%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        .tech-logo-wrapper:hover img {
+            transform: scale(1.05);
+        }
+        .tech-row:hover .tech-logo-wrapper {
+            border-color: rgba(255, 94, 20, 0.25);
+            box-shadow: 0 6px 18px rgba(255, 94, 20, 0.15);
+        }
+        .tech-row {
+            border-bottom: 1px solid #1c1c1c;
+            padding: 50px 0;
+            transition: all 0.3s ease;
+        }
+        .tech-row:hover {
+            background: rgba(26, 26, 26, 0.3);
+        }
+        
+        /* Pulse Animation for Dome Gallery indicator */
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 94, 20, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(255, 94, 20, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(255, 94, 20, 0);
+            }
+        }
+
+        /* Interactive 3D Dome Gallery CSS */
+        .sphere-root {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            --radius: 520px;
+            --viewer-pad: 72px;
+            --circ: calc(var(--radius) * 3.14);
+            --rot-y: calc((360deg / var(--segments-x)) / 2);
+            --rot-x: var(--rot-y);
+            --item-width: calc(var(--circ) / var(--segments-x));
+            --item-height: var(--item-width);
+        }
+
+        .sphere-root * {
+            box-sizing: border-box;
+        }
+
+        .sphere,
+        .item,
+        .item__image {
+            transform-style: preserve-3d;
+        }
+
+        main.sphere-main {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+            background: transparent;
+        }
+
+        .stage {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            perspective: calc(var(--radius) * 2);
+            perspective-origin: 50% 50%;
+            contain: layout paint size;
+        }
+
+        .sphere {
+            transform: translateZ(calc(var(--radius) * -1));
+            will-change: transform;
+        }
+
+        .overlay,
+        .overlay--blur {
+            position: absolute;
+            inset: 0;
+            margin: auto;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .overlay {
+            background-image: radial-gradient(rgba(235, 235, 235, 0) 65%, var(--overlay-blur-color, #120F17) 100%);
+        }
+
+        .overlay--blur {
+            -webkit-mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #120F17) 90%);
+            mask-image: radial-gradient(rgba(235, 235, 235, 0) 70%, var(--overlay-blur-color, #120F17) 90%);
+            backdrop-filter: blur(3px);
+        }
+
+        .item {
+            width: calc(var(--item-width) * var(--item-size-x));
+            height: calc(var(--item-height) * var(--item-size-y));
+            position: absolute;
+            top: -999px;
+            bottom: -999px;
+            left: -999px;
+            right: -999px;
+            margin: auto;
+            transform-origin: 50% 50%;
+            backface-visibility: hidden;
+            transition: transform 300ms;
+            transform: rotateY(calc(var(--rot-y) * (var(--offset-x) + ((var(--item-size-x) - 1) / 2)) + var(--rot-y-delta, 0deg)))
+                rotateX(calc(var(--rot-x) * (var(--offset-y) - ((var(--item-size-y) - 1) / 2)) + var(--rot-x-delta, 0deg)))
+                translateZ(var(--radius));
+        }
+
+        .item__image {
+            position: absolute;
+            display: block;
+            inset: 1px;
+            border-radius: var(--tile-radius, 12px);
+            background: #ffffff;
+            overflow: hidden;
+            backface-visibility: hidden;
+            transition: transform 300ms;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            pointer-events: auto;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+
+        .item__image:hover {
+            border-color: rgba(255, 94, 20, 0.75);
+            box-shadow: 0 8px 24px rgba(255, 94, 20, 0.25);
+            transform: scale(1.05) translateZ(10px);
+        }
+
+        .item__image:hover img {
+            filter: none !important;
+        }
+
+        .item__image:focus {
+            outline: none;
+        }
+
+        .item__image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 14px;
+            pointer-events: none;
+            backface-visibility: hidden;
+            filter: var(--image-filter, none);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .viewer {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--viewer-pad);
+        }
+
+        .viewer .frame {
+            height: 100%;
+            aspect-ratio: 1;
+            border-radius: var(--enlarge-radius, 32px);
+            display: flex;
+        }
+
+        @media (max-aspect-ratio: 1/1) {
+            .viewer .frame {
+                height: auto;
+                width: 100%;
+            }
+        }
+
+        .viewer .scrim {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.65);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 500ms ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .sphere-root[data-enlarging='true'] .viewer .scrim {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .viewer .enlarge {
+            position: absolute;
+            z-index: 30;
+            border-radius: var(--enlarge-radius, 32px);
+            overflow: hidden;
+            transition:
+                transform 500ms ease,
+                opacity 500ms ease;
+            transform-origin: top left;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .viewer .enlarge img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: var(--image-filter, none);
+        }
+
+        .sphere-root .enlarge-closing img {
+            filter: var(--image-filter, none);
+        }
+
+        .edge-fade {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 120px;
+            z-index: 5;
+            pointer-events: none;
+            background: linear-gradient(to bottom, transparent, var(--overlay-blur-color, #120F17));
+        }
+
+        .edge-fade--top {
+            top: 0;
+            transform: rotate(180deg);
+        }
+
+        .edge-fade--bottom {
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <div class="preloader">
+            <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                <path id="preloaderSvg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+            </svg>
+            <div class="preloader-heading">
+                <div class="load-text">
+                    <span>S</span>
+                    <span>y</span>
+                    <span>n</span>
+                    <span>e</span>
+                    <span>r</span>
+                    <span>g</span>
+                    <span>y</span>
+                    <span>&nbsp;</span>
+                    <span>B</span>
+                    <span>r</span>
+                    <span>a</span>
+                    <span>n</span>
+                    <span>d</span>
+                    <span>&nbsp;</span>
+                    <span>A</span>
+                    <span>r</span>
+                    <span>c</span>
+                    <span>h</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>e</span>
+                    <span>c</span>
+                    <span>t</span>
+                </div>
+            </div>
+        </div>
+
+        <header class="main-header">
+            <!-- Header Lower -->
+            <div class="header-lower">
+                <div class="main-box">
+                    <div class="logo-box">
+                        <div class="logo">
+                            <a href="index.html" title=""><img src="images/logo/synergy-logo-header.png" alt="" title="synergy"></a>
+                        </div>
+                    </div>
+                    <!--Nav Box-->
+                    <div class="nav-outer">
+                        <nav class="nav main-menu">
+                            <ul class="navigation">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                                <li class="dropdown"><a href="services.html">Services</a>
+                                    <ul>
+                                        <li><a href="page-brand-building.html">Brand Building</a></li>
+                                        <li><a href="page-social-media.html">Social Media Marketing</a></li>
+                                        <li><a href="page-website-dev.html">Website & App Dev</a></li>
+                                        <li><a href="page-automation.html">Automation</a></li>
+                                        <li><a href="page-performance-marketing.html">Performance Marketing</a></li>
+                                        <li><a href="page-seo.html">SEO Optimization</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Industry</a>
+                                    <ul>
+                                        <li><a href="industry-real-estate.html">Real Estate</a></li>
+                                        <li><a href="industry-healthcare.html">Healthcare</a></li>
+                                        <li><a href="industry-education.html">Education</a></li>
+                                        <li><a href="industry-ecommerce.html">E-commerce</a></li>
+                                        <li class="dropdown"><a href="industry-local-business.html">Local Businesses</a>
+                                            <ul>
+                                                <li><a href="industry-local-salons.html">Salons</a></li>
+                                                <li><a href="industry-local-gyms.html">Gyms</a></li>
+                                                <li><a href="industry-local-restaurants.html">Restaurants</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-professional-services.html">Professional Services</a>
+                                            <ul>
+                                                <li><a href="industry-professional-ca.html">CA / Consultants</a></li>
+                                                <li><a href="industry-professional-lawyers.html">Lawyers</a></li>
+                                                <li><a href="industry-professional-agencies.html">Agencies</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-startups.html">Startups</a>
+                                            <ul>
+                                                <li><a href="industry-startups-tech.html">Tech startups</a></li>
+                                                <li><a href="industry-startups-saas.html">SaaS</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-corporate.html">Corporate / SMEs</a>
+                                            <ul>
+                                                <li><a href="industry-corporate-manufacturing.html">Manufacturing</a></li>
+                                                <li><a href="industry-corporate-b2b.html">B2B companies</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-hospitality.html">Hospitality & Travel</a>
+                                            <ul>
+                                                <li><a href="industry-hospitality-hotels.html">Hotels</a></li>
+                                                <li><a href="industry-hospitality-travel.html">Travel agencies</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-automotive.html">Automotive</a>
+                                            <ul>
+                                                <li><a href="industry-automotive-cars.html">Car dealerships</a></li>
+                                                <li><a href="industry-automotive-bikes.html">Bike showrooms</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Resources</a>
+                                    <ul>
+                                        <li><a href="news-grid.html">News</a></li>
+                                        <li><a href="blog.html">Blogs</a></li>
+                                        <li class="dropdown"><a href="page-case-study.html">Case Study</a>
+                                            <ul>
+                                                <li><a href="case-studies/biryani-mahal.html">Biryani Mahal</a></li>
+                                                <li><a href="case-studies/the-helping-hand.html">The Helping Hand</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="page-careers.html">Careers</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="outer-box">
+                        <div class="ui-btn-outer">
+                            <button class="ui-btn search-btn">
+                                <span class="icon lnr lnr-icon-search"> Search...</span>
+                            </button>
+                        </div>
+                        <div class="header-btn d-none d-xxl-block">
+                            <a class="header-btn-main" href="contact.html">
+                                <span class="header-theme-btn">Get a quote</span>
+                                <span class="header-btn-arrow-right"><i class="fa-regular fa-arrow-right"></i></span>
+                            </a>
+                        </div>
+                        <!-- Mobile Nav toggler -->
+                        <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu  -->
+            <div class="mobile-menu">
+                <div class="menu-backdrop"></div>
+                <nav class="menu-box">
+                    <div class="upper-box">
+                        <div class="nav-logo">
+                            <a href="index.html"><img src="images/logo/synergy-logo-header.png" alt=""></a>
+                        </div>
+                        <div class="close-btn"><i class="icon fa fa-times"></i></div>
+                    </div>
+                    <ul class="navigation clearfix"></ul>
+                </nav>
+            </div>
+
+            <!-- Sticky Header -->
+            <div class="sticky-header">
+                <div class="inner-container">
+                    <div class="logo">
+                        <a href="index.html" title=""><img src="images/logo/synergy-logo-header.png" alt="" title="synergy"></a> 
+                    </div>
+                    <div class="nav-outer">
+                        <nav class="main-menu">
+                            <div class="navbar-collapse show collapse clearfix">
+                                <ul class="navigation clearfix"></ul>
+                            </div>
+                        </nav>
+                        <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Tech Hero Section -->
+        <section class="tech-hero-section" style="background: #0f0f0f; padding: 160px 0 90px 0; position: relative; overflow: hidden;">
+            <div class="auto-container">
+                <!-- Centered Typography & Primary Actions -->
+                <div class="row justify-content-center text-center mb-5">
+                    <div class="col-lg-10 wow fadeInUp">
+                        <span class="sub-title" style="color: #ff5e14; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Powering Digital Innovation</span>
+                        <h1 class="text-white mt-3" style="font-size: 54px; font-weight: 800; line-height: 1.2;">Our Technology <span style="color: #ff5e14;">Stack Solutions</span></h1>
+                        <p class="text-white-50 mt-4 mx-auto" style="font-size: 16px; line-height: 1.8; max-width: 720px;">
+                            We house dedicated, highly skilled developers across modern web and mobile tech stacks. From high-performance React web apps to robust server architectures, we deliver state-of-the-art software systems tailored to your business.
+                        </p>
+                        <div class="d-flex justify-content-center gap-3 mt-4">
+                            <a href="contact.html" class="theme-btn btn-style-one" style="background: #ff5e14; border: none; padding: 15px 35px; border-radius: 12px; font-weight: 700;"><span class="btn-title">Hire Developers</span></a>
+                            <a href="#tech-details-container" class="theme-btn btn-style-one" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 35px; border-radius: 12px; font-weight: 700; color: #ffffff;"><span class="btn-title" style="color: #ffffff;">Explore Tech Stack</span></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cinematic Full-Width 3D Dome Gallery -->
+                <div class="row">
+                    <div class="col-12 wow fadeInUp" data-wow-delay="200ms">
+                        <div class="dome-gallery-wrapper" style="position: relative; width: 100%; height: 580px; overflow: hidden; background: rgba(10, 10, 10, 0.9); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 32px; box-shadow: 0 25px 60px rgba(0,0,0,0.8); margin-top: 10px;">
+                            <div class="glowing-orb" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; height: 450px; background: radial-gradient(circle, rgba(255, 94, 20, 0.06) 0%, rgba(255, 94, 20, 0) 70%); filter: blur(40px); pointer-events: none; z-index: 1;"></div>
+                            
+                            <div id="dome-gallery-root" class="sphere-root" style="width: 100%; height: 100%; z-index: 2;">
+                                <main class="sphere-main">
+                                    <div class="stage">
+                                        <div class="sphere"></div>
+                                    </div>
+                                    <div class="overlay"></div>
+                                    <div class="overlay overlay--blur"></div>
+                                    <div class="edge-fade edge-fade--top"></div>
+                                    <div class="edge-fade edge-fade--bottom"></div>
+                                    <div class="viewer">
+                                        <div class="scrim"></div>
+                                        <div class="frame"></div>
+                                    </div>
+                                </main>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Rows Container -->
+        <section id="tech-details-container" style="background: #0d0d0d; padding: 100px 0;">
+            <div class="auto-container">
+                <!-- Section Title -->
+                <div class="sec-title text-center mb-5 pb-4 wow fadeInUp">
+                    <span class="sub-title" style="color: #ff5e14; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Core Capabilities</span>
+                    <h2 class="text-white mt-2" style="font-weight: 800; font-size: 40px;">Technology Deep Dives & Expertise</h2>
+                    <p class="text-white-50 mt-3 mx-auto" style="max-width: 650px; font-size: 16px; line-height: 1.7;">
+                        Explore our core technologies. For each of these, we have handpicked, dedicated in-house developers ready to build high-performance applications.
+                    </p>
+                </div>
+
+                <!-- Tech Row 1: Web Development & Frameworks -->
+                <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="100ms">
+                    <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
+                        <div class="tech-logo-wrapper" title="React Development"><img src="images/webdevelopment/react.png" alt="React"></div>
+                        <div class="tech-logo-wrapper" title="NextJS Framework"><img src="images/webdevelopment/next.js.png" alt="NextJS"></div>
+                        <div class="tech-logo-wrapper" title="NodeJS Runtime"><img src="images/webdevelopment/node.png" alt="NodeJS"></div>
+                        <div class="tech-logo-wrapper" title="Laravel PHP MVC"><img src="images/webdevelopment/laravel.png" alt="Laravel"></div>
+                        <div class="tech-logo-wrapper" title="Python Engineering"><img src="images/webdevelopment/pythin.png" alt="Python"></div>
+                        <div class="tech-logo-wrapper" title="Amazon Web Services"><img src="images/webdevelopment/aws.png" alt="AWS"></div>
+                        <div class="tech-logo-wrapper" title="Docker Containers"><img src="images/webdevelopment/docker.png" alt="Docker"></div>
+                        <div class="tech-logo-wrapper" title="HTML5 Web"><img src="images/webdevelopment/html.png" alt="HTML5"></div>
+                        <div class="tech-logo-wrapper" title="CSS3 Design"><img src="images/webdevelopment/css.png" alt="CSS3"></div>
+                        <div class="tech-logo-wrapper" title="JavaScript ESNext"><img src="images/webdevelopment/js.png" alt="JavaScript"></div>
+                        <div class="tech-logo-wrapper" title="Tailwind CSS"><img src="images/webdevelopment/tailwind.png" alt="Tailwind"></div>
+                        <div class="tech-logo-wrapper" title="GitHub Control"><img src="images/webdevelopment/github.png" alt="GitHub"></div>
+                        <div class="tech-logo-wrapper" title="GraphQL APIs"><img src="images/webdevelopment/graphql.png" alt="GraphQL"></div>
+                        <div class="tech-logo-wrapper" title="ExpressJS Framework"><img src="images/webdevelopment/express.png" alt="ExpressJS"></div>
+                        <div class="tech-logo-wrapper" title="Redux State Engine"><img src="images/webdevelopment/redux.png" alt="Redux"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="ps-lg-4">
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                                <h3 class="text-white mb-0" style="font-weight: 800; font-size: 28px;">Web Development & Frameworks</h3>
+                                <span class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">Dedicated Developers: 15+ Available</span>
+                            </div>
+                            <h5 class="text-white-50 mb-3" style="font-weight: 600; font-size: 18px;">High-Speed, Enterprise-Grade Full-Stack Applications</h5>
+                            <p class="text-white-50" style="line-height: 1.8; font-size: 15px;">
+                                We specialize in building next-generation web applications using modern, fast, and secure frameworks. By leveraging React, Next.js, Laravel, Node.js, and Python, we construct lightning-fast user interfaces, robust backend servers, and containerized cloud pipelines. We ensure high-performance scoring, SEO optimization, and exceptional security protocols are integrated out of the box.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">React.js & NextJS</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Node.js & Express</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Laravel PHP MVC</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Python AI integration</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Docker & Cloud AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Row 2: Workflow Automation & Databases -->
+                <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="200ms">
+                    <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
+                        <div class="tech-logo-wrapper" title="ChatGPT API"><img src="images/automation/chagpt.png" alt="ChatGPT"></div>
+                        <div class="tech-logo-wrapper" title="DeepSeek AI"><img src="images/automation/deepseak.png" alt="DeepSeek"></div>
+                        <div class="tech-logo-wrapper" title="Google Firebase"><img src="images/automation/firbase.png" alt="Firebase"></div>
+                        <div class="tech-logo-wrapper" title="Git Version Control"><img src="images/automation/git.png" alt="Git"></div>
+                        <div class="tech-logo-wrapper" title="Mailchimp Campaigns"><img src="images/automation/mailchimp.png" alt="Mailchimp"></div>
+                        <div class="tech-logo-wrapper" title="MongoDB Database"><img src="images/automation/mongodb.png" alt="MongoDB"></div>
+                        <div class="tech-logo-wrapper" title="MySQL Relational DB"><img src="images/automation/mysql.png" alt="MySQL"></div>
+                        <div class="tech-logo-wrapper" title="n8n Workflow Automation"><img src="images/automation/n8n.png" alt="n8n"></div>
+                        <div class="tech-logo-wrapper" title="PostgreSQL"><img src="images/automation/psstgre.png" alt="PostgreSQL"></div>
+                        <div class="tech-logo-wrapper" title="WhatsApp Business API"><img src="images/automation/whatsapp api.png" alt="WhatsApp API"></div>
+                        <div class="tech-logo-wrapper" title="Zapier Integration"><img src="images/automation/zapier.png" alt="Zapier"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="ps-lg-4">
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                                <h3 class="text-white mb-0" style="font-weight: 800; font-size: 28px;">Workflow Automation & DBs</h3>
+                                <span class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">Dedicated Developers: 8+ Available</span>
+                            </div>
+                            <h5 class="text-white-50 mb-3" style="font-weight: 600; font-size: 18px;">Automating Processes, AI Agents, & Scalable Databases</h5>
+                            <p class="text-white-50" style="line-height: 1.8; font-size: 15px;">
+                                We connect your business software with world-class automation frameworks and databases. Our engineers deploy custom n8n and Zapier automated flows, integrate ChatGPT/DeepSeek LLM models, and implement robust relational (MySQL/Postgres) and NoSQL (MongoDB/Firebase) data layers. Save thousands of manual hours through automated API workflows, notifications, and AI integrations.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">n8n & Zapier</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">ChatGPT & DeepSeek</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Relational Postgres/MySQL</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">MongoDB & Firebase</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">WhatsApp Business API</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Row 3: Performance Marketing Campaigns -->
+                <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="300ms">
+                    <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
+                        <div class="tech-logo-wrapper" title="Google Ads"><img src="images/performancemarketing/googleads.png" alt="Google Ads"></div>
+                        <div class="tech-logo-wrapper" title="Meta Ads Manager"><img src="images/performancemarketing/meta.png" alt="Meta Ads"></div>
+                        <div class="tech-logo-wrapper" title="LinkedIn Ads"><img src="images/performancemarketing/linkedinads.png" alt="LinkedIn Ads"></div>
+                        <div class="tech-logo-wrapper" title="Taboola Recommendation"><img src="images/performancemarketing/taboola.png" alt="Taboola"></div>
+                        <div class="tech-logo-wrapper" title="Outbrain Native Ads"><img src="images/performancemarketing/utbrain.png" alt="Outbrain"></div>
+                        <div class="tech-logo-wrapper" title="StackAdapt DSP"><img src="images/performancemarketing/stack.png" alt="StackAdapt"></div>
+                        <div class="tech-logo-wrapper" title="Nativo Native Ad Server"><img src="images/performancemarketing/nativo.png" alt="Nativo"></div>
+                        <div class="tech-logo-wrapper" title="RevContent Ad Network"><img src="images/performancemarketing/rev.png" alt="RevContent"></div>
+                        <div class="tech-logo-wrapper" title="MGID Ads"><img src="images/performancemarketing/mgid.png" alt="MGID"></div>
+                        <div class="tech-logo-wrapper" title="TikTok Ads"><img src="images/performancemarketing/tiktok ads.png" alt="TikTok Ads"></div>
+                        <div class="tech-logo-wrapper" title="Truecaller Ads"><img src="images/performancemarketing/turecallersads.png" alt="Truecaller Ads"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="ps-lg-4">
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                                <h3 class="text-white mb-0" style="font-weight: 800; font-size: 28px;">Performance Marketing</h3>
+                                <span class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">Dedicated Media Buyers: 10+ Available</span>
+                            </div>
+                            <h5 class="text-white-50 mb-3" style="font-weight: 600; font-size: 18px;">High-ROI Paid Acquisition & Omni-Channel Ad Management</h5>
+                            <p class="text-white-50" style="line-height: 1.8; font-size: 15px;">
+                                We scale brands exponentially with multi-channel performance marketing strategies. Our media buying team builds, runs, and optimizes paid acquisition campaigns across search engines, social networks, programmatic DSPs, and native content discovery systems. We deploy high-performing funnels on Google, Meta, LinkedIn, Taboola, and Outbrain, maximizing ROAS and minimizing acquisition costs.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Google & Meta Paid Ads</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">LinkedIn B2B Lead Gen</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Taboola & Outbrain Native</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Programmatic DSPs (StackAdapt)</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">TikTok & Programmatic ads</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Row 4: Social Media Marketing & Analytics -->
+                <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="400ms">
+                    <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
+                        <div class="tech-logo-wrapper" title="Buffer Social"><img src="images/socailmedia/buffer.png" alt="Buffer"></div>
+                        <div class="tech-logo-wrapper" title="Hootsuite Scheduler"><img src="images/socailmedia/hoot.png" alt="Hootsuite"></div>
+                        <div class="tech-logo-wrapper" title="Sprout Social"><img src="images/socailmedia/sprout.png" alt="Sprout Social"></div>
+                        <div class="tech-logo-wrapper" title="Planable Collaboration"><img src="images/socailmedia/planable.png" alt="Planable"></div>
+                        <div class="tech-logo-wrapper" title="Metricool Analytics"><img src="images/socailmedia/metricool.png" alt="Metricool"></div>
+                        <div class="tech-logo-wrapper" title="Zoho Social"><img src="images/socailmedia/zoho.png" alt="Zoho Social"></div>
+                        <div class="tech-logo-wrapper" title="Facebook Page Growth"><img src="images/socailmedia/facebook.png" alt="Facebook"></div>
+                        <div class="tech-logo-wrapper" title="Instagram Creative"><img src="images/socailmedia/insta.png" alt="Instagram"></div>
+                        <div class="tech-logo-wrapper" title="LinkedIn Professional"><img src="images/socailmedia/linkedin.png" alt="LinkedIn"></div>
+                        <div class="tech-logo-wrapper" title="Quora Content Marketing"><img src="images/socailmedia/quora.png" alt="Quora"></div>
+                        <div class="tech-logo-wrapper" title="Reddit Engagement"><img src="images/socailmedia/reditt.png" alt="Reddit"></div>
+                        <div class="tech-logo-wrapper" title="TikTok Video Production"><img src="images/socailmedia/tiktok.png" alt="TikTok"></div>
+                        <div class="tech-logo-wrapper" title="Pinterest Pinning"><img src="images/socailmedia/pintereste.png" alt="Pinterest"></div>
+                        <div class="tech-logo-wrapper" title="SocialPilot Growth"><img src="images/socailmedia/socialpilot.png" alt="SocialPilot"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="ps-lg-4">
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                                <h3 class="text-white mb-0" style="font-weight: 800; font-size: 28px;">Social Media Marketing</h3>
+                                <span class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">Dedicated Social Managers: 8+ Available</span>
+                            </div>
+                            <h5 class="text-white-50 mb-3" style="font-weight: 600; font-size: 18px;">Social Scaling, Collaboration & Listening Workflows</h5>
+                            <p class="text-white-50" style="line-height: 1.8; font-size: 15px;">
+                                We manage, optimize, and grow corporate social footprints across major networks. From community building on Facebook, Instagram, and LinkedIn, to interactive organic campaigns on TikTok, Reddit, Pinterest, and Quora, we design and coordinate post scheduling, team review workflows, brand listening, and engagement analytics using industry-leading tools.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Buffer & Hootsuite</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Sprout Social Listening</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Planable & Metricool</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Organic Insta & LinkedIn</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Zoho Social suite</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Row 5: SEO, Search Optimization & Analytics -->
+                <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="500ms">
+                    <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
+                        <div class="tech-logo-wrapper" title="Ahrefs SEO Auditor"><img src="images/seo/ahref.png" alt="Ahrefs"></div>
+                        <div class="tech-logo-wrapper" title="SEMrush Marketing Suite"><img src="images/seo/semrush.png" alt="SEMrush"></div>
+                        <div class="tech-logo-wrapper" title="Google Search Console"><img src="images/seo/gsc.png" alt="Google Search Console"></div>
+                        <div class="tech-logo-wrapper" title="Google Analytics 4"><img src="images/seo/ga4.png" alt="GA4"></div>
+                        <div class="tech-logo-wrapper" title="Screaming Frog SEO Spider"><img src="images/seo/screaming frog.png" alt="Screaming Frog"></div>
+                        <div class="tech-logo-wrapper" title="Yoast SEO Plugin"><img src="images/seo/yost.png" alt="Yoast SEO"></div>
+                        <div class="tech-logo-wrapper" title="Ubersuggest Auditor"><img src="images/seo/ubersuggest.png" alt="Ubersuggest"></div>
+                    </div>
+                    <div class="col-lg-7 col-md-12">
+                        <div class="ps-lg-4">
+                            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                                <h3 class="text-white mb-0" style="font-weight: 800; font-size: 28px;">SEO & Advanced Analytics</h3>
+                                <span class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">Dedicated SEO Specialists: 6+ Available</span>
+                            </div>
+                            <h5 class="text-white-50 mb-3" style="font-weight: 600; font-size: 18px;">Keyword Audit, Technical Crawling, Backlinks, & Analytics Tracking</h5>
+                            <p class="text-white-50" style="line-height: 1.8; font-size: 15px;">
+                                We rank your services on page 1 of search engines. Our dedicated SEO specialists perform exhaustive search-intent keyword research, run comprehensive crawling audits with Screaming Frog, optimize metadata architectures, and configure GA4 event tagging and Google Search Console indexing. Achieve stable, organic search growth that converts users into customers.
+                            </p>
+                            <div class="d-flex flex-wrap gap-2 mt-4">
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Ahrefs & Semrush Audits</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Google Search Console & GA4</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Technical Screaming Frog Crawls</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Yoast & Ubersuggest SEO</span>
+                                <span class="badge px-3 py-2" style="background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; font-size: 13px;">Search Intent Copywriting</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="footer-section-3 theme-color-bg pb-60">
+            <div class="footer-main-wrapper">
+                <div class="footer-circle-shape">
+                    <img src="images/home-3/footer-circle.png" alt="img">
+                </div>
+                <div class="auto-container">
+                    <div class="footer-widget-wrapper-3">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <a href="index.html" class="footer-logo"><img src="images/logo/synergy-logo-header.png" alt="img"></a>
+                                    </div>
+                                    <div class="footer-content mt-4">
+                                        <p class="footer-text text-white-50">
+                                            synergy is a dynamic creative digital marketing dedicated to empowering businesses through
+                                        </p>
+                                        <ul class="social-icon-two mt-4">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="https://www.instagram.com/synergybrandarchitect/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Company</h4>
+                                    </div>
+                                    <ul class="list-area">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="team.html">Our Team</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Useful Links</h4>
+                                    </div>
+                                    <ul class="list-area">
+                                        <li><a href="services.html">Our Service</a></li>
+                                        <li><a href="news-grid.html">Latest Blog</a></li>
+                                        <li><a href="page-case-study.html">Case Study</a></li>
+                                        <li><a href="page-tech-stack.html">Technology Stack</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Legal</h4>
+                                    </div>
+                                    <ul class="list-area">
+                                        <li><a href="page-privacy.html">Privacy Policy</a></li>
+                                        <li><a href="page-terms.html">Terms of Service</a></li>
+                                        <li><a href="page-refund.html">Refund Policy</a></li>
+                                        <li><a href="sitemap.html">Sitemap</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="1s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Contact Us</h4>
+                                    </div>
+                                    <div class="widget-content">
+                                        <div class="contact-info-box">
+                                            <div class="icon-box"><span class="icon fa fa-envelope"></span></div>
+                                            <div class="content-box">
+                                                <h6 class="title">Mail Us:</h6>
+                                                <div class="text"><a href="mailto:hello@synergybrandarchitect.in" class="link">hello@synergybrandarchitect.in</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="contact-info-box">
+                                            <div class="icon-box"><span class="icon fa fa-map-marker-alt"></span></div>
+                                            <div class="content-box">
+                                                <h6 class="title">Address :</h6>
+                                                <div class="text">Patna, Bihar 801503</div>
+                                            </div>
+                                        </div>
+                                        <div class="contact-info-box mb-0">
+                                            <div class="icon-box"><span class="icon fa fa-phone"></span></div>
+                                            <div class="content-box">
+                                                <h6 class="title">Phone:</h6>
+                                                <div class="text"><a href="tel:+919525230232" class="link">+91 9525 230232</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="copyright-text wow fadeInUp" data-wow-delay=".3s">
+                        © 2026 Synergy Brand Architect. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script imports -->
+    <script src="js/jquery.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.js"></script>
+    <script src="js/bxslider.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/wow.js"></script>
+    <script src="js/select2.min.js"></script>
+    <script src="js/appear.js"></script>
+    <script src="js/knob.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/aos.js"></script>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/splitType.js"></script>
+    <script src="js/mixitup.js"></script>
+    <script src="js/gsap-scroll-smoother.js"></script>
+    <script src="js/gsap-scroll-to-plugin.js"></script>
+    <script src="js/SplitText.min.js"></script>
+    <script src="js/custom-gsap.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/dome-gallery.js"></script>
+    <script src="js/ai-assistant.js"></script>
+</body>
+</html>

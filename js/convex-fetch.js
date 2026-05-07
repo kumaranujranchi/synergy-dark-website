@@ -131,16 +131,18 @@ async function renderDynamicJobs() {
 
         container.innerHTML = activeJobs.map(job => `
             <div class="col-lg-4 col-md-6 wow fadeInUp">
-                <div class="job-card p-4 p-md-5" style="background: #1a1a1a; border-radius: 32px; border: 1px solid #333; transition: 0.3s; height: 100%; display: flex; flex-direction: column;">
-                    <div class="d-flex justify-content-between align-items-start mb-4">
-                        <div class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">${job.department}</div>
-                        <div class="text-white-50 small"><i class="fa-solid fa-location-dot me-1"></i> ${job.location}</div>
-                    </div>
-                    <h4 class="text-white mb-3" style="font-weight: 800; font-size: 24px; line-height: 1.2;">${job.title}</h4>
-                    <p class="text-white-50 mb-5" style="font-size: 15px; line-height: 1.6; flex-grow: 1;">${job.description.substring(0, 120)}...</p>
-                    <div class="d-flex justify-content-between align-items-center mt-auto">
-                        <div class="text-white fw-bold">${job.type}</div>
-                        <button onclick="openApplyModal('${job._id}')" class="btn p-0" style="color: #ff5e14; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Apply Now <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                <div class="glowing-job-card-wrapper" style="height: 100%;">
+                    <div class="job-card p-4 p-md-5" style="background: #1a1a1a; border-radius: 31px; transition: 0.3s; height: 100%; display: flex; flex-direction: column;">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">${job.department}</div>
+                            <div class="text-white-50 small"><i class="fa-solid fa-location-dot me-1"></i> ${job.location}</div>
+                        </div>
+                        <h4 class="text-white mb-3" style="font-weight: 800; font-size: 24px; line-height: 1.2;">${job.title}</h4>
+                        <p class="text-white-50 mb-5" style="font-size: 15px; line-height: 1.6; flex-grow: 1;">${job.description.substring(0, 120)}...</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <div class="text-white fw-bold">${job.type}</div>
+                            <button onclick="openApplyModal('${job._id}')" class="btn p-0" style="color: #ff5e14; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Apply Now <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>

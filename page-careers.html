@@ -18,11 +18,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body { background: #0f0f0f; color: #fff; }
-        .job-card:hover { border-color: #ff5e14 !important; background: #252525 !important; }
         .info-card { transition: 0.3s; }
         .info-card:hover { transform: translateY(-10px); background: #252525 !important; }
         .form-control::placeholder { color: #555; }
         .form-control:focus { background: #222 !important; color: #fff !important; border-color: #ff5e14 !important; }
+
+        /* Glowing Running Border Effect for Career Cards */
+        .glowing-job-card-wrapper {
+            position: relative;
+            z-index: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            background: transparent;
+            padding: 1.5px; /* Creates the thin border space where the gradient glows */
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .glowing-job-card-wrapper::before,
+        .glowing-job-card-wrapper::after {
+            background: conic-gradient(from var(--gradient-angle), var(--theme-color2), var(--theme-color1), var(--theme-color2), var(--theme-color1), var(--theme-color2));
+            border-radius: 32px;
+            content: "";
+            inset: -0.5rem;
+            -webkit-animation: rotate 6s linear infinite;
+            animation: rotate 6s linear infinite;
+            opacity: 1;
+            position: absolute;
+            -webkit-transition: all 300ms ease;
+            transition: all 300ms ease;
+            z-index: -1;
+        }
+
+        .glowing-job-card-wrapper .job-card {
+            background: #1a1a1a;
+            border-radius: 31px; /* Slightly smaller to fit inside perfectly */
+            border: none !important; /* Remove static border */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s ease;
+        }
+
+        .glowing-job-card-wrapper .job-card:hover {
+            background: #222222 !important; /* Slightly lighter on hover */
+        }
+
+        @keyframes rotate {
+            0% {
+                --gradient-angle: 0deg;
+            }
+            100% {
+                --gradient-angle: 360deg;
+            }
+        }
     </style>
 </head>
 <body>
@@ -224,16 +273,25 @@
             
             <!-- Sticky Header -->
             <div class="sticky-header">
-                <div class="inner-container" style="background: #0f0f0f;">
-                    <div class="logo">
-                        <a href="index.html"><img src="images/logo/synergy-logo-header.png" alt=""></a>
-                    </div>
-                    <div class="nav-outer">
-                        <nav class="main-menu">
-                            <ul class="navigation"></ul>
-                        </nav>
-                        <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
-                    </div>
+                <div class="inner-container">
+                  <!--Logo-->
+                  <div class="logo">
+                                    <a href="index.html" title=""><img src="images/logo/synergy-logo-header.png" alt="" title="synergy"></a> 
+                  </div>
+                  <!--Right Col-->
+                  <div class="nav-outer">
+                  <nav class="main-menu">
+                      <div class="navbar-collapse show collapse clearfix">
+                        <ul class="navigation clearfix">
+                          <!--Keep This Empty / Menu will come through Javascript-->
+                        </ul>
+                      </div>
+                    </nav>
+                  <!-- Main Menu End-->
+    
+                    <!--Mobile Navigation Toggler-->
+                    <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                  </div>
                 </div>
             </div>
         </header>
@@ -399,6 +457,7 @@
                         <li><a href="services.html">Our Service</a></li>
                         <li><a href="news-grid.html">Latest Blog</a></li>
                         <li><a href="page-case-study.html">Case Study</a></li>
+                                        <li><a href="page-tech-stack.html">Technology Stack</a></li>
                       </ul>
                     </div>
                   </div>
