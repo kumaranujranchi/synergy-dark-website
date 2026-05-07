@@ -1582,4 +1582,11 @@ var THEMEMASCOT = {};
     TM_Pricing_Switcher_Smart();
     TM_Pricing_Switcher_Btn();
   });
+  // Dynamically load search-engine.js to enable global instant search
+  (function() {
+    const script = document.createElement('script');
+    script.src = 'js/search-engine.js';
+    script.async = true;
+    document.body.appendChild(script);
+  })();
 })(window.jQuery);
