@@ -262,21 +262,27 @@ async function renderDynamicCaseStudies() {
 
     try {
         const caseStudies = await fetchFromConvex('caseStudies/listCaseStudies');
-        if (caseStudies.length === 0) {
-            container.innerHTML = '<div class="col-12 text-center text-white-50 p-5">Coming soon! We are documenting our latest success stories.</div>';
+        if (!caseStudies || caseStudies.length === 0) {
+            // Static case studies are already loaded on the page, so do nothing!
             return;
         }
 
-        container.innerHTML = caseStudies.map(cs => `
+        const dynamicHtml = caseStudies.map(cs => `
             <div class="col-lg-4 col-md-6 wow fadeInUp">
-                <div class="case-study-card p-4 h-100" style="background: #1a1a1a; border-radius: 24px; border: 1px solid #333;">
-                    <img src="${cs.imageUrl}" alt="${cs.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 16px; margin-bottom: 20px;">
-                    <div class="badge mb-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14;">${cs.category}</div>
-                    <h4 class="text-white mb-3" style="font-weight: 700;">${cs.title}</h4>
-                    <p class="text-white-50 small mb-0">${cs.description}</p>
+                <div class="case-study-card p-4 h-100" style="background: #1a1a1a; border-radius: 24px; border: 1px solid #333; display: flex; flex-direction: column; transition: transform 0.3s ease, border-color 0.3s ease;">
+                    <img src="${cs.imageUrl}" alt="${cs.title}" style="width: 100%; height: 220px; object-fit: cover; border-radius: 16px; margin-bottom: 20px;">
+                    <div class="badge mb-2 align-self-start" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; padding: 6px 12px; border-radius: 8px; font-weight: 600; font-size: 13px;">${cs.category}</div>
+                    <h4 class="text-white mb-3" style="font-weight: 700; font-size: 22px;">${cs.title}</h4>
+                    <p class="text-white-50 small mb-4" style="line-height: 1.6; flex-grow: 1;">${cs.description}</p>
+                    ${cs.projectUrl ? `
+                        <a href="${cs.projectUrl}" target="_blank" class="theme-btn btn-style-one w-100 text-center mt-auto" style="padding: 10px 20px; font-size: 14px; border-radius: 12px;"><span class="btn-title">Visit Website <i class="fa-solid fa-external-link ms-2"></i></span></a>
+                    ` : ''}
                 </div>
             </div>
         `).join('');
+
+        // Append dynamic studies after the static ones
+        container.insertAdjacentHTML('beforeend', dynamicHtml);
     } catch (error) {
         console.error("Error rendering case studies:", error);
     }
