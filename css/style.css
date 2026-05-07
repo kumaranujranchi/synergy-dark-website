@@ -16023,6 +16023,24 @@ Page Title
     Services Details
 =============================================
 ***/
+.services-details__content > img {
+  width: 100%;
+  height: auto;
+  max-height: 550px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-bottom: 35px;
+  box-shadow: 0 15px 45px rgba(255, 94, 20, 0.15);
+}
+.services-details__content .feature-list img {
+  width: 100%;
+  height: auto;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(255, 94, 20, 0.1);
+}
 .service-sidebar {
   display: block;
   max-width: 365px;
