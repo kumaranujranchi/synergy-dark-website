@@ -257,8 +257,11 @@
         <!-- End Sticky Menu -->
     </header>
 <!-- Start main-content -->
-<section class="page-title" style="background-image: url(images/inner/page-title-bg.png);">
-    <div class="auto-container">
+<section style="position: relative; overflow: hidden; background: radial-gradient(circle at center, #120F17 0%, #0a0a0a 100%); padding: 140px 0 120px 0;" class="page-title">
+            <!-- Cosmic Particles Canvas -->
+            <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+
+    <div style="position: relative; z-index: 2;" class="auto-container">
         <div class="title-outer text-center">
             <h1 class="title" id="breadcrumb-title">Blog Details</h1>
             <ul class="page-breadcrumb">
@@ -561,5 +564,7 @@
     <script src="js/convex-integration.js"></script>
     <script src="js/convex-fetch.js"></script>
       <script src="js/ai-assistant.js"></script>
+      <!-- Particles Background -->
+    <script src="js/particles-background.js"></script>
   </body>
 </html>

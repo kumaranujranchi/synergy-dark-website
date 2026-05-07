@@ -229,8 +229,11 @@
             </div>
         </header>
 
-        <section class="page-title text-center" style="background: #111; padding: 100px 0;">
-            <div class="auto-container">
+        <section class="page-title text-center" style="position: relative; overflow: hidden; background: radial-gradient(circle at center, #120F17 0%, #0a0a0a 100%); padding: 140px 0 120px 0;">
+            <!-- Cosmic Particles Canvas -->
+            <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+            
+            <div class="auto-container" style="position: relative; z-index: 2;">
                 <h1 style="font-weight: 800; font-size: 48px; color: #fff;">Our <span style="color: #ff5e14;">Portfolio</span></h1>
                 <ul class="page-breadcrumb list-unstyled d-flex justify-content-center gap-3">
                     <li><a href="index.html" style="text-decoration: none; color: #fff;">Home</a></li>
@@ -378,5 +381,8 @@
     <script src="js/convex-integration.js"></script>
     <script src="js/convex-fetch.js"></script>
     <script src="js/ai-assistant.js"></script>
+    
+    <!-- Particles Background -->
+    <script src="js/particles-background.js"></script>
   </body>
 </html>

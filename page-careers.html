@@ -297,8 +297,11 @@
         </header>
 
         <!-- Career Hero -->
-        <section class="page-title text-center" style="background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%); padding: 140px 0;">
-            <div class="auto-container">
+        <section class="page-title text-center" style="position: relative; overflow: hidden; background: radial-gradient(circle at center, #120F17 0%, #0a0a0a 100%); padding: 180px 0 160px 0;">
+            <!-- Cosmic Particles Canvas -->
+            <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+            
+            <div class="auto-container" style="position: relative; z-index: 2;">
                 <h1 style="font-weight: 800; font-size: clamp(32px, 6vw, 64px); color: #fff; line-height: 1.1;">Building the Future of <br><span style="color: #ff5e14;">Digital Brands</span> Together</h1>
                 <p class="mt-4 text-white-50" style="max-width: 800px; margin: 0 auto; font-size: 20px; line-height: 1.6;">Join Patna's fastest-growing digital agency and work with global brands on high-impact projects.</p>
             </div>
@@ -590,5 +593,8 @@
     <script src="js/convex-integration.js"></script>
     <script src="js/convex-fetch.js"></script>
     <script src="js/ai-assistant.js"></script>
+    
+    <!-- Particles Background -->
+    <script src="js/particles-background.js"></script>
   </body>
 </html>
