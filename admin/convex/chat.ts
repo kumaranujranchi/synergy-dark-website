@@ -17,7 +17,7 @@ export const ask = action({
   },
   handler: async (ctx, args) => {
     // 0. Verify Cloudflare Turnstile token
-    const TURNSTILE_SECRET_KEY = "0x4AAAAAADLkBTR0wwhKEoe-4fFpbIWDioA";
+    const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY!;
     
     try {
       const turnstileRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
