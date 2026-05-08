@@ -1064,13 +1064,14 @@
           return;
         }
 
-        // 3. Conversational lead gate trigger after the user receives their FIRST AI answer
-        if (!hasActiveLead && leadCaptureState === "IDLE") {
+        // 3. Conversational lead gate trigger after the user receives 2 AI answers
+        let userMessageCount = chatHistory.filter(m => m.role === "user").length;
+        if (!hasActiveLead && leadCaptureState === "IDLE" && userMessageCount >= 2) {
           setTimeout(() => {
             const dots = showTypingIndicator();
             setTimeout(() => {
               dots.remove();
-              appendBubble("Bohot hi badhiya question! 😊\n\nAage ki custom digital pricing, package list aur quotes discuss karne se pehle, kya main aapka subh naam (**Name**) jaan sakta hoon?", "system");
+              appendBubble("Aapke requirement ko aur behtar samajhne ke liye, kya main aapka shubh naam (**Name**) jaan sakta hoon? 😊", "system");
               leadCaptureState = "ASKING_NAME";
             }, 1000);
           }, 2000);
