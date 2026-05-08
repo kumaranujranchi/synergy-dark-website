@@ -15,15 +15,6 @@ License: copyright commercial
 8.  Banner Section / Two
 9.  About Section / Two
 **********************************************/
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
-@import url("animate.css");
-@import url("swiper.min.css");
-@import url("jquery.fancybox.min.css");
-@import url("linear.css");
-@import url("fontawesome.css");
-@import url("tm-bs-mp.css");
-@import url("jquery-ui.css");
-@import url("tm-utility-classes.css");
 @property --gradient-angle {
   syntax: "<angle>";
   initial-value: 90deg;
