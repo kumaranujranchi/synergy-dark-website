@@ -602,6 +602,8 @@
 
   window.synergyTurnstileCallback = function(token) {
     turnstileToken = token;
+    const container = document.getElementById("synergy-turnstile-container");
+    if (container) container.style.display = "none";
   };
 
   tsScript.onload = () => {
@@ -1036,6 +1038,8 @@
       if (turnstileWidgetId !== null) {
         turnstileToken = "";
         turnstile.reset(turnstileWidgetId);
+        const container = document.getElementById("synergy-turnstile-container");
+        if (container) container.style.display = "flex";
       }
 
       typingDots.remove();
