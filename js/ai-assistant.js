@@ -576,7 +576,7 @@
       </div>
 
       <!-- Text Input Area -->
-      <div id="synergy-turnstile-container" style="display:none;"></div>
+      <div id="synergy-turnstile-container"></div>
       <div class="synergy-chat-footer" id="synergy-chat-footer">
         <div class="synergy-chat-input-wrapper">
           <input type="text" class="synergy-chat-input" id="synergy-chat-input" placeholder="Type a message..." autocomplete="off">
@@ -607,7 +607,9 @@
   tsScript.onload = () => {
     turnstileWidgetId = turnstile.render('#synergy-turnstile-container', {
       sitekey: '0x4AAAAAADLkBcPiHfMzH6xM',
-      callback: 'synergyTurnstileCallback',
+      callback: function(token) {
+        turnstileToken = token;
+      },
       'error-callback': function() {
         console.error("Turnstile error");
       }
