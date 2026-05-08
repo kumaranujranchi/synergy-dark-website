@@ -576,7 +576,7 @@
       </div>
 
       <!-- Text Input Area -->
-      <div id="synergy-turnstile-container"></div>
+      <div id="synergy-turnstile-container" style="display: flex; justify-content: center; padding: 10px 0;"></div>
       <div class="synergy-chat-footer" id="synergy-chat-footer">
         <div class="synergy-chat-input-wrapper">
           <input type="text" class="synergy-chat-input" id="synergy-chat-input" placeholder="Type a message..." autocomplete="off">
@@ -1057,6 +1057,11 @@
         // Keep rolling history buffer to 20 messages maximum to conserve tokens
         if (chatHistory.length > 20) {
           chatHistory = chatHistory.slice(-20);
+        }
+
+        // DO NOT TRIGGER lead gate if it's a security error
+        if (assistantReply.includes("Security verification failed")) {
+          return;
         }
 
         // 3. Conversational lead gate trigger after the user receives their FIRST AI answer
