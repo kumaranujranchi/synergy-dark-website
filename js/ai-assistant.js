@@ -576,6 +576,7 @@
       </div>
 
       <!-- Text Input Area -->
+      <div id="synergy-turnstile-container" style="display:none;"></div>
       <div class="synergy-chat-footer" id="synergy-chat-footer">
         <div class="synergy-chat-input-wrapper">
           <input type="text" class="synergy-chat-input" id="synergy-chat-input" placeholder="Type a message..." autocomplete="off">
@@ -588,6 +589,30 @@
   `;
 
   document.body.appendChild(widgetContainer);
+
+  // Inject Cloudflare Turnstile API
+  const tsScript = document.createElement("script");
+  tsScript.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+  tsScript.async = true;
+  tsScript.defer = true;
+  document.head.appendChild(tsScript);
+  
+  let turnstileToken = "";
+  let turnstileWidgetId = null;
+
+  window.synergyTurnstileCallback = function(token) {
+    turnstileToken = token;
+  };
+
+  tsScript.onload = () => {
+    turnstileWidgetId = turnstile.render('#synergy-turnstile-container', {
+      sitekey: '0x4AAAAAADLkBcPiHfMzH6xM',
+      callback: 'synergyTurnstileCallback',
+      'error-callback': function() {
+        console.error("Turnstile error");
+      }
+    });
+  };
 
   // Selector mappings
   const chatBtn = document.getElementById("synergy-chat-btn");
@@ -981,6 +1006,11 @@
       return;
     }
 
+    if (!turnstileToken) {
+      appendBubble("**System:** Security check chal raha hai. Kripya 2-3 second wait karke dobara message bhejein, ya page refresh karein.", "system");
+      return;
+    }
+
     const typingDots = showTypingIndicator();
 
     try {
@@ -994,10 +1024,17 @@
           args: {
             message: query,
             history: chatHistory,
+            turnstileToken: turnstileToken,
           },
           format: "json",
         }),
       });
+
+      // Reset Turnstile token
+      if (turnstileWidgetId !== null) {
+        turnstileToken = "";
+        turnstile.reset(turnstileWidgetId);
+      }
 
       typingDots.remove();
 

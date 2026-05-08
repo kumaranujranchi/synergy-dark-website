@@ -13,8 +13,32 @@ export const ask = action({
         content: v.string(),
       })
     ),
+    turnstileToken: v.string(),
   },
   handler: async (ctx, args) => {
+    // 0. Verify Cloudflare Turnstile token
+    const TURNSTILE_SECRET_KEY = "0x4AAAAAADLkBTR0wwhKEoe-4fFpbIWDioA";
+    
+    const verifyForm = new URLSearchParams();
+    verifyForm.append("secret", TURNSTILE_SECRET_KEY);
+    verifyForm.append("response", args.turnstileToken);
+
+    try {
+      const turnstileRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+        method: "POST",
+        body: verifyForm,
+      });
+      const turnstileData = await turnstileRes.json();
+
+      if (!turnstileData.success) {
+        console.error("Turnstile verification failed:", turnstileData);
+        return "System: Security verification failed. Aap bot toh nahi hain? Please page refresh karein.";
+      }
+    } catch (e) {
+      console.error("Turnstile error:", e);
+      return "System: Security verification process failed.";
+    }
+
     // 1. Fetch dynamic content from Convex queries in parallel
     const [blogs, news, projects, jobs, caseStudies] = await Promise.all([
       ctx.runQuery(anyApi.content.listPublished, { type: "blog" }),
