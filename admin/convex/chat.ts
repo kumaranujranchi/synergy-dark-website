@@ -19,14 +19,16 @@ export const ask = action({
     // 0. Verify Cloudflare Turnstile token
     const TURNSTILE_SECRET_KEY = "0x4AAAAAADLkBTR0wwhKEoe-4fFpbIWDioA";
     
-    const verifyForm = new URLSearchParams();
-    verifyForm.append("secret", TURNSTILE_SECRET_KEY);
-    verifyForm.append("response", args.turnstileToken);
-
     try {
       const turnstileRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
         method: "POST",
-        body: verifyForm,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          secret: TURNSTILE_SECRET_KEY,
+          response: args.turnstileToken,
+        }),
       });
       const turnstileData = await turnstileRes.json();
 
