@@ -10,8 +10,8 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/responsive.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-    <link rel="icon" href="images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
+    <link rel="icon" href="images/favicon.webp" type="image/x-icon">
 
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -291,6 +291,23 @@
         .edge-fade--bottom {
             bottom: 0;
         }
+
+        /* Mobile responsive styles for Dome Gallery */
+        @media only screen and (max-width: 767px) {
+            .dome-gallery-wrapper {
+                height: 360px !important; /* Shorter height so it doesn't consume the full screen */
+                width: 92% !important;    /* Smaller width leaving space on left & right to swipe scroll */
+                margin-left: auto !important;
+                margin-right: auto !important;
+                border-radius: 24px !important;
+            }
+            .stage {
+                perspective: calc(var(--radius) * 1.8) !important;
+            }
+            .item__image img {
+                padding: 6px !important; /* Less padding so icons remain legible on scaled down dome */
+            }
+        }
     </style>
 </head>
 <body>
@@ -335,7 +352,7 @@
                 <div class="main-box">
                     <div class="logo-box">
                         <div class="logo">
-                            <a href="index.html" title=""><img src="images/logo/synergy-logo-header.png" alt="" title="synergy"></a>
+                            <a href="index.html" title=""><img src="images/common/logos/logo-header.webp" alt="" title="synergy"></a>
                         </div>
                     </div>
                     <!--Nav Box-->
@@ -442,7 +459,7 @@
                 <nav class="menu-box">
                     <div class="upper-box">
                         <div class="nav-logo">
-                            <a href="index.html"><img src="images/logo/synergy-logo-header.png" alt=""></a>
+                            <a href="index.html"><img src="images/common/logos/logo-header.webp" alt=""></a>
                         </div>
                         <div class="close-btn"><i class="icon fa fa-times"></i></div>
                     </div>
@@ -454,7 +471,7 @@
             <div class="sticky-header">
                 <div class="inner-container">
                     <div class="logo">
-                        <a href="index.html" title=""><img src="images/logo/synergy-logo-header.png" alt="" title="synergy"></a> 
+                        <a href="index.html" title=""><img src="images/common/logos/logo-header.webp" alt="" title="synergy"></a> 
                     </div>
                     <div class="nav-outer">
                         <nav class="main-menu">
@@ -528,21 +545,21 @@
                 <!-- Tech Row 1: Web Development & Frameworks -->
                 <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="100ms">
                     <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
-                        <div class="tech-logo-wrapper" title="React Development"><img src="images/webdevelopment/react.png" alt="React"></div>
-                        <div class="tech-logo-wrapper" title="NextJS Framework"><img src="images/webdevelopment/next.js.png" alt="NextJS"></div>
-                        <div class="tech-logo-wrapper" title="NodeJS Runtime"><img src="images/webdevelopment/node.png" alt="NodeJS"></div>
-                        <div class="tech-logo-wrapper" title="Laravel PHP MVC"><img src="images/webdevelopment/laravel.png" alt="Laravel"></div>
-                        <div class="tech-logo-wrapper" title="Python Engineering"><img src="images/webdevelopment/pythin.png" alt="Python"></div>
-                        <div class="tech-logo-wrapper" title="Amazon Web Services"><img src="images/webdevelopment/aws.png" alt="AWS"></div>
-                        <div class="tech-logo-wrapper" title="Docker Containers"><img src="images/webdevelopment/docker.png" alt="Docker"></div>
-                        <div class="tech-logo-wrapper" title="HTML5 Web"><img src="images/webdevelopment/html.png" alt="HTML5"></div>
-                        <div class="tech-logo-wrapper" title="CSS3 Design"><img src="images/webdevelopment/css.png" alt="CSS3"></div>
-                        <div class="tech-logo-wrapper" title="JavaScript ESNext"><img src="images/webdevelopment/js.png" alt="JavaScript"></div>
-                        <div class="tech-logo-wrapper" title="Tailwind CSS"><img src="images/webdevelopment/tailwind.png" alt="Tailwind"></div>
-                        <div class="tech-logo-wrapper" title="GitHub Control"><img src="images/webdevelopment/github.png" alt="GitHub"></div>
-                        <div class="tech-logo-wrapper" title="GraphQL APIs"><img src="images/webdevelopment/graphql.png" alt="GraphQL"></div>
-                        <div class="tech-logo-wrapper" title="ExpressJS Framework"><img src="images/webdevelopment/express.png" alt="ExpressJS"></div>
-                        <div class="tech-logo-wrapper" title="Redux State Engine"><img src="images/webdevelopment/redux.png" alt="Redux"></div>
+                        <div class="tech-logo-wrapper" title="React Development"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/react.webp" alt="React"></div>
+                        <div class="tech-logo-wrapper" title="NextJS Framework"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/next.js.webp" alt="NextJS"></div>
+                        <div class="tech-logo-wrapper" title="NodeJS Runtime"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/node.webp" alt="NodeJS"></div>
+                        <div class="tech-logo-wrapper" title="Laravel PHP MVC"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/laravel.webp" alt="Laravel"></div>
+                        <div class="tech-logo-wrapper" title="Python Engineering"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/pythin.webp" alt="Python"></div>
+                        <div class="tech-logo-wrapper" title="Amazon Web Services"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/aws.webp" alt="AWS"></div>
+                        <div class="tech-logo-wrapper" title="Docker Containers"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/docker.webp" alt="Docker"></div>
+                        <div class="tech-logo-wrapper" title="HTML5 Web"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/html.webp" alt="HTML5"></div>
+                        <div class="tech-logo-wrapper" title="CSS3 Design"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/css.webp" alt="CSS3"></div>
+                        <div class="tech-logo-wrapper" title="JavaScript ESNext"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/js.webp" alt="JavaScript"></div>
+                        <div class="tech-logo-wrapper" title="Tailwind CSS"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/tailwind.webp" alt="Tailwind"></div>
+                        <div class="tech-logo-wrapper" title="GitHub Control"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/github.webp" alt="GitHub"></div>
+                        <div class="tech-logo-wrapper" title="GraphQL APIs"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/graphql.webp" alt="GraphQL"></div>
+                        <div class="tech-logo-wrapper" title="ExpressJS Framework"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/express.webp" alt="ExpressJS"></div>
+                        <div class="tech-logo-wrapper" title="Redux State Engine"><img loading="lazy" decoding="async" src="images/tech-logos/web-development/redux.webp" alt="Redux"></div>
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="ps-lg-4">
@@ -568,17 +585,17 @@
                 <!-- Tech Row 2: Workflow Automation & Databases -->
                 <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="200ms">
                     <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
-                        <div class="tech-logo-wrapper" title="ChatGPT API"><img src="images/automation/chagpt.png" alt="ChatGPT"></div>
-                        <div class="tech-logo-wrapper" title="DeepSeek AI"><img src="images/automation/deepseak.png" alt="DeepSeek"></div>
-                        <div class="tech-logo-wrapper" title="Google Firebase"><img src="images/automation/firbase.png" alt="Firebase"></div>
-                        <div class="tech-logo-wrapper" title="Git Version Control"><img src="images/automation/git.png" alt="Git"></div>
-                        <div class="tech-logo-wrapper" title="Mailchimp Campaigns"><img src="images/automation/mailchimp.png" alt="Mailchimp"></div>
-                        <div class="tech-logo-wrapper" title="MongoDB Database"><img src="images/automation/mongodb.png" alt="MongoDB"></div>
-                        <div class="tech-logo-wrapper" title="MySQL Relational DB"><img src="images/automation/mysql.png" alt="MySQL"></div>
-                        <div class="tech-logo-wrapper" title="n8n Workflow Automation"><img src="images/automation/n8n.png" alt="n8n"></div>
-                        <div class="tech-logo-wrapper" title="PostgreSQL"><img src="images/automation/psstgre.png" alt="PostgreSQL"></div>
-                        <div class="tech-logo-wrapper" title="WhatsApp Business API"><img src="images/automation/whatsapp api.png" alt="WhatsApp API"></div>
-                        <div class="tech-logo-wrapper" title="Zapier Integration"><img src="images/automation/zapier.png" alt="Zapier"></div>
+                        <div class="tech-logo-wrapper" title="ChatGPT API"><img loading="lazy" decoding="async" src="images/tech-logos/automation/chagpt.webp" alt="ChatGPT"></div>
+                        <div class="tech-logo-wrapper" title="DeepSeek AI"><img loading="lazy" decoding="async" src="images/tech-logos/automation/deepseak.webp" alt="DeepSeek"></div>
+                        <div class="tech-logo-wrapper" title="Google Firebase"><img loading="lazy" decoding="async" src="images/tech-logos/automation/firbase.webp" alt="Firebase"></div>
+                        <div class="tech-logo-wrapper" title="Git Version Control"><img loading="lazy" decoding="async" src="images/tech-logos/automation/git.webp" alt="Git"></div>
+                        <div class="tech-logo-wrapper" title="Mailchimp Campaigns"><img loading="lazy" decoding="async" src="images/tech-logos/automation/mailchimp.webp" alt="Mailchimp"></div>
+                        <div class="tech-logo-wrapper" title="MongoDB Database"><img loading="lazy" decoding="async" src="images/tech-logos/automation/mongodb.webp" alt="MongoDB"></div>
+                        <div class="tech-logo-wrapper" title="MySQL Relational DB"><img loading="lazy" decoding="async" src="images/tech-logos/automation/mysql.webp" alt="MySQL"></div>
+                        <div class="tech-logo-wrapper" title="n8n Workflow Automation"><img loading="lazy" decoding="async" src="images/tech-logos/automation/n8n.webp" alt="n8n"></div>
+                        <div class="tech-logo-wrapper" title="PostgreSQL"><img loading="lazy" decoding="async" src="images/tech-logos/automation/psstgre.webp" alt="PostgreSQL"></div>
+                        <div class="tech-logo-wrapper" title="WhatsApp Business API"><img loading="lazy" decoding="async" src="images/tech-logos/automation/whatsapp api.webp" alt="WhatsApp API"></div>
+                        <div class="tech-logo-wrapper" title="Zapier Integration"><img loading="lazy" decoding="async" src="images/tech-logos/automation/zapier.webp" alt="Zapier"></div>
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="ps-lg-4">
@@ -604,17 +621,17 @@
                 <!-- Tech Row 3: Performance Marketing Campaigns -->
                 <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="300ms">
                     <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
-                        <div class="tech-logo-wrapper" title="Google Ads"><img src="images/performancemarketing/googleads.png" alt="Google Ads"></div>
-                        <div class="tech-logo-wrapper" title="Meta Ads Manager"><img src="images/performancemarketing/meta.png" alt="Meta Ads"></div>
-                        <div class="tech-logo-wrapper" title="LinkedIn Ads"><img src="images/performancemarketing/linkedinads.png" alt="LinkedIn Ads"></div>
-                        <div class="tech-logo-wrapper" title="Taboola Recommendation"><img src="images/performancemarketing/taboola.png" alt="Taboola"></div>
-                        <div class="tech-logo-wrapper" title="Outbrain Native Ads"><img src="images/performancemarketing/utbrain.png" alt="Outbrain"></div>
-                        <div class="tech-logo-wrapper" title="StackAdapt DSP"><img src="images/performancemarketing/stack.png" alt="StackAdapt"></div>
-                        <div class="tech-logo-wrapper" title="Nativo Native Ad Server"><img src="images/performancemarketing/nativo.png" alt="Nativo"></div>
-                        <div class="tech-logo-wrapper" title="RevContent Ad Network"><img src="images/performancemarketing/rev.png" alt="RevContent"></div>
-                        <div class="tech-logo-wrapper" title="MGID Ads"><img src="images/performancemarketing/mgid.png" alt="MGID"></div>
-                        <div class="tech-logo-wrapper" title="TikTok Ads"><img src="images/performancemarketing/tiktok ads.png" alt="TikTok Ads"></div>
-                        <div class="tech-logo-wrapper" title="Truecaller Ads"><img src="images/performancemarketing/turecallersads.png" alt="Truecaller Ads"></div>
+                        <div class="tech-logo-wrapper" title="Google Ads"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/googleads.webp" alt="Google Ads"></div>
+                        <div class="tech-logo-wrapper" title="Meta Ads Manager"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/meta.webp" alt="Meta Ads"></div>
+                        <div class="tech-logo-wrapper" title="LinkedIn Ads"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/linkedinads.webp" alt="LinkedIn Ads"></div>
+                        <div class="tech-logo-wrapper" title="Taboola Recommendation"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/taboola.webp" alt="Taboola"></div>
+                        <div class="tech-logo-wrapper" title="Outbrain Native Ads"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/utbrain.webp" alt="Outbrain"></div>
+                        <div class="tech-logo-wrapper" title="StackAdapt DSP"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/stack.webp" alt="StackAdapt"></div>
+                        <div class="tech-logo-wrapper" title="Nativo Native Ad Server"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/nativo.webp" alt="Nativo"></div>
+                        <div class="tech-logo-wrapper" title="RevContent Ad Network"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/rev.webp" alt="RevContent"></div>
+                        <div class="tech-logo-wrapper" title="MGID Ads"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/mgid.webp" alt="MGID"></div>
+                        <div class="tech-logo-wrapper" title="TikTok Ads"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/tiktok ads.webp" alt="TikTok Ads"></div>
+                        <div class="tech-logo-wrapper" title="Truecaller Ads"><img loading="lazy" decoding="async" src="images/tech-logos/performance-marketing/turecallersads.webp" alt="Truecaller Ads"></div>
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="ps-lg-4">
@@ -640,20 +657,20 @@
                 <!-- Tech Row 4: Social Media Marketing & Analytics -->
                 <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="400ms">
                     <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
-                        <div class="tech-logo-wrapper" title="Buffer Social"><img src="images/socailmedia/buffer.png" alt="Buffer"></div>
-                        <div class="tech-logo-wrapper" title="Hootsuite Scheduler"><img src="images/socailmedia/hoot.png" alt="Hootsuite"></div>
-                        <div class="tech-logo-wrapper" title="Sprout Social"><img src="images/socailmedia/sprout.png" alt="Sprout Social"></div>
-                        <div class="tech-logo-wrapper" title="Planable Collaboration"><img src="images/socailmedia/planable.png" alt="Planable"></div>
-                        <div class="tech-logo-wrapper" title="Metricool Analytics"><img src="images/socailmedia/metricool.png" alt="Metricool"></div>
-                        <div class="tech-logo-wrapper" title="Zoho Social"><img src="images/socailmedia/zoho.png" alt="Zoho Social"></div>
-                        <div class="tech-logo-wrapper" title="Facebook Page Growth"><img src="images/socailmedia/facebook.png" alt="Facebook"></div>
-                        <div class="tech-logo-wrapper" title="Instagram Creative"><img src="images/socailmedia/insta.png" alt="Instagram"></div>
-                        <div class="tech-logo-wrapper" title="LinkedIn Professional"><img src="images/socailmedia/linkedin.png" alt="LinkedIn"></div>
-                        <div class="tech-logo-wrapper" title="Quora Content Marketing"><img src="images/socailmedia/quora.png" alt="Quora"></div>
-                        <div class="tech-logo-wrapper" title="Reddit Engagement"><img src="images/socailmedia/reditt.png" alt="Reddit"></div>
-                        <div class="tech-logo-wrapper" title="TikTok Video Production"><img src="images/socailmedia/tiktok.png" alt="TikTok"></div>
-                        <div class="tech-logo-wrapper" title="Pinterest Pinning"><img src="images/socailmedia/pintereste.png" alt="Pinterest"></div>
-                        <div class="tech-logo-wrapper" title="SocialPilot Growth"><img src="images/socailmedia/socialpilot.png" alt="SocialPilot"></div>
+                        <div class="tech-logo-wrapper" title="Buffer Social"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/buffer.webp" alt="Buffer"></div>
+                        <div class="tech-logo-wrapper" title="Hootsuite Scheduler"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/hoot.webp" alt="Hootsuite"></div>
+                        <div class="tech-logo-wrapper" title="Sprout Social"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/sprout.webp" alt="Sprout Social"></div>
+                        <div class="tech-logo-wrapper" title="Planable Collaboration"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/planable.webp" alt="Planable"></div>
+                        <div class="tech-logo-wrapper" title="Metricool Analytics"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/metricool.webp" alt="Metricool"></div>
+                        <div class="tech-logo-wrapper" title="Zoho Social"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/zoho.webp" alt="Zoho Social"></div>
+                        <div class="tech-logo-wrapper" title="Facebook Page Growth"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/facebook.webp" alt="Facebook"></div>
+                        <div class="tech-logo-wrapper" title="Instagram Creative"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/insta.webp" alt="Instagram"></div>
+                        <div class="tech-logo-wrapper" title="LinkedIn Professional"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/linkedin.webp" alt="LinkedIn"></div>
+                        <div class="tech-logo-wrapper" title="Quora Content Marketing"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/quora.webp" alt="Quora"></div>
+                        <div class="tech-logo-wrapper" title="Reddit Engagement"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/reditt.webp" alt="Reddit"></div>
+                        <div class="tech-logo-wrapper" title="TikTok Video Production"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/tiktok.webp" alt="TikTok"></div>
+                        <div class="tech-logo-wrapper" title="Pinterest Pinning"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/pintereste.webp" alt="Pinterest"></div>
+                        <div class="tech-logo-wrapper" title="SocialPilot Growth"><img loading="lazy" decoding="async" src="images/tech-logos/social-media/socialpilot.webp" alt="SocialPilot"></div>
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="ps-lg-4">
@@ -679,13 +696,13 @@
                 <!-- Tech Row 5: SEO, Search Optimization & Analytics -->
                 <div class="row align-items-center tech-row wow fadeInUp" data-wow-delay="500ms">
                     <div class="col-lg-5 col-md-12 d-flex flex-wrap gap-3 justify-content-center mb-4 mb-lg-0">
-                        <div class="tech-logo-wrapper" title="Ahrefs SEO Auditor"><img src="images/seo/ahref.png" alt="Ahrefs"></div>
-                        <div class="tech-logo-wrapper" title="SEMrush Marketing Suite"><img src="images/seo/semrush.png" alt="SEMrush"></div>
-                        <div class="tech-logo-wrapper" title="Google Search Console"><img src="images/seo/gsc.png" alt="Google Search Console"></div>
-                        <div class="tech-logo-wrapper" title="Google Analytics 4"><img src="images/seo/ga4.png" alt="GA4"></div>
-                        <div class="tech-logo-wrapper" title="Screaming Frog SEO Spider"><img src="images/seo/screaming frog.png" alt="Screaming Frog"></div>
-                        <div class="tech-logo-wrapper" title="Yoast SEO Plugin"><img src="images/seo/yost.png" alt="Yoast SEO"></div>
-                        <div class="tech-logo-wrapper" title="Ubersuggest Auditor"><img src="images/seo/ubersuggest.png" alt="Ubersuggest"></div>
+                        <div class="tech-logo-wrapper" title="Ahrefs SEO Auditor"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ahref.webp" alt="Ahrefs"></div>
+                        <div class="tech-logo-wrapper" title="SEMrush Marketing Suite"><img loading="lazy" decoding="async" src="images/tech-logos/seo/semrush.webp" alt="SEMrush"></div>
+                        <div class="tech-logo-wrapper" title="Google Search Console"><img loading="lazy" decoding="async" src="images/tech-logos/seo/gsc.webp" alt="Google Search Console"></div>
+                        <div class="tech-logo-wrapper" title="Google Analytics 4"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="GA4"></div>
+                        <div class="tech-logo-wrapper" title="Screaming Frog SEO Spider"><img loading="lazy" decoding="async" src="images/tech-logos/seo/screaming frog.webp" alt="Screaming Frog"></div>
+                        <div class="tech-logo-wrapper" title="Yoast SEO Plugin"><img loading="lazy" decoding="async" src="images/tech-logos/seo/yost.webp" alt="Yoast SEO"></div>
+                        <div class="tech-logo-wrapper" title="Ubersuggest Auditor"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ubersuggest.webp" alt="Ubersuggest"></div>
                     </div>
                     <div class="col-lg-7 col-md-12">
                         <div class="ps-lg-4">
@@ -714,7 +731,7 @@
         <footer class="footer-section-3 theme-color-bg pb-60">
             <div class="footer-main-wrapper">
                 <div class="footer-circle-shape">
-                    <img src="images/home-3/footer-circle.png" alt="img">
+                    <img loading="lazy" decoding="async" src="images/common/logos/footer-circle.webp" alt="img">
                 </div>
                 <div class="auto-container">
                     <div class="footer-widget-wrapper-3">
@@ -722,7 +739,7 @@
                             <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                                 <div class="footer-widget-single-items">
                                     <div class="widget-head">
-                                        <a href="index.html" class="footer-logo"><img src="images/logo/synergy-logo-header.png" alt="img"></a>
+                                        <a href="index.html" class="footer-logo"><img src="images/common/logos/logo-header.webp" alt="img"></a>
                                     </div>
                                     <div class="footer-content mt-4">
                                         <p class="footer-text text-white-50">
@@ -815,30 +832,30 @@
     </div>
 
     <!-- Script imports -->
-    <script src="js/jquery.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.fancybox.js"></script>
-    <script src="js/bxslider.js"></script>
-    <script src="js/jquery-ui.js"></script>
-    <script src="js/wow.js"></script>
-    <script src="js/select2.min.js"></script>
-    <script src="js/appear.js"></script>
-    <script src="js/knob.js"></script>
-    <script src="js/swiper.min.js"></script>
-    <script src="js/aos.js"></script>
-    <script src="js/gsap.min.js"></script>
-    <script src="js/ScrollTrigger.min.js"></script>
-    <script src="js/splitType.js"></script>
-    <script src="js/mixitup.js"></script>
-    <script src="js/gsap-scroll-smoother.js"></script>
-    <script src="js/gsap-scroll-to-plugin.js"></script>
-    <script src="js/SplitText.min.js"></script>
-    <script src="js/custom-gsap.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/dome-gallery.js"></script>
-    <script src="js/ai-assistant.js"></script>
+    <script src="js/jquery.js" defer></script>
+    <script src="js/popper.min.js" defer></script>
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/jquery.fancybox.js" defer></script>
+    <script src="js/bxslider.js" defer></script>
+    <script src="js/jquery-ui.js" defer></script>
+    <script src="js/wow.js" defer></script>
+    <script src="js/select2.min.js" defer></script>
+    <script src="js/appear.js" defer></script>
+    <script src="js/knob.js" defer></script>
+    <script src="js/swiper.min.js" defer></script>
+    <script src="js/aos.js" defer></script>
+    <script src="js/gsap.min.js" defer></script>
+    <script src="js/ScrollTrigger.min.js" defer></script>
+    <script src="js/splitType.js" defer></script>
+    <script src="js/mixitup.js" defer></script>
+    <script src="js/gsap-scroll-smoother.js" defer></script>
+    <script src="js/gsap-scroll-to-plugin.js" defer></script>
+    <script src="js/SplitText.min.js" defer></script>
+    <script src="js/custom-gsap.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/dome-gallery.js" defer></script>
+    <script src="js/ai-assistant.js" defer></script>
     <!-- Particles Background -->
-    <script src="js/particles-background.js"></script>
+    <script src="js/particles-background.js" defer></script>
   </body>
 </html>

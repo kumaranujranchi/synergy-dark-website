@@ -14359,8 +14359,8 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 6 Brands';
   font-style: normal;
   font-weight: 400;
-  font-display: block;
-  src: url("../fonts/fa-brands-400.woff2") format("woff2"), url("../fonts/fa-brands-400.woff") format("woff"), url("../fonts/fa-brands-400.ttf") format("truetype");
+  font-display: swap;
+  src: url("../fonts/fa-brands-400.woff2") format("woff2");
 }
 
 .fab,
@@ -16217,13 +16217,7 @@ readers do not read off random characters that represent icons */
   content: "\f63f";
 }
 
-@font-face {
-  font-family: 'Font Awesome 6 Duotone';
-  font-style: normal;
-  font-weight: 900;
-  font-display: block;
-  src: url("../fonts/fa-duotone-900.woff2") format("woff2"), url("../fonts/fa-duotone-900.woff") format("woff"), url("../fonts/fa-duotone-900.ttf") format("truetype");
-}
+
 
 .fad,
 .fa-duotone {
@@ -33559,13 +33553,7 @@ readers do not read off random characters that represent icons */
   content: "\10e33c";
 }
 
-@font-face {
-  font-family: 'Font Awesome 6 Pro';
-  font-style: normal;
-  font-weight: 300;
-  font-display: block;
-  src: url("../fonts/fa-light-300.woff2") format("woff2"), url("../fonts/fa-light-300.woff") format("woff"), url("../fonts/fa-light-300.ttf") format("truetype");
-}
+
 
 .fal,
 .fa-light {
@@ -33577,8 +33565,8 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 6 Pro';
   font-style: normal;
   font-weight: 400;
-  font-display: block;
-  src: url("../fonts/fa-regular-400.woff2") format("woff2"), url("../fonts/fa-regular-400.woff") format("woff"), url("../fonts/fa-regular-400.ttf") format("truetype");
+  font-display: swap;
+  src: url("../fonts/fa-regular-400.woff2") format("woff2");
 }
 
 .far,
@@ -33591,8 +33579,8 @@ readers do not read off random characters that represent icons */
   font-family: 'Font Awesome 6 Pro';
   font-style: normal;
   font-weight: 900;
-  font-display: block;
-  src: url("../fonts/fa-solid-900.woff2") format("woff2"), url("../fonts/fa-solid-900.woff") format("woff"), url("../fonts/fa-solid-900.ttf") format("truetype");
+  font-display: swap;
+  src: url("../fonts/fa-solid-900.woff2") format("woff2");
 }
 
 .fas,
@@ -33601,13 +33589,7 @@ readers do not read off random characters that represent icons */
   font-weight: 900;
 }
 
-@font-face {
-  font-family: 'Font Awesome 6 Pro';
-  font-style: normal;
-  font-weight: 100;
-  font-display: block;
-  src: url("../fonts/fa-thin-100.woff2") format("woff2"), url("../fonts/fa-thin-100.woff") format("woff"), url("../fonts/fa-thin-100.ttf") format("truetype");
-}
+
 
 .fat,
 .fa-thin {

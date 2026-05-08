@@ -152,7 +152,7 @@
           config.marqueeKeywords.forEach((keyword) => {
             newHTML += `
               <div class="text">
-                <img class="rotate" src="images/main-home/marque-shap.png" alt="">
+                <img class="rotate" src="images/common/shapes/marque-shap.png" alt="">
                 <h2 class="title">${keyword}</h2>
               </div>
             `;

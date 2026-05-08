@@ -58,7 +58,7 @@ async function renderDynamicBlogs() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/home-2/blog1.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
+                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
@@ -305,7 +305,7 @@ async function renderBlogsGrid() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/home-2/blog1.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
+                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.jpg'}" alt="${blog.imageAltText || blog.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
@@ -342,7 +342,7 @@ async function renderNewsGrid() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="news-details.html?slug=${news.slug}"><img src="${news.imageUrl || 'images/home-2/blog1.jpg'}" alt="${news.imageAltText || news.title}"></a>
+                            <a href="news-details.html?slug=${news.slug}"><img src="${news.imageUrl || 'images/pages/news/blog-fallback.jpg'}" alt="${news.imageAltText || news.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
