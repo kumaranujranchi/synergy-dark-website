@@ -23,12 +23,9 @@ export const ask = action({
       const turnstileRes = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
-          secret: TURNSTILE_SECRET_KEY,
-          response: args.turnstileToken,
-        }),
+        body: `secret=${encodeURIComponent(TURNSTILE_SECRET_KEY)}&response=${encodeURIComponent(args.turnstileToken)}`,
       });
       const turnstileData = await turnstileRes.json();
 
