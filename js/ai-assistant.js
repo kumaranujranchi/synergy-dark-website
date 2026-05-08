@@ -1055,25 +1055,14 @@
   // Helper template strings
   function renderSystemWelcomeBubble() {
     const personalizedGreeting = leadData && leadData.name
-      ? `Aapka swagat hai, **${leadData.name}** (${leadData.city})! 🌟`
+      ? `Aapka swagat hai, **${leadData.name}**! 🌟`
       : "Aapka swagat hai! 🌟";
 
-    const content = `${personalizedGreeting} Main Synergy Support Assistant hoon. 🚀\n\nHum high-performance growth aur 10x leads generate karne me expert hain. Aap humare core business services ke baare me pooch sakte hain:\n- **Digital Marketing & Performance Ads**\n- **Search Engine Optimization (SEO)**\n- **Premium Website Design & Development**\n- **Brand Building & Workflow Automation**\n\nLet's discuss how we can grow your business and scale your sales!`;
-
-    const suggestedPrompts = [
-      "What services does Synergy offer?",
-      "How can Synergy grow my business?",
-      "Show me your completed projects.",
-      "How do I get a free consultation?",
-    ];
+    const content = `${personalizedGreeting} Main Synergy Support Assistant hoon. Aapki kya madad kar sakta hoon?`;
 
     return `
       <div class="synergy-message system">
         ${parseMarkdown(content)}
-        <div class="synergy-suggestions-container" id="synergy-suggestions">
-          <div class="synergy-suggestions-title">Poochna chahte hain?</div>
-          ${suggestedPrompts.map((p) => `<button class="synergy-suggestion-btn" onclick="window.sendSynergyAIQuery('${p.replace(/'/g, "\\'")}')">${p}</button>`).join("")}
-        </div>
       </div>
     `;
   }
