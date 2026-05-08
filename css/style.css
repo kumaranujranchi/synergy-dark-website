@@ -5331,8 +5331,8 @@ p.sec-descrption {
   left: -24px;
   top: -14px;
   background-color: var(--theme-color1);
-  -webkit-mask-image: url(../images/common/shapes/about-img-mask1.png);
-          mask-image: url(../images/common/shapes/about-img-mask1.png);
+  -webkit-mask-image: url(../images/common/shapes/about-img-mask1.webp);
+          mask-image: url(../images/common/shapes/about-img-mask1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: left top;
@@ -5341,8 +5341,8 @@ p.sec-descrption {
           mask-repeat: no-repeat;
 }
 .about-section-two .image-column .image-1 img {
-  -webkit-mask-image: url(../images/common/shapes/about-img-mask1.png);
-          mask-image: url(../images/common/shapes/about-img-mask1.png);
+  -webkit-mask-image: url(../images/common/shapes/about-img-mask1.webp);
+          mask-image: url(../images/common/shapes/about-img-mask1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -5364,8 +5364,8 @@ p.sec-descrption {
   left: 24px;
   top: 14px;
   background-color: #111111;
-  -webkit-mask-image: url(../images/common/shapes/about-img-mask2.png);
-          mask-image: url(../images/common/shapes/about-img-mask2.png);
+  -webkit-mask-image: url(../images/common/shapes/about-img-mask2.webp);
+          mask-image: url(../images/common/shapes/about-img-mask2.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -5374,8 +5374,8 @@ p.sec-descrption {
           mask-repeat: no-repeat;
 }
 .about-section-two .image-column .image-2 img {
-  -webkit-mask-image: url(../images/common/shapes/about-img-mask2.png);
-          mask-image: url(../images/common/shapes/about-img-mask2.png);
+  -webkit-mask-image: url(../images/common/shapes/about-img-mask2.webp);
+          mask-image: url(../images/common/shapes/about-img-mask2.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -7612,8 +7612,8 @@ Start sass Icon Single Box
   top: 40px;
 }
 .testimonial-single_box-three .testimonial-author img {
-  -webkit-mask-image: url(../images/common/shapes/autor-mask1.png);
-          mask-image: url(../images/common/shapes/autor-mask1.png);
+  -webkit-mask-image: url(../images/common/shapes/autor-mask1.webp);
+          mask-image: url(../images/common/shapes/autor-mask1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -8091,8 +8091,8 @@ Start sass Icon Single Box
   transition: 0.5s;
 }
 .process-single-box .process-thumb img {
-  -webkit-mask-image: url(../images/pages/homepage/process-img-mask.png);
-          mask-image: url(../images/pages/homepage/process-img-mask.png);
+  -webkit-mask-image: url(../images/pages/homepage/process-img-mask.webp);
+          mask-image: url(../images/pages/homepage/process-img-mask.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -9388,7 +9388,7 @@ Start sass Icon Single Box
   top: 13px;
   height: 58px;
   width: 58px;
-  background: url(../images/home-4/marque-shap.png);
+  background: url(../images/home-4/marque-shap.webp);
   background-repeat: no-repeat;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -9741,8 +9741,8 @@ Start sass Icon Single Box
   margin: 0;
 }
 .team-single-box-two .image-box figure img {
-  -webkit-mask-image: url(../images/common/shapes/team-mask1.png);
-          mask-image: url(../images/common/shapes/team-mask1.png);
+  -webkit-mask-image: url(../images/common/shapes/team-mask1.webp);
+          mask-image: url(../images/common/shapes/team-mask1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -10917,8 +10917,8 @@ Start sass Icon Single Box
   z-index: -1;
 }
 .why-choose-us-section .choose-thumb .image-bg-shape1 {
-  -webkit-mask-image: url(../images/common/shapes/image-bg-shape1.png);
-          mask-image: url(../images/common/shapes/image-bg-shape1.png);
+  -webkit-mask-image: url(../images/common/shapes/image-bg-shape1.webp);
+          mask-image: url(../images/common/shapes/image-bg-shape1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -10937,8 +10937,8 @@ Start sass Icon Single Box
   height: 100%;
 }
 .why-choose-us-section .choose-thumb .image-bg-shape2 {
-  -webkit-mask-image: url(../images/common/shapes/image-bg-shape1.png);
-          mask-image: url(../images/common/shapes/image-bg-shape1.png);
+  -webkit-mask-image: url(../images/common/shapes/image-bg-shape1.webp);
+          mask-image: url(../images/common/shapes/image-bg-shape1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -11713,8 +11713,8 @@ Start sass Icon Single Box
   right: 40px;
 }
 .skill-section .skill-img .images-one {
-  -webkit-mask-image: url(../images/common/shapes/skill-mask1.png);
-          mask-image: url(../images/common/shapes/skill-mask1.png);
+  -webkit-mask-image: url(../images/common/shapes/skill-mask1.webp);
+          mask-image: url(../images/common/shapes/skill-mask1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -11723,8 +11723,8 @@ Start sass Icon Single Box
           mask-repeat: no-repeat;
 }
 .skill-section .skill-img .images-two {
-  -webkit-mask-image: url(../images/common/shapes/skill-mask2.png);
-          mask-image: url(../images/common/shapes/skill-mask2.png);
+  -webkit-mask-image: url(../images/common/shapes/skill-mask2.webp);
+          mask-image: url(../images/common/shapes/skill-mask2.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: center center;
@@ -12207,8 +12207,8 @@ Progress Bar
   z-index: 1;
 }
 .pricing-img-column .pricing-img1 {
-  -webkit-mask-image: url(../images/common/shapes/pricing-mask1.png);
-          mask-image: url(../images/common/shapes/pricing-mask1.png);
+  -webkit-mask-image: url(../images/common/shapes/pricing-mask1.webp);
+          mask-image: url(../images/common/shapes/pricing-mask1.webp);
   -webkit-mask-size: contain;
           mask-size: contain;
   -webkit-mask-position: top center;
