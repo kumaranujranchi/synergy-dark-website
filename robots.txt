@@ -1,0 +1,12 @@
+# Robots.txt for Synergy Brand Architect (https://synergybrandarchitect.in/)
+# Optimized for Googlebot, Bingbot and modern Search Engine Crawlers
+
+User-agent: *
+Allow: /
+
+# Prevent crawlers from indexing administrative or dashboard pages
+Disallow: /admin/
+Disallow: /dashboard.html
+
+# Reference our dynamic, search-optimized sitemap
+Sitemap: https://synergybrandarchitect.in/sitemap.xml
