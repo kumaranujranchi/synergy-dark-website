@@ -149,24 +149,67 @@ async function renderDynamicJobs() {
             return;
         }
 
-        container.innerHTML = activeJobs.map(job => `
-            <div class="col-lg-4 col-md-6 wow fadeInUp">
-                <div class="glowing-job-card-wrapper" style="height: 100%;">
-                    <div class="job-card p-4 p-md-5" style="background: #1a1a1a; border-radius: 31px; transition: 0.3s; height: 100%; display: flex; flex-direction: column;">
-                        <div class="d-flex justify-content-between align-items-start mb-4">
-                            <div class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">${job.department}</div>
-                            <div class="text-white-50 small"><i class="fa-solid fa-location-dot me-1"></i> ${job.location}</div>
-                        </div>
-                        <h4 class="text-white mb-3" style="font-weight: 800; font-size: 24px; line-height: 1.2;">${job.title}</h4>
-                        <p class="text-white-50 mb-5" style="font-size: 15px; line-height: 1.6; flex-grow: 1;">${job.description.substring(0, 120)}...</p>
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <div class="text-white fw-bold">${job.type}</div>
-                            <button onclick="openApplyModal('${job._id}')" class="btn p-0" style="color: #ff5e14; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Apply Now <i class="fa-solid fa-arrow-right ms-2"></i></button>
+        const getJobDetailsUrl = (id) => {
+            const hasHtml = window.location.pathname.endsWith('.html');
+            return hasHtml ? `job-details.html?id=${id}` : `job-details?id=${id}`;
+        };
+
+        const render = (filtered) => {
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="col-12 text-center text-white-50 p-5">No open positions match your search criteria.</div>';
+                return;
+            }
+            container.innerHTML = filtered.map(job => `
+                <div class="col-lg-4 col-md-6 wow fadeInUp" onclick="window.location.href = '${getJobDetailsUrl(job._id)}'" style="cursor: pointer;">
+                    <div class="glowing-job-card-wrapper" style="height: 100%;">
+                        <div class="job-card p-4 p-md-5" style="background: #1a1a1a; border-radius: 31px; transition: 0.3s; height: 100%; display: flex; flex-direction: column;">
+                            <div class="d-flex justify-content-between align-items-start mb-4">
+                                <div class="badge px-3 py-2" style="background: rgba(255, 94, 20, 0.1); color: #ff5e14; border-radius: 10px; font-weight: 600; font-size: 13px;">${job.department}</div>
+                                <div class="text-white-50 small"><i class="fa-solid fa-location-dot me-1"></i> ${job.location}</div>
+                            </div>
+                            <h4 class="text-white mb-3" style="font-weight: 800; font-size: 24px; line-height: 1.2;">${job.title}</h4>
+                            <p class="text-white-50 mb-5" style="font-size: 15px; line-height: 1.6; flex-grow: 1;">${job.description.substring(0, 120)}...</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <div class="text-white fw-bold">${job.type}</div>
+                                <button onclick="event.stopPropagation(); openApplyModal('${job._id}')" class="btn p-0" style="color: #ff5e14; font-weight: 800; text-transform: uppercase; font-size: 14px; letter-spacing: 1px;">Apply Now <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            `).join('');
+        };
+
+        render(activeJobs);
+
+        // Event listeners for filtering
+        const searchInput = document.getElementById('job-search-input');
+        const deptFilter = document.getElementById('job-dept-filter');
+
+        const handleFilter = () => {
+            const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
+            const selectedDept = deptFilter ? deptFilter.value : 'All';
+
+            const filtered = activeJobs.filter(job => {
+                const matchesSearch = job.title.toLowerCase().includes(searchTerm) || job.description.toLowerCase().includes(searchTerm);
+                
+                let matchesDept = false;
+                if (selectedDept === 'All') {
+                    matchesDept = true;
+                } else {
+                    const jobDept = job.department.toLowerCase();
+                    const filterDept = selectedDept.toLowerCase();
+                    matchesDept = jobDept.includes(filterDept) || filterDept.includes(jobDept) ||
+                        (filterDept === 'ops' && (jobDept.includes('operation') || jobDept.includes('ops'))) ||
+                        (filterDept === 'development' && (jobDept.includes('tech') || jobDept.includes('dev') || jobDept.includes('eng') || jobDept.includes('ops')));
+                }
+                return matchesSearch && matchesDept;
+            });
+            render(filtered);
+        };
+
+        if (searchInput) searchInput.addEventListener('input', handleFilter);
+        if (deptFilter) deptFilter.addEventListener('change', handleFilter);
+
     } catch (error) {
         console.error("Error rendering jobs:", error);
     }
@@ -611,6 +654,92 @@ async function renderSidebarRecentComments() {
     }
 }
 
+// 13. Render Single Job Details (job-details.html)
+async function renderSingleJobDetails() {
+    const titleEl = document.getElementById('job-detail-title');
+    if (!titleEl) return;
+
+    // Get job ID from URL query parameters (e.g., ?id=abcdef)
+    const urlParams = new URLSearchParams(window.location.search);
+    const jobId = urlParams.get('id');
+    if (!jobId) {
+        titleEl.innerText = "Job not found";
+        return;
+    }
+
+    try {
+        const response = await fetch(`${CONVEX_URL}/api/run/jobs/listJobs`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ args: {}, format: "json" })
+        });
+        const result = await response.json();
+        const activeJobs = result.value || [];
+        const job = activeJobs.find(j => j._id === jobId);
+
+        if (!job) {
+            titleEl.innerText = "Job not found";
+            return;
+        }
+
+        // Set active job for modal handling
+        activeJobsList = [job];
+
+        // Update elements
+        titleEl.innerText = job.title;
+        document.title = `${job.title} | Careers at Synergy Brand Architect`;
+
+        const deptBadge = document.getElementById('job-detail-dept');
+        if (deptBadge) deptBadge.innerText = job.department;
+
+        const locEl = document.getElementById('job-detail-location');
+        if (locEl) locEl.innerText = job.location;
+
+        const typeEl = document.getElementById('job-detail-type');
+        if (typeEl) typeEl.innerText = job.type;
+
+        const salaryEl = document.getElementById('job-detail-salary');
+        if (salaryEl) {
+            salaryEl.innerText = job.salaryRange || 'Not specified';
+        }
+
+        const dateEl = document.getElementById('job-detail-date');
+        if (dateEl) {
+            dateEl.innerText = new Date(job.postedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+
+        const descEl = document.getElementById('job-detail-desc');
+        if (descEl) {
+            // Replace newlines with <br> or paragraphs to maintain formatting
+            descEl.innerHTML = job.description.replace(/\n/g, '<br>');
+        }
+
+        // Set job ID in form
+        const idInput = document.getElementById('job-id-input');
+        if (idInput) idInput.value = jobId;
+
+        // Custom application questions
+        const questionsContainer = document.getElementById('custom-questions-container');
+        if (questionsContainer && job.customQuestions) {
+            questionsContainer.innerHTML = job.customQuestions.map((q, idx) => `
+                <div class="col-12 mt-3">
+                    <label class="form-label small text-white-50">${q.question}${q.required ? '*' : ''}</label>
+                    <input type="text" class="form-control custom-q" data-question="${q.question}" ${q.required ? 'required' : ''} style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                </div>
+            `).join('');
+        }
+
+        // Setup apply button
+        const applyBtn = document.getElementById('job-detail-apply-btn');
+        if (applyBtn) {
+            applyBtn.onclick = () => openApplyModal(jobId);
+        }
+
+    } catch (error) {
+        console.error("Error rendering job details:", error);
+    }
+}
+
 // Initializations
 document.addEventListener('DOMContentLoaded', () => {
     renderDynamicBlogs();
@@ -620,6 +749,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderBlogsGrid();
     renderNewsGrid();
     renderContentDetails();
+    renderSingleJobDetails();
     
     // Auto-inject AI Assistant globally across all pages
     if (!document.getElementById('synergy-ai-script') && !document.querySelector('script[src="js/ai-assistant.js"]')) {

@@ -35,6 +35,14 @@ export const listJobs = query({
   },
 });
 
+// Get a job by ID
+export const getJobById = query({
+  args: { id: v.id("jobs") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
+  },
+});
+
 // Toggle job status
 export const toggleJobStatus = mutation({
   args: { id: v.id("jobs"), isActive: v.boolean() },

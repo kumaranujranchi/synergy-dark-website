@@ -1493,13 +1493,13 @@ button {
   }
 }
 .back-to-top-wrapper {
+  display: none !important;
   position: fixed;
   right: 50px;
   bottom: 0;
   height: 44px;
   width: 44px;
   cursor: pointer;
-  display: block;
   border-radius: 50%;
   z-index: 99;
   opacity: 0;
@@ -1508,8 +1508,9 @@ button {
   transition: 0.4s;
 }
 .back-to-top-wrapper.back-to-top-btn-show {
-  visibility: visible;
-  opacity: 1;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
   bottom: 50px;
 }
 

@@ -1182,6 +1182,13 @@
 
   // Proactive Sales Agent - Programmatic Auto-Open with Session Storage Check
   function initAutoOpenSalesAgent() {
+    // Mobile device exclusion: Disable programmatic auto-open popup on mobiles to avoid intrusive UX
+    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      console.log("[Sales Agent] Mobile device detected, disabling auto-open popup.");
+      return;
+    }
+
     const currentPath = window.location.pathname.toLowerCase();
     
     // Blog and News page exclusion (blog.html, blog-details.html, news-grid.html, news-details.html)

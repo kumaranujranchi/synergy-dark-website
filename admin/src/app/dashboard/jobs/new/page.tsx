@@ -14,7 +14,7 @@ export default function NewJobPage() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
-    department: "",
+    department: "Marketing",
     location: "",
     type: "Full-time",
     description: "",
@@ -87,14 +87,19 @@ export default function NewJobPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Department*</label>
-                <input
-                  type="text"
+                <select
                   required
-                  className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none"
-                  placeholder="e.g. Engineering"
+                  className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none bg-white"
                   value={formData.department}
                   onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                />
+                >
+                  <option value="Marketing">Marketing</option>
+                  <option value="Development">Development</option>
+                  <option value="Design">Design</option>
+                  <option value="Sales">Sales</option>
+                  <option value="Strategy">Strategy</option>
+                  <option value="Ops">Operations</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Location*</label>
