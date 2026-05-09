@@ -44,6 +44,26 @@ async function mutationToConvex(funcName, args = {}) {
     }
 }
 
+// Helper to extract slug from URL path (e.g., /blog/some-slug) or query string (e.g., ?slug=some-slug)
+function getSlugFromUrl() {
+    const path = window.location.pathname;
+    const pathParts = path.split('/');
+    
+    // Check if the URL matches clean paths /blog/slug or /news/slug or sub-directories
+    const isCleanPath = pathParts.includes('blog') || pathParts.includes('news') || pathParts.includes('blog-details') || pathParts.includes('news-details');
+    if (isCleanPath) {
+        const lastPart = pathParts[pathParts.length - 1];
+        // Ensure it's not a static template file ending in .html or an empty path
+        if (lastPart && !lastPart.endsWith('.html') && lastPart !== 'blog' && lastPart !== 'news') {
+            return decodeURIComponent(lastPart);
+        }
+    }
+    
+    // Fallback to legacy query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('slug');
+}
+
 // 1. Render Dynamic Blogs (Home Page - Limit 3)
 async function renderDynamicBlogs() {
     const container = document.getElementById('dynamic-blogs-container');
@@ -58,13 +78,13 @@ async function renderDynamicBlogs() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
+                            <a href="/blog/${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
                         <span class="date">${new Date(blog.publishedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                         <h4 class="title">
-                            <a href="blog-details.html?slug=${blog.slug}">${blog.title}</a>
+                            <a href="/blog/${blog.slug}">${blog.title}</a>
                         </h4>
                         <div class="blog-author">
                             <span>By - <a href="#" class="read-more">${blog.author}</a></span>
@@ -305,13 +325,13 @@ async function renderBlogsGrid() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="blog-details.html?slug=${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
+                            <a href="/blog/${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
                         <span class="date">${new Date(blog.publishedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                         <h4 class="title">
-                            <a href="blog-details.html?slug=${blog.slug}">${blog.title}</a>
+                            <a href="/blog/${blog.slug}">${blog.title}</a>
                         </h4>
                         <div class="blog-author">
                             <span>By - <a href="#" class="read-more">${blog.author}</a></span>
@@ -342,13 +362,13 @@ async function renderNewsGrid() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="news-details.html?slug=${news.slug}"><img src="${news.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${news.imageAltText || news.title}"></a>
+                            <a href="/news/${news.slug}"><img src="${news.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${news.imageAltText || news.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
                         <span class="date">${new Date(news.publishedAt).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
                         <h4 class="title">
-                            <a href="news-details.html?slug=${news.slug}">${news.title}</a>
+                            <a href="/news/${news.slug}">${news.title}</a>
                         </h4>
                         <div class="blog-author">
                             <span>By - <a href="#" class="read-more">${news.author}</a></span>
@@ -367,8 +387,7 @@ async function renderContentDetails() {
     const titleEl = document.getElementById('details-title');
     if (!titleEl) return;
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const slug = urlParams.get('slug');
+    const slug = getSlugFromUrl();
     if (!slug) return;
 
     try {
@@ -455,7 +474,7 @@ async function renderSidebarLatestPosts(type) {
             <li>
                 <div class="sidebar__post-image"> <img src="${item.imageUrl || 'images/inner/news-23.jpg'}" alt="${item.title}"> </div>
                 <div class="sidebar__post-content">
-                    <h3> <span class="sidebar__post-content-meta"><i class="fas fa-user-circle"></i>${item.author}</span> <a href="${type === 'blog' ? 'blog-details.html' : 'news-details.html'}?slug=${item.slug}">${item.title}</a>
+                    <h3> <span class="sidebar__post-content-meta"><i class="fas fa-user-circle"></i>${item.author}</span> <a href="${type === 'blog' ? '/blog/' : '/news/'}${item.slug}">${item.title}</a>
                     </h3>
                 </div>
             </li>
@@ -478,14 +497,14 @@ async function renderAdjacentPosts(currentId, type) {
         if (adjacent.prev) {
             html += `
                 <div class="prev">
-                    <a href="${type === 'blog' ? 'blog-details.html' : 'news-details.html'}?slug=${adjacent.prev.slug}" rel="prev">${adjacent.prev.title}</a>
+                    <a href="${type === 'blog' ? '/blog/' : '/news/'}${adjacent.prev.slug}" rel="prev">${adjacent.prev.title}</a>
                 </div>
             `;
         }
         if (adjacent.next) {
             html += `
                 <div class="next">
-                    <a href="${type === 'blog' ? 'blog-details.html' : 'news-details.html'}?slug=${adjacent.next.slug}" rel="next">${adjacent.next.title}</a>
+                    <a href="${type === 'blog' ? '/blog/' : '/news/'}${adjacent.next.slug}" rel="next">${adjacent.next.title}</a>
                 </div>
             `;
         }

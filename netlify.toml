@@ -2,6 +2,16 @@
   command = "npm run build"
   publish = "dist"
 
+[[redirects]]
+  from = "/blog/:slug"
+  to = "/blog-details.html?slug=:slug"
+  status = 200
+
+[[redirects]]
+  from = "/news/:slug"
+  to = "/news-details.html?slug=:slug"
+  status = 200
+
 [[headers]]
   for = "/*.html"
   [headers.values]

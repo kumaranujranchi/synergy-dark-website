@@ -102,13 +102,14 @@ export default function ContentPage() {
                 </TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end space-x-2">
-                    <Link 
-                      href={`/blog-details.html?slug=${item.slug}`} 
+                    <a 
+                      href={item.type === 'blog' ? `/blog/${item.slug}` : `/news/${item.slug}`} 
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="p-2 text-slate-400 hover:text-blue-600 transition-colors"
                     >
                       <Eye className="w-4 h-4" />
-                    </Link>
+                    </a>
                     <button className="p-2 text-slate-400 hover:text-orange-600 transition-colors">
                       <Edit className="w-4 h-4" />
                     </button>

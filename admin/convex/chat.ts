@@ -49,11 +49,11 @@ export const ask = action({
 
     // 2. Format database content for the AI's context window
     const blogsText = blogs
-      .map((b: any) => `- Blog: "${b.title}" (Author: ${b.author || "Synergy Team"}, URL: blog-details.html?slug=${b.slug})`)
+      .map((b: any) => `- Blog: "${b.title}" (Author: ${b.author || "Synergy Team"}, URL: /blog/${b.slug})`)
       .join("\n");
 
     const newsText = news
-      .map((n: any) => `- News: "${n.title}" (Author: ${n.author || "Synergy Team"}, URL: news-details.html?slug=${n.slug})`)
+      .map((n: any) => `- News: "${n.title}" (Author: ${n.author || "Synergy Team"}, URL: /news/${n.slug})`)
       .join("\n");
 
     const projectsText = projects
