@@ -1,4 +1,5 @@
-import { mutation, query } from "./_generated/server";
+import { mutation, query, action } from "./_generated/server";
+import { api } from "./_generated/api";
 import { v } from "convex/values";
 
 // Add new content (Blog or News)
@@ -17,10 +18,14 @@ export const addContent = mutation({
     tags: v.optional(v.array(v.string())),
   },
   handler: async (ctx, args) => {
-    return await ctx.db.insert("content", {
+    const id = await ctx.db.insert("content", {
       ...args,
       publishedAt: Date.now(),
     });
+    if (args.isPublished) {
+      await ctx.scheduler.runAfter(0, api.content.triggerNetlifyBuild);
+    }
+    return id;
   },
 });
 
@@ -59,7 +64,12 @@ export const listAll = query({
 export const deleteContent = mutation({
   args: { id: v.id("content") },
   handler: async (ctx, args) => {
+    const content = await ctx.db.get(args.id);
+    const wasPublished = content?.isPublished;
     await ctx.db.delete(args.id);
+    if (wasPublished) {
+      await ctx.scheduler.runAfter(0, api.content.triggerNetlifyBuild);
+    }
   },
 });
 
@@ -68,6 +78,7 @@ export const togglePublish = mutation({
   args: { id: v.id("content"), isPublished: v.boolean() },
   handler: async (ctx, args) => {
     await ctx.db.patch(args.id, { isPublished: args.isPublished });
+    await ctx.scheduler.runAfter(0, api.content.triggerNetlifyBuild);
   },
 });
 
@@ -88,5 +99,31 @@ export const getAdjacent = query({
       prev: currentIndex > 0 ? all[currentIndex - 1] : null,
       next: currentIndex < all.length - 1 ? all[currentIndex + 1] : null,
     };
+  },
+});
+
+// Action to trigger Netlify Build Hook for dynamic static rebuild
+export const triggerNetlifyBuild = action({
+  args: {},
+  handler: async (ctx) => {
+    const hookUrl = process.env.NETLIFY_BUILD_HOOK;
+    if (!hookUrl) {
+      console.log("NETLIFY_BUILD_HOOK is not configured in Convex Environment Variables.");
+      return;
+    }
+    
+    try {
+      console.log("Initiating Netlify build via Build Hook...");
+      const response = await fetch(hookUrl, {
+        method: "POST",
+      });
+      if (response.ok) {
+        console.log("✅ Netlify Build Hook triggered successfully!");
+      } else {
+        console.error("❌ Failed to trigger Netlify Build Hook:", response.statusText);
+      }
+    } catch (err) {
+      console.error("❌ Error triggering Netlify Build Hook:", err);
+    }
   },
 });
