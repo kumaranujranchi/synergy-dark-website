@@ -78,7 +78,7 @@ async function renderDynamicBlogs() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="/blog/${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
+                            <a href="/blog/${blog.slug}"><img src="${blog.imageUrl || '/images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
@@ -368,7 +368,7 @@ async function renderBlogsGrid() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="/blog/${blog.slug}"><img src="${blog.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
+                            <a href="/blog/${blog.slug}"><img src="${blog.imageUrl || '/images/pages/news/blog-fallback.webp'}" alt="${blog.imageAltText || blog.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
@@ -405,7 +405,7 @@ async function renderNewsGrid() {
                 <div class="blog-single-box">
                     <div class="image-box">
                         <figure class="image">
-                            <a href="/news/${news.slug}"><img src="${news.imageUrl || 'images/pages/news/blog-fallback.webp'}" alt="${news.imageAltText || news.title}"></a>
+                            <a href="/news/${news.slug}"><img src="${news.imageUrl || '/images/pages/news/blog-fallback.webp'}" alt="${news.imageAltText || news.title}"></a>
                         </figure>
                     </div>
                     <div class="content-box">
@@ -458,7 +458,7 @@ async function renderContentDetails() {
         if (breadcrumbType) breadcrumbType.innerText = content.type.charAt(0).toUpperCase() + content.type.slice(1);
         
         const imgEl = document.getElementById('details-image');
-        if (imgEl) imgEl.src = content.imageUrl || 'images/inner/news-details.jpg';
+        if (imgEl) imgEl.src = content.imageUrl || '/images/inner/news-details.jpg';
 
         const dateEl = document.getElementById('details-date');
         if (dateEl) {
@@ -515,7 +515,7 @@ async function renderSidebarLatestPosts(type) {
 
         container.innerHTML = published.slice(0, 3).map(item => `
             <li>
-                <div class="sidebar__post-image"> <img src="${item.imageUrl || 'images/inner/news-23.jpg'}" alt="${item.title}"> </div>
+                <div class="sidebar__post-image"> <img src="${item.imageUrl || '/images/inner/news-23.jpg'}" alt="${item.title}"> </div>
                 <div class="sidebar__post-content">
                     <h3> <span class="sidebar__post-content-meta"><i class="fas fa-user-circle"></i>${item.author}</span> <a href="${type === 'blog' ? '/blog/' : '/news/'}${item.slug}">${item.title}</a>
                     </h3>
@@ -574,7 +574,7 @@ async function renderComments(contentId) {
 
         container.innerHTML = comments.map(c => `
             <div class="comment-one__single">
-                <div class="comment-one__image"> <img src="images/inner/author-2.jpg" alt=""> </div>
+                <div class="comment-one__image"> <img src="/images/inner/author-2.jpg" alt=""> </div>
                 <div class="comment-one__content">
                     <h3>${c.name}</h3>
                     <p>${c.comment}</p>
@@ -752,10 +752,10 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSingleJobDetails();
     
     // Auto-inject AI Assistant globally across all pages
-    if (!document.getElementById('synergy-ai-script') && !document.querySelector('script[src="js/ai-assistant.js"]')) {
+    if (!document.getElementById('synergy-ai-script') && !document.querySelector('script[src="js/ai-assistant.js"]') && !document.querySelector('script[src="/js/ai-assistant.js"]')) {
         const script = document.createElement('script');
         script.id = 'synergy-ai-script';
-        script.src = 'js/ai-assistant.js';
+        script.src = '/js/ai-assistant.js';
         document.body.appendChild(script);
     }
 });
