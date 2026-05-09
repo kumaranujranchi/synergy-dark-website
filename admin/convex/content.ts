@@ -60,6 +60,37 @@ export const listAll = query({
   },
 });
 
+// Get single content by ID (For Edit Page)
+export const getById = query({
+  args: { id: v.id("content") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
+  },
+});
+
+// Update existing content
+export const updateContent = mutation({
+  args: {
+    id: v.id("content"),
+    title: v.string(),
+    slug: v.string(),
+    body: v.string(),
+    imageUrl: v.optional(v.string()),
+    imageAltText: v.optional(v.string()),
+    metaTitle: v.optional(v.string()),
+    metaDescription: v.optional(v.string()),
+    type: v.string(),
+    author: v.string(),
+    isPublished: v.boolean(),
+    tags: v.optional(v.array(v.string())),
+  },
+  handler: async (ctx, args) => {
+    const { id, ...fields } = args;
+    await ctx.db.patch(id, fields);
+    await ctx.scheduler.runAfter(0, api.content.triggerNetlifyBuild);
+  },
+});
+
 // Delete content
 export const deleteContent = mutation({
   args: { id: v.id("content") },

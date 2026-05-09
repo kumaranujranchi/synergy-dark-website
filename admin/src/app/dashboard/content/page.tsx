@@ -110,9 +110,12 @@ export default function ContentPage() {
                     >
                       <Eye className="w-4 h-4" />
                     </a>
-                    <button className="p-2 text-slate-400 hover:text-orange-600 transition-colors">
+                    <Link
+                      href={`/dashboard/content/edit/${item._id}`}
+                      className="p-2 text-slate-400 hover:text-orange-600 transition-colors"
+                    >
                       <Edit className="w-4 h-4" />
-                    </button>
+                    </Link>
                     <button 
                       onClick={() => handleDelete(item._id)}
                       className="p-2 text-slate-400 hover:text-red-600 transition-colors"
