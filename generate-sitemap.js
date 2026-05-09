@@ -7,7 +7,7 @@ const DOMAIN = 'https://synergybrandarchitect.in';
 function fetchFromConvex(funcName, args = {}) {
     return new Promise((resolve, reject) => {
         const formattedName = funcName.replace(':', '/');
-        const convexUrl = process.env.CONVEX_URL || 'https://knowing-caribou-214.convex.cloud';
+        const convexUrl = process.env.CONVEX_URL || 'https://qualified-duck-586.convex.cloud';
         const url = `${convexUrl}/api/run/${formattedName}`;
         
         const payload = JSON.stringify({ args, format: "json" });
