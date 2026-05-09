@@ -2,6 +2,12 @@
 // Includes: Draggable float button, Lead onboarding form, Maximize/Minimize toggles, Rate Limiter, and full Mobile Responsiveness.
 
 (function () {
+  if (window.__synergyChatInitialized) {
+    console.log("Synergy AI Support already initialized.");
+    return;
+  }
+  window.__synergyChatInitialized = true;
+
   // Prevent loading on blog pages (to respect informational intent)
   const currentPath = window.location.pathname.toLowerCase();
   if (currentPath.includes("blog")) {
@@ -69,6 +75,88 @@
     @keyframes synergy-pulse {
       0% { transform: scale(1); opacity: 1; }
       100% { transform: scale(1.4); opacity: 0; }
+    }
+
+    /* Chat Tooltip Bubble */
+    .synergy-chat-tooltip {
+      position: absolute;
+      right: 0px;
+      bottom: 85px;
+      background: rgba(15, 15, 15, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1.5px solid rgba(255, 94, 20, 0.4);
+      border-radius: 16px;
+      padding: 10px 32px 10px 16px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 94, 20, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 99999;
+      pointer-events: auto;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: synergy-tooltip-entrance 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 2s forwards, synergy-tooltip-float 4s ease-in-out infinite 2.5s;
+      user-select: none;
+    }
+
+    /* Green pulse dot */
+    .synergy-chat-tooltip-dot {
+      width: 8px;
+      height: 8px;
+      background: #00ff66;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #00ff66;
+      flex-shrink: 0;
+    }
+
+    /* Small speech bubble arrow */
+    .synergy-chat-tooltip::after {
+      content: '';
+      position: absolute;
+      bottom: -7px;
+      right: 25px;
+      width: 12px;
+      height: 12px;
+      background: rgba(15, 15, 15, 0.98);
+      border-right: 1.5px solid rgba(255, 94, 20, 0.4);
+      border-bottom: 1.5px solid rgba(255, 94, 20, 0.4);
+      transform: rotate(45deg);
+    }
+
+    /* Close button on tooltip */
+    .synergy-chat-tooltip-close {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      color: #666;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 2px 5px;
+      transition: color 0.2s;
+    }
+
+    .synergy-chat-tooltip-close:hover {
+      color: #ff5e14;
+    }
+
+    @keyframes synergy-tooltip-entrance {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes synergy-tooltip-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
     }
 
     /* Chat Window Container */
@@ -538,6 +626,13 @@
   // Initialize inner body with the interactive welcome bubble directly
   let innerBodyHtml = renderSystemWelcomeBubble();
   widgetContainer.innerHTML = `
+    <!-- Beautiful Animated Tooltip Bubble -->
+    <div class="synergy-chat-tooltip" id="synergy-chat-tooltip">
+      <span class="synergy-chat-tooltip-dot"></span>
+      <span>Hey! I'm online. Need any help? 👋</span>
+      <button class="synergy-chat-tooltip-close" id="synergy-chat-tooltip-close" title="Dismiss">&times;</button>
+    </div>
+
     <!-- Draggable circular floating button -->
     <div class="synergy-chat-btn" id="synergy-chat-btn">
       <i class="fa-solid fa-comments"></i>
@@ -628,6 +723,24 @@
   const chatInput = document.getElementById("synergy-chat-input");
   const sendBtn = document.getElementById("synergy-chat-send-btn");
   const chatFooter = document.getElementById("synergy-chat-footer");
+  const tooltip = document.getElementById("synergy-chat-tooltip");
+  const tooltipClose = document.getElementById("synergy-chat-tooltip-close");
+
+  // Initialize Tooltip dismissed state on page load
+  if (tooltip) {
+    if (localStorage.getItem("synergy_chat_tooltip_dismissed") === "true") {
+      tooltip.style.display = "none";
+    }
+  }
+
+  // Tooltip close button dismiss logic
+  if (tooltipClose && tooltip) {
+    tooltipClose.addEventListener("click", (e) => {
+      e.stopPropagation(); // Avoid triggering chat toggling on button click
+      tooltip.style.display = "none";
+      localStorage.setItem("synergy_chat_tooltip_dismissed", "true");
+    });
+  }
 
   // Draggable Physics Engine (Mouse and Touch support)
   let startX = 0, startY = 0;
@@ -716,11 +829,15 @@
     const icon = chatBtn.querySelector("i");
     if (chatWindow.classList.contains("active")) {
       icon.className = "fa-solid fa-comment-dots";
+      if (tooltip) tooltip.style.display = "none";
       if (hasActiveLead) {
         chatInput.focus();
       }
     } else {
       icon.className = "fa-solid fa-comments";
+      if (tooltip && !localStorage.getItem("synergy_chat_tooltip_dismissed")) {
+        tooltip.style.display = "flex";
+      }
     }
   });
 
@@ -728,6 +845,9 @@
   closeBtn.addEventListener("click", () => {
     chatWindow.classList.remove("active");
     chatBtn.querySelector("i").className = "fa-solid fa-comments";
+    if (tooltip && !localStorage.getItem("synergy_chat_tooltip_dismissed")) {
+      tooltip.style.display = "flex";
+    }
   });
 
   // Toggle Maximize screen space coverage
