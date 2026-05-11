@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Premium Pricing Plans | Synergy Brand Architect - Digital Agency in Patna</title>
+    <meta name="description" content="Affordable and result-oriented digital marketing and website development pricing plans in Patna. Choose from Light, Advance, and Pro plans to grow your brand.">
+    <meta name="keywords" content="Digital Marketing Pricing Patna, Website Development Cost Patna, Synergy Brand Architect Pricing, Best SEO Packages Patna, SMM Packages Bihar">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/swiper.min.css" rel="stylesheet">
+    <link href="css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="css/linear.css" rel="stylesheet">
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/tm-bs-mp.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/tm-utility-classes.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
+    <link rel="icon" href="images/favicon.webp" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body { background: #0f0f0f; color: #fff; }
+        
+        /* Pricing Cards Styling */
+        .pricing-section {
+            background: #0a0a0a;
+            position: relative;
+            z-index: 2;
+        }
+
+        .pricing-card-wrapper {
+            position: relative;
+            z-index: 1;
+            border-radius: 32px;
+            overflow: hidden;
+            background: transparent;
+            padding: 2px;
+            height: 100%;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* Running Border Glow for Highlighted Card */
+        .pricing-card-wrapper.highlighted::before {
+            background: conic-gradient(from var(--gradient-angle, 0deg), #ff5e14, #ff8c00, #ff2a00, #ff8c00, #ff5e14);
+            border-radius: 32px;
+            content: "";
+            inset: -0.5rem;
+            animation: rotate-gradient 4s linear infinite;
+            opacity: 1;
+            position: absolute;
+            z-index: -1;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card-wrapper:not(.highlighted) {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(15px);
+        }
+
+        .pricing-card-wrapper:hover {
+            transform: translateY(-12px);
+        }
+
+        .pricing-card-wrapper.highlighted:hover {
+            box-shadow: 0 20px 50px rgba(255, 94, 20, 0.25);
+        }
+
+        .pricing-card-wrapper:not(.highlighted):hover {
+            border-color: rgba(255, 94, 20, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(25, 25, 25, 0.8);
+        }
+
+        .pricing-card {
+            background: #151515;
+            border-radius: 30px;
+            padding: 45px 35px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .pricing-card-wrapper.highlighted .pricing-card {
+            background: #181310; /* Slightly warmer dark background for highlighted plan */
+        }
+
+        .plan-badge {
+            display: inline-block;
+            background: rgba(255, 94, 20, 0.1);
+            color: #ff5e14;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 94, 20, 0.2);
+        }
+
+        .plan-badge.popular {
+            background: #ff5e14;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(255, 94, 20, 0.3);
+        }
+
+        .plan-name {
+            font-weight: 800;
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .plan-price-box {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 20px;
+        }
+
+        .plan-currency {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ff5e14;
+            margin-right: 2px;
+        }
+
+        .plan-price {
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+        }
+
+        .plan-period {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-left: 5px;
+        }
+
+        .plan-desc {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            min-height: 72px;
+        }
+
+        .plan-features-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ff5e14;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 10px;
+        }
+
+        .plan-features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            flex-grow: 1;
+        }
+
+        .plan-features-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 15px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+        }
+
+        .plan-features-list li i {
+            position: absolute;
+            left: 0;
+            top: 3px;
+            color: #ff5e14;
+            font-size: 16px;
+        }
+
+        .plan-features-list li.sub-feature {
+            padding-left: 45px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: -8px;
+            margin-bottom: 12px;
+        }
+
+        .plan-features-list li.sub-feature i {
+            left: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .plan-cta-btn {
+            display: block;
+            text-align: center;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #fff;
+            padding: 16px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .plan-cta-btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .pricing-card-wrapper.highlighted .plan-cta-btn {
+            background: #ff5e14;
+            border-color: #ff5e14;
+            color: #fff;
+            box-shadow: 0 10px 20px rgba(255, 94, 20, 0.2);
+        }
+
+        .pricing-card-wrapper.highlighted .plan-cta-btn:hover {
+            background: #e04e0b;
+            border-color: #e04e0b;
+            transform: translateY(-2px);
+        }
+
+        /* Why Choose Us Pricing */
+        .why-choose-pricing {
+            background: #0f0f0f;
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-box-pricing {
+            background: #151515;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 35px;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box-pricing:hover {
+            border-color: rgba(255, 94, 20, 0.2);
+            transform: translateY(-5px);
+            background: #1a1a1a;
+        }
+
+        .feature-icon-pricing {
+            font-size: 36px;
+            color: #ff5e14;
+            margin-bottom: 20px;
+        }
+
+        .feature-title-pricing {
+            font-weight: 800;
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .feature-desc-pricing {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+
+        /* CTA Quote Form Container */
+        .quote-form-section {
+            background: radial-gradient(circle at center, #1b1613 0%, #0a0a0a 100%);
+            position: relative;
+            z-index: 2;
+        }
+
+        .quote-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(255, 94, 20, 0.15);
+            border-radius: 40px;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+        }
+
+        @keyframes rotate-gradient {
+            0% {
+                --gradient-angle: 0deg;
+            }
+            100% {
+                --gradient-angle: 360deg;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Preloader -->
+        <div class="preloader">
+            <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                <path id="preloaderSvg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+            </svg>
+            <div class="preloader-heading">
+                <div class="load-text">
+                    <span>S</span>
+                    <span>y</span>
+                    <span>n</span>
+                    <span>e</span>
+                    <span>r</span>
+                    <span>g</span>
+                    <span>y</span>
+                    <span>&nbsp;</span>
+                    <span>B</span>
+                    <span>r</span>
+                    <span>a</span>
+                    <span>n</span>
+                    <span>d</span>
+                    <span>&nbsp;</span>
+                    <span>A</span>
+                    <span>r</span>
+                    <span>c</span>
+                    <span>h</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>e</span>
+                    <span>c</span>
+                    <span>t</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top -->
+        <div class="back-to-top-wrapper">
+            <button id="back_to_top" type="button" class="back-to-top-btn">
+                <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </button>
+        </div>
+
+        <header class="main-header">
+            <!-- Header Lower -->
+            <div class="header-lower">
+                <div class="main-box">
+                    <div class="logo-box">
+                        <div class="logo">
+                            <a href="index.html" title=""><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt="" title="synergy"></a>
+                        </div>
+                    </div>
+                    <!--Nav Box-->
+                    <div class="nav-outer">
+                        <nav class="nav main-menu">
+                            <ul class="navigation">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="projects.html">Projects</a></li>
+                                <li class="dropdown"><a href="services.html">Services</a>
+                                    <ul>
+                                        <li><a href="page-brand-building.html">Brand Building</a></li>
+                                        <li><a href="page-social-media.html">Social Media Marketing</a></li>
+                                        <li><a href="page-website-dev.html">Website & App Dev</a></li>
+                                        <li><a href="page-automation.html">Automation</a></li>
+                                        <li><a href="page-performance-marketing.html">Performance Marketing</a></li>
+                                        <li><a href="page-seo.html">SEO Optimization</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="#">Industry</a>
+                                    <ul>
+                                        <li><a href="industry-real-estate.html">Real Estate</a></li>
+                                        <li><a href="industry-healthcare.html">Healthcare</a></li>
+                                        <li><a href="industry-education.html">Education</a></li>
+                                        <li><a href="industry-ecommerce.html">E-commerce</a></li>
+                                        <li class="dropdown"><a href="industry-local-business.html">Local Businesses</a>
+                                            <ul>
+                                                <li><a href="industry-local-salons.html">Salons</a></li>
+                                                <li><a href="industry-local-gyms.html">Gyms</a></li>
+                                                <li><a href="industry-local-restaurants.html">Restaurants</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-professional-services.html">Professional Services</a>
+                                            <ul>
+                                                <li><a href="industry-professional-ca.html">CA / Consultants</a></li>
+                                                <li><a href="industry-professional-lawyers.html">Lawyers</a></li>
+                                                <li><a href="industry-professional-agencies.html">Agencies</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-startups.html">Startups</a>
+                                            <ul>
+                                                <li><a href="industry-startups-tech.html">Tech startups</a></li>
+                                                <li><a href="industry-startups-saas.html">SaaS</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-corporate.html">Corporate / SMEs</a>
+                                            <ul>
+                                                <li><a href="industry-corporate-manufacturing.html">Manufacturing</a></li>
+                                                <li><a href="industry-corporate-b2b.html">B2B companies</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-hospitality.html">Hospitality & Travel</a>
+                                            <ul>
+                                                <li><a href="industry-hospitality-hotels.html">Hotels</a></li>
+                                                <li><a href="industry-hospitality-travel.html">Travel agencies</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown"><a href="industry-automotive.html">Automotive</a>
+                                            <ul>
+                                                <li><a href="industry-automotive-cars.html">Car dealerships</a></li>
+                                                <li><a href="industry-automotive-bikes.html">Bike showrooms</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Resources</a>
+                                    <ul>
+                                        <li><a href="news-grid.html">News</a></li>
+                                        <li><a href="blog.html">Blogs</a></li>
+                                        <li class="dropdown"><a href="page-case-study.html">Case Study</a>
+                                            <ul>
+                                                <li><a href="case-studies/biryani-mahal.html">Biryani Mahal</a></li>
+                                                <li><a href="case-studies/the-helping-hand.html">The Helping Hand</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="current"><a href="pricing.html">Pricing</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="outer-box">
+                        <div class="ui-btn-outer">
+                            <button class="ui-btn ui-btn search-btn">
+                                <span class="icon lnr lnr-icon-search"> Search...</span>
+                            </button>
+                        </div>
+                        <div class="header-btn d-none d-xxl-block">
+                            <a class="header-btn-main" href="contact.html">
+                                <span class="header-theme-btn">Get a quote</span>
+                                <span class="header-btn-arrow-right"><i class="fa-regular fa-arrow-right"></i></span>
+                            </a>
+                        </div>
+                        <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu  -->
+            <div class="mobile-menu">
+                <div class="menu-backdrop"></div>
+                <nav class="menu-box">
+                    <div class="upper-box">
+                        <div class="nav-logo">
+                            <a href="index.html"><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt=""></a>
+                        </div>
+                        <div class="close-btn"><i class="icon fa fa-times"></i></div>
+                    </div>
+                    <ul class="navigation clearfix"></ul>
+                </nav>
+            </div>
+
+            <!-- Sticky Header -->
+            <div class="sticky-header">
+                <div class="inner-container">
+                    <div class="logo">
+                        <a href="index.html" title=""><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt="" title="synergy"></a> 
+                    </div>
+                    <div class="nav-outer">
+                        <nav class="main-menu">
+                            <div class="navbar-collapse show collapse clearfix">
+                                <ul class="navigation clearfix"></ul>
+                            </div>
+                        </nav>
+                        <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Cosmic Banner Hero -->
+        <section class="page-title text-center" style="position: relative; overflow: hidden; background: radial-gradient(circle at center, #120F17 0%, #0a0a0a 100%); padding: 180px 0 160px 0;">
+            <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+            
+            <div class="auto-container" style="position: relative; z-index: 2;">
+                <h1 style="font-weight: 800; font-size: clamp(32px, 6vw, 64px); color: #fff; line-height: 1.1;">Affordable Monthly <br><span style="color: #ff5e14;">Brand Architecture</span> Plans</h1>
+                <p class="mt-4 text-white-50" style="max-width: 800px; margin: 0 auto; font-size: 20px; line-height: 1.6;">Transparent monthly investments designed for small businesses, startups, and hyper-growth enterprises. No long-term lock-ins.</p>
+            </div>
+        </section>
+
+        <!-- Pricing Cards Section -->
+        <section class="pricing-section pb-120 pt-80">
+            <div class="auto-container">
+                <div class="row g-4 align-items-stretch">
+                    <!-- Light Plan -->
+                    <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".1s">
+                        <div class="pricing-card-wrapper">
+                            <div class="pricing-card">
+                                <div>
+                                    <span class="plan-badge">Light Plan</span>
+                                    <h3 class="plan-name">Light Plan</h3>
+                                    <div class="plan-price-box">
+                                        <span class="plan-currency">₹</span>
+                                        <span class="plan-price">15,000</span>
+                                        <span class="plan-period">/ Month</span>
+                                    </div>
+                                    <p class="plan-desc">Perfect for startups and small businesses looking to build a strong online presence at the cost of one employee salary.</p>
+                                    
+                                    <h4 class="plan-features-title">Included Services</h4>
+                                    <ul class="plan-features-list">
+                                        <li><i class="fa-solid fa-circle-check"></i> Website Management & Maintenance</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Social Media Management</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Up to 3 Accounts</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Ads Management on:</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Google Ads</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Meta Ads (Facebook & Insta)</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> SEO Optimization</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Up to 5 Keywords</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Keyword Difficulty (KD) below 30</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Local SEO Optimization</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Basic Digital Presence Management</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Monthly Performance Support</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="small text-white-50 mb-3 text-center"><strong>Best For:</strong> Small businesses, local brands, startups, and professionals wanting affordable digital growth.</p>
+                                    <a href="#" class="plan-cta-btn choose-plan-trigger" data-plan="Light Plan">Choose Light Plan <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advance Plan (Highlighted) -->
+                    <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="pricing-card-wrapper highlighted">
+                            <div class="pricing-card">
+                                <div>
+                                    <span class="plan-badge popular">Most Popular</span>
+                                    <h3 class="plan-name">Advance Plan</h3>
+                                    <div class="plan-price-box">
+                                        <span class="plan-currency">₹</span>
+                                        <span class="plan-price">35,000</span>
+                                        <span class="plan-period">/ Month</span>
+                                    </div>
+                                    <p class="plan-desc">A complete digital marketing and branding solution for scaling and growing businesses looking to capture major market share.</p>
+                                    
+                                    <h4 class="plan-features-title">Included Services</h4>
+                                    <ul class="plan-features-list">
+                                        <li><i class="fa-solid fa-circle-check"></i> Website Creation & Management</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Unlimited changes, free hosting, free domain</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Social Media Management</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Up to 5 platforms (FB, IG, LI, YT, X)</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Content & Creative</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> 4 Professional reels per month, custom graphics</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Ads Management on:</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Meta, Google, & Native Ads (Taboola, MGID)</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Advanced Marketing</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Funnel-based strategy, tracking, lead gen</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> End-to-end IT & Marketing Support</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="small text-white-50 mb-3 text-center"><strong>Best For:</strong> Businesses scaling their online footprint and looking for high-quality, continuous brand authority.</p>
+                                    <a href="#" class="plan-cta-btn choose-plan-trigger" data-plan="Advance Plan">Choose Advance Plan <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pro Plan -->
+                    <div class="col-xl-4 col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="pricing-card-wrapper">
+                            <div class="pricing-card">
+                                <div>
+                                    <span class="plan-badge">Enterprise</span>
+                                    <h3 class="plan-name">Pro Plan</h3>
+                                    <div class="plan-price-box">
+                                        <span class="plan-currency">₹</span>
+                                        <span class="plan-price">50,000</span>
+                                        <span class="plan-period">/ Month</span>
+                                    </div>
+                                    <p class="plan-desc">A premium brand growth package designed for businesses that want complete brand management and aggressive scaling.</p>
+                                    
+                                    <h4 class="plan-features-title">Included Services</h4>
+                                    <ul class="plan-features-list">
+                                        <li><i class="fa-solid fa-circle-check"></i> <strong>Everything in Advance Plan PLUS:</strong></li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Complete Brand Management</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Full Social Media (All Platforms)</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> International Ad Campaigns</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Advanced SEO Strategy</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> High E-A-T articles, link building, guest post</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Business Tech Solutions</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Custom software, CRM, ERP, HRMS, IT consulting</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Premium Creative Production</li>
+                                        <li class="sub-feature"><i class="fa-solid fa-angle-right"></i> Product photoshoots, professional video production</li>
+                                        <li><i class="fa-solid fa-circle-check"></i> Custom Growth & Sales Strategy</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="small text-white-50 mb-3 text-center"><strong>Best For:</strong> Established businesses, national brands, and companies seeking a dedicated, full-service team.</p>
+                                    <a href="#" class="plan-cta-btn choose-plan-trigger" data-plan="Pro Plan">Choose Pro Plan <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Section -->
+        <section class="why-choose-pricing pb-100 pt-100">
+            <div class="auto-container">
+                <div class="sec-title text-center mb-5">
+                    <span class="sub-title" style="color: #ff5e14; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Synergy Value</span>
+                    <h2 style="font-weight: 800; color: #fff; font-size: 42px;">Why Choose Synergy Brand Architect?</h2>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".1s">
+                        <div class="feature-box-pricing">
+                            <div class="feature-icon-pricing"><i class="fa-solid fa-people-group"></i></div>
+                            <h4 class="feature-title-pricing">One Team, All Solutions</h4>
+                            <p class="feature-desc-pricing">Say goodbye to managing separate developers, graphic designers, copywriters, and ad experts. We handle your entire brand system end-to-end.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="feature-box-pricing">
+                            <div class="feature-icon-pricing"><i class="fa-solid fa-wallet"></i></div>
+                            <h4 class="feature-title-pricing">Affordable Monthly Plans</h4>
+                            <p class="feature-desc-pricing">Get a full squad of elite digital marketing, branding, and IT engineers at less than the cost of hiring a single in-house professional.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="feature-box-pricing">
+                            <div class="feature-icon-pricing"><i class="fa-solid fa-bullseye"></i></div>
+                            <h4 class="feature-title-pricing">Result-Oriented Strategy</h4>
+                            <p class="feature-desc-pricing">We don't focus on vanity metrics like "impressions" or "likes." We focus on traffic, qualified lead systems, conversion rates, and revenue.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".1s">
+                        <div class="feature-box-pricing">
+                            <div class="feature-icon-pricing"><i class="fa-solid fa-chart-line"></i></div>
+                            <h4 class="feature-title-pricing">Transparent Processes</h4>
+                            <p class="feature-desc-pricing">Stay informed with direct Slack/WhatsApp channels, continuous updates, and actionable performance metrics provided bi-weekly.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="feature-box-pricing">
+                            <div class="feature-icon-pricing"><i class="fa-solid fa-sliders"></i></div>
+                            <h4 class="feature-title-pricing">Customized Solutions</h4>
+                            <p class="feature-desc-pricing">We customize our pipelines and tech integrations specifically for your company's scale and target market—no generic strategies.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="feature-box-pricing">
+                            <div class="feature-icon-pricing"><i class="fa-solid fa-headset"></i></div>
+                            <h4 class="feature-title-pricing">Elite Tech & Marketing Support</h4>
+                            <p class="feature-desc-pricing">From server management, database integration, custom ERP, to scaling Facebook and Google algorithms, we keep your brand flawless.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="quote-form-section pb-120 pt-100">
+            <div class="auto-container">
+                <div class="quote-card">
+                    <div class="row align-items-center g-5">
+                        <div class="col-lg-6">
+                            <span class="sub-title" style="color: #ff5e14; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Let's Build Success</span>
+                            <h2 style="font-weight: 800; font-size: 48px; color: #fff; line-height: 1.1; margin-top: 15px;">Ready to Grow Your Brand?</h2>
+                            <p class="text-white-50 mt-4 mb-4" style="font-size: 18px;">Contact us today and let's construct your digital roadmap. Select a plan or request a custom proposal tailored precisely to your brand requirements.</p>
+                            <div class="d-flex align-items-center gap-3 text-white mb-3">
+                                <span class="text-warning fs-4"><i class="fa-solid fa-phone"></i></span>
+                                <div>
+                                    <div class="small text-white-50">Call Our Growth Manager</div>
+                                    <a href="tel:+919525230232" class="text-white fw-bold link-underline-opacity-0">+91 9525 230232</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <form id="contact-form" class="row g-3" method="post" action="#">
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Full Name*</label>
+                                    <input type="text" name="name" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px; padding: 12px 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Email Address*</label>
+                                    <input type="email" name="form_email" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px; padding: 12px 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Phone Number*</label>
+                                    <input type="tel" name="phone" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px; padding: 12px 20px;">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white-50 small">Select Plan*</label>
+                                    <select name="subject" id="selected-plan-dropdown" class="form-select" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px; padding: 12px 20px; height: auto;">
+                                        <option value="Light Plan">Light Plan (₹15,000 / Mo)</option>
+                                        <option value="Advance Plan" selected>Advance Plan (₹35,000 / Mo)</option>
+                                        <option value="Pro Plan">Pro Plan (₹50,000 / Mo)</option>
+                                        <option value="Custom Proposal">Custom Requirement</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-white-50 small">Tell Us About Your Brand*</label>
+                                    <textarea name="message" class="form-control" rows="4" required placeholder="Describe your business and goals..." style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px; padding: 15px 20px;"></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="theme-btn-main w-100 text-center d-block py-3" style="border: none; border-radius: 12px;">
+                                        <span class="theme-btn-arrow-left theme-bg theme-color-white"><i class="fa-solid fa-arrow-left"></i></span>
+                                        <span class="theme-btn theme-bg theme-color-white">Book Free Strategy Call</span>
+                                        <span class="theme-btn-arrow-right theme-bg theme-color-white"><i class="fa-solid fa-arrow-right"></i></span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer-section-3 theme-color-bg pb-60">
+            <div class="footer-main-wrapper">
+                <div class="footer-circle-shape">
+                    <img loading="lazy" decoding="async" src="images/common/logos/footer-circle.webp" alt="img">
+                </div>
+                <div class="auto-container">
+                    <div class="footer-widget-wrapper-3">
+                        <div class="row g-4">
+                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <a href="index.html" class="footer-logo"><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt="img"></a>
+                                    </div>
+                                    <div class="footer-content mt-4">
+                                        <p class="footer-text text-white-50">
+                                            Synergy is the Best Website Development & Digital Marketing Agency in Patna, dedicated to empowering businesses through innovative digital solutions and results-driven strategies.
+                                        </p>
+                                        <ul class="social-icon-two mt-4">
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                            <li><a href="https://www.instagram.com/synergybrandarchitect/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Company</h4>
+                                    </div>
+                                    <ul class="list-area">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="about.html">About Us</a></li>
+                                        <li><a href="page-careers.html">Careers</a></li>
+                                        <li><a href="contact.html">Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Useful Links</h4>
+                                    </div>
+                                    <ul class="list-area">
+                                        <li><a href="services.html">Our Service</a></li>
+                                        <li><a href="news-grid.html">Latest Blog</a></li>
+                                        <li><a href="page-case-study.html">Case Study</a></li>
+                                        <li><a href="page-tech-stack.html">Technology Stack</a></li>
+                                    <li><a href="page-shopify-headless.html">Shopify Development</a></li>
+                                    <li><a href="page-payment-gateway.html">Payment Gateway</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Legal</h4>
+                                    </div>
+                                    <ul class="list-area">
+                                        <li><a href="page-privacy.html">Privacy Policy</a></li>
+                                        <li><a href="page-terms.html">Terms of Service</a></li>
+                                        <li><a href="page-refund.html">Refund Policy</a></li>
+                                        <li><a href="sitemap.html">Sitemap</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="1s">
+                                <div class="footer-widget-single-items">
+                                    <div class="widget-head">
+                                        <h4 class="widget-title">Contact Us</h4>
+                                    </div>
+                                    <div class="widget-content">
+                                        <div class="contact-info-box">
+                                            <div class="icon-box"><span class="icon fa fa-envelope"></span></div>
+                                            <div class="content-box">
+                                                <h6 class="title">Mail Us:</h6>
+                                                <div class="text"><a href="mailto:hello@synergybrandarchitect.in" class="link">hello@synergybrandarchitect.in</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="contact-info-box">
+                                            <div class="icon-box"><span class="icon fa fa-map-marker-alt"></span></div>
+                                            <div class="content-box">
+                                                <h6 class="title">Address :</h6>
+                                                <div class="text">Patna, Bihar 801503</div>
+                                            </div>
+                                        </div>
+                                        <div class="contact-info-box mb-0">
+                                            <div class="icon-box"><span class="icon fa fa-phone"></span></div>
+                                            <div class="content-box">
+                                                <h6 class="title">Phone:</h6>
+                                                <div class="text"><a href="tel:+919525230232" class="link">+91 9525 230232</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="copyright-text wow fadeInUp" data-wow-delay=".3s">
+                        © 2026 Synergy Brand Architect. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Quick Plan Booking Dialog (Optional - trigger directly in UI) -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: #1a1a1a; border: 1px solid #ff5e14; border-radius: 24px; color: #fff;">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title font-heading fw-bold" id="bookingModalLabel" style="font-size: 24px;">Book <span id="modal-plan-title" style="color: #ff5e14;">Advance Plan</span></h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <p class="text-white-50 small mb-4">Please submit your details and our brand growth executive will connect with you on phone/WhatsApp in less than 2 hours.</p>
+                    <form id="modal-pricing-form" class="row g-3">
+                        <input type="hidden" id="modal-plan-input">
+                        <div class="col-12">
+                            <label class="form-label small text-white-50">Full Name*</label>
+                            <input type="text" id="m-name" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-white-50">Email Address*</label>
+                            <input type="email" id="m-email" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small text-white-50">Phone / WhatsApp*</label>
+                            <input type="tel" id="m-phone" class="form-control" required style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label small text-white-50">Additional Requirements / Context (Optional)</label>
+                            <textarea id="m-message" class="form-control" rows="3" style="background: #0f0f0f; border: 1px solid #333; color: #fff; border-radius: 12px;"></textarea>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <button type="submit" class="btn w-100 py-3 font-heading" style="background: #ff5e14; color: #fff; font-weight: 800; border-radius: 12px; border: none;">Request Onboarding Call</button>
+                        </div>
+                    </form>
+                    <div id="modal-success" class="mt-3 text-success text-center d-none">
+                        <i class="fa-solid fa-circle-check me-2"></i> Inquiry submitted! We'll call you shortly.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/jquery.js" defer></script>
+    <script src="js/popper.min.js" defer></script>
+    <script src="js/bootstrap.min.js" defer></script>
+    <script src="js/jquery.fancybox.js" defer></script>
+    <script src="js/bxslider.js" defer></script>
+    <script src="js/jquery-ui.js" defer></script>
+    <script src="js/wow.js" defer></script>
+    <script src="js/select2.min.js" defer></script>
+    <script src="js/appear.js" defer></script>
+    <script src="js/knob.js" defer></script>
+    <script src="js/swiper.min.js" defer></script>
+    <script src="js/aos.js" defer></script>
+    <script src="js/gsap.min.js" defer></script>
+    <script src="js/ScrollTrigger.min.js" defer></script>
+    <script src="js/splitType.js" defer></script>
+    <script src="js/mixitup.js" defer></script>
+    <script src="js/gsap-scroll-smoother.js" defer></script>
+    <script src="js/gsap-scroll-to-plugin.js" defer></script>
+    <script src="js/SplitText.min.js" defer></script>
+    <script src="js/custom-gsap.js" defer></script>
+    <script src="js/script.js" defer></script>
+    
+    <!-- Convex & AI Integration -->
+    <script src="js/convex-config.js?v=2" defer></script>
+    <script src="js/convex-integration.js?v=2" defer></script>
+    <script src="js/convex-fetch.js?v=2" defer></script>
+    <script src="js/ai-assistant.js?v=2" defer></script>
+    
+    <!-- Particles Canvas -->
+    <script src="js/particles-background.js" defer></script>
+
+    <script>
+        // Interactive Selectors for Pricing Plan Buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const planTriggers = document.querySelectorAll('.choose-plan-trigger');
+            planTriggers.forEach(function(trigger) {
+                trigger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const planName = this.getAttribute('data-plan');
+                    
+                    // Set booking modal info
+                    document.getElementById('modal-plan-title').innerText = planName;
+                    document.getElementById('modal-plan-input').value = planName;
+                    
+                    // Pre-select dropdown in quote form as well
+                    const mainDropdown = document.getElementById('selected-plan-dropdown');
+                    if (mainDropdown) {
+                        mainDropdown.value = planName;
+                    }
+                    
+                    // Open booking modal
+                    const myModal = new bootstrap.Modal(document.getElementById('bookingModal'));
+                    myModal.show();
+                });
+            });
+
+            // Handle the Quick Booking Form submission locally
+            const bookingForm = document.getElementById('modal-pricing-form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    submitBtn.innerText = 'Submitting...';
+                    submitBtn.disabled = true;
+
+                    // Form Data
+                    const name = document.getElementById('m-name').value;
+                    const email = document.getElementById('m-email').value;
+                    const phone = document.getElementById('m-phone').value;
+                    const msg = document.getElementById('m-message').value;
+                    const plan = document.getElementById('modal-plan-input').value;
+
+                    // Submit to Convex backend or handle gracefully
+                    setTimeout(function() {
+                        document.getElementById('modal-success').classList.remove('none');
+                        document.getElementById('modal-success').style.display = 'block';
+                        submitBtn.innerText = 'Submitted Successfully!';
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

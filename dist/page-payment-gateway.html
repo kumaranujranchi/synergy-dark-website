@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Razorpay Payment Integration Partner | Free Payment Gateway Integration | Synergy Brand Architect</title>
+    <meta name="description" content="Get professional, secure, and free Razorpay payment gateway integration for your eCommerce store, SaaS, or service website. Supported by Synergy Brand Architect.">
+    
+    <!-- Stylesheets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/swiper.min.css" rel="stylesheet">
+    <link href="css/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="css/linear.css" rel="stylesheet">
+    <link href="css/fontawesome.css" rel="stylesheet">
+    <link href="css/tm-bs-mp.css" rel="stylesheet">
+    <link href="css/jquery-ui.css" rel="stylesheet">
+    <link href="css/tm-utility-classes.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="images/favicon.webp" type="image/x-icon">
+    <link rel="icon" href="images/favicon.webp" type="image/x-icon">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        .service-block-dark {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 30px; /* Rounded corners matching blog cards */
+            padding: 35px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease; /* Smooth transition matching blog cards */
+            position: relative;
+            overflow: hidden;
+        }
+        .service-block-dark:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        /* Elegant color transition for headers inside on card hover */
+        .service-block-dark h4,
+        .service-block-dark h3 {
+            transition: color 0.3s ease;
+        }
+        .service-block-dark:hover h4,
+        .service-block-dark:hover h3 {
+            color: #ff5e14 !important;
+        }
+        .gradient-text-orange {
+            background: linear-gradient(135deg, #ff5e14 0%, #ff9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-text-blue {
+            background: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-card-blue {
+            border: 1px solid rgba(0, 123, 255, 0.1);
+            background: rgba(0, 123, 255, 0.02);
+        }
+        .glow-card-blue:hover {
+            background: rgba(0, 123, 255, 0.04);
+            border-color: rgba(0, 123, 255, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+        .glow-card-blue:hover h3 {
+            color: #00d2ff !important;
+        }
+        .icon-badge {
+            background: rgba(255, 94, 20, 0.1);
+            color: #ff5e14;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .icon-badge-blue {
+            background: rgba(0, 123, 255, 0.1);
+            color: #00d2ff;
+        }
+        .feature-bullet-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #b0b0b0;
+        }
+        .feature-bullet-item i {
+            color: #ff5e14;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        .feature-bullet-item-blue i {
+            color: #00d2ff;
+        }
+        .tech-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        .tech-pill:hover {
+            background: #ff5e14;
+            color: #fff;
+            border-color: #ff5e14;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader">
+        <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="preloaderSvg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+        </svg>
+        <div class="preloader-heading">
+            <div class="load-text">
+                <span>S</span><span>y</span><span>n</span><span>e</span><span>r</span><span>g</span><span>y</span><span>&nbsp;</span>
+                <span>B</span><span>r</span><span>a</span><span>n</span><span>d</span><span>&nbsp;</span>
+                <span>A</span><span>r</span><span>c</span><span>h</span><span>i</span><span>t</span><span>e</span><span>c</span><span>t</span>
+            </div>
+        </div>
+    </div> 
+
+    <!-- Back to top -->
+    <div class="back-to-top-wrapper">
+        <button id="back_to_top" type="button" class="back-to-top-btn">
+            <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M11 6L6 1L1 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+        </button>
+    </div> 
+
+    <header class="main-header">
+        <div class="header-lower">
+            <div class="main-box">
+                <div class="logo-box">
+                    <div class="logo">
+                        <a href="index.html" title=""><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt="" title="synergy"></a>
+                    </div>
+                </div>
+                <div class="nav-outer">
+                    <nav class="nav main-menu">
+                        <ul class="navigation">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="projects.html">Projects</a></li>
+                            <li class="dropdown current"><a href="services.html">Services</a>
+                                <ul>
+                                    <li><a href="page-brand-building.html">Brand Building</a></li>
+                                    <li><a href="page-social-media.html">Social Media Marketing</a></li>
+                                    <li><a href="page-website-dev.html">Website & App Dev</a></li>
+                                    <li><a href="page-automation.html">Automation</a></li>
+                                    <li><a href="page-performance-marketing.html">Performance Marketing</a></li>
+                                    <li><a href="page-seo.html">SEO Optimization</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Industry</a>
+                                <ul>
+                                    <li><a href="industry-real-estate.html">Real Estate</a></li>
+                                    <li><a href="industry-healthcare.html">Healthcare</a></li>
+                                    <li><a href="industry-education.html">Education</a></li>
+                                    <li><a href="industry-ecommerce.html">E-commerce</a></li>
+                                    <li class="dropdown"><a href="industry-local-business.html">Local Businesses</a>
+                                        <ul>
+                                            <li><a href="industry-local-salons.html">Salons</a></li>
+                                            <li><a href="industry-local-gyms.html">Gyms</a></li>
+                                            <li><a href="industry-local-restaurants.html">Restaurants</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="industry-professional-services.html">Professional Services</a>
+                                        <ul>
+                                            <li><a href="industry-professional-ca.html">CA / Consultants</a></li>
+                                            <li><a href="industry-professional-lawyers.html">Lawyers</a></li>
+                                            <li><a href="industry-professional-agencies.html">Agencies</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="industry-startups.html">Startups</a>
+                                        <ul>
+                                            <li><a href="industry-startups-tech.html">Tech startups</a></li>
+                                            <li><a href="industry-startups-saas.html">SaaS</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="industry-corporate.html">Corporate / SMEs</a>
+                                        <ul>
+                                            <li><a href="industry-corporate-manufacturing.html">Manufacturing</a></li>
+                                            <li><a href="industry-corporate-b2b.html">B2B companies</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="industry-hospitality.html">Hospitality & Travel</a>
+                                        <ul>
+                                            <li><a href="industry-hospitality-hotels.html">Hotels</a></li>
+                                            <li><a href="industry-hospitality-travel.html">Travel agencies</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="dropdown"><a href="industry-automotive.html">Automotive</a>
+                                        <ul>
+                                            <li><a href="industry-automotive-cars.html">Car dealerships</a></li>
+                                            <li><a href="industry-automotive-bikes.html">Bike showrooms</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Resources</a>
+                                <ul>
+                                    <li><a href="news-grid.html">News</a></li>
+                                    <li><a href="blog.html">Blogs</a></li>
+                                    <li class="dropdown"><a href="page-case-study.html">Case Study</a>
+                                        <ul>
+                                            <li><a href="case-studies/biryani-mahal.html">Biryani Mahal</a></li>
+                                            <li><a href="case-studies/the-helping-hand.html">The Helping Hand</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="outer-box">
+                    <div class="ui-btn-outer">
+                        <button class="ui-btn search-btn">
+                            <span class="icon lnr lnr-icon-search"> Search...</span>
+                        </button>
+                    </div>
+                    <div class="header-btn d-none d-xxl-block">
+                        <a class="header-btn-main" href="contact.html">
+                            <span class="header-theme-btn">Get a quote</span>
+                            <span class="header-btn-arrow-right"><i class="fa-regular fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                    <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <div class="menu-backdrop"></div>
+            <nav class="menu-box">
+                <div class="upper-box">
+                    <div class="nav-logo">
+                        <a href="index.html"><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt=""></a>
+                    </div>
+                    <div class="close-btn"><i class="icon fa fa-times"></i></div>
+                </div>
+                <ul class="navigation clearfix"></ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section style="position: relative; overflow: hidden; background: radial-gradient(circle at center, #0F1217 0%, #0a0a0a 100%); padding: 140px 0 120px 0;" class="page-title">
+        <canvas id="particles-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
+        <div style="position: relative; z-index: 2;" class="auto-container">
+            <div class="title-outer text-center">
+                <h1 class="title font-weight-800">Razorpay Payment Integration Partner</h1>
+                <p style="color: rgba(255,255,255,0.7); font-size: 18px; max-width: 800px; margin: 15px auto 0 auto;" class="mt-2">Get Professional Payment Gateway Integration — Absolutely Free*</p>
+                <ul class="page-breadcrumb mt-3">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li>Payment Gateway</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="services-details" style="background-color: #0c0c0c; color: #fff; padding: 100px 0;">
+        <div class="container">
+            
+            <!-- Section 1: Partnership Intro -->
+            <div class="row align-items-center mb-50">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
+                    <div class="icon-badge">Razorpay Technology Partner</div>
+                    <h2 class="font-weight-800 text-white mb-4" style="font-size: 38px; line-height: 1.2;">Accept Online Payments Seamlessly & Securely</h2>
+                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify;">
+                        At <strong>Synergy Brand Architect</strong>, we help businesses start accepting online payments easily, securely, and professionally.
+                    </p>
+                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify;">
+                        As a Razorpay Technology Partner, we provide <strong>FREE Payment Gateway Integration</strong> for eligible businesses through our partner support ecosystem.
+                    </p>
+                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify;">
+                        Whether you run an eCommerce website, a coaching platform, subscription services, or custom application builds, we ensure a smooth onboarding workflow.
+                    </p>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="service-block-dark" style="border-left: 4px solid #007bff; background: rgba(0, 123, 255, 0.02);">
+                        <h4 class="font-weight-700 text-white mb-3">Whether you run:</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> An eCommerce Website</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A Service Business</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A Coaching Platform</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A SaaS Product</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A Subscription Platform</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> Booking / Custom Apps</div>
+                            </div>
+                        </div>
+                        <p style="font-size: 15px; color: #cccccc; line-height: 1.8; margin-top: 20px; font-style: italic;">
+                            We help you integrate Razorpay payment systems smoothly into your website or application.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Payment Options -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-12 text-center mb-5 wow fadeInUp">
+                    <div class="icon-badge icon-badge-blue">Accept Payments Online with Ease</div>
+                    <h2 class="font-weight-800 text-white" style="font-size: 36px;">Accept Every Popular Payment Method</h2>
+                    <p style="color: #b0b0b0; max-width: 700px; margin: 10px auto 0 auto;">With Razorpay integration, your business can accept diverse payment options seamlessly:</p>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="service-block-dark text-center h-100">
+                        <i class="fa-solid fa-mobile-screen-button mb-3" style="font-size: 40px; color: #ff5e14;"></i>
+                        <h4 class="font-weight-700 text-white mb-2">UPI Payments</h4>
+                        <p style="color: #a0a0a0; font-size: 14px;">Instant transfers via Google Pay, PhonePe, Paytm, BHIM and netbanking QR.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="service-block-dark text-center h-100">
+                        <i class="fa-solid fa-credit-card mb-3" style="font-size: 40px; color: #ff5e14;"></i>
+                        <h4 class="font-weight-700 text-white mb-2">Credit / Debit Cards</h4>
+                        <p style="color: #a0a0a0; font-size: 14px;">Supports Visa, Mastercard, RuPay, Maestro and American Express credit cards.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="service-block-dark text-center h-100">
+                        <i class="fa-solid fa-wallet mb-3" style="font-size: 40px; color: #ff5e14;"></i>
+                        <h4 class="font-weight-700 text-white mb-2">Wallets & EMI</h4>
+                        <p style="color: #a0a0a0; font-size: 14px;">Integrate multi-wallet ecosystems and flexible EMI payment structures.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="400ms">
+                    <div class="service-block-dark text-center h-100">
+                        <i class="fa-solid fa-globe mb-3" style="font-size: 40px; color: #ff5e14;"></i>
+                        <h4 class="font-weight-700 text-white mb-2">International & Subscriptions</h4>
+                        <p style="color: #a0a0a0; font-size: 14px;">Expand internationally and automate recurring payments and billing cycles.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: What We Offer -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
+                    <div class="service-block-dark glow-card-blue h-100">
+                        <div class="icon-badge icon-badge-blue">Complimentary Gateway setup</div>
+                        <h3 class="font-weight-800 text-white mb-4">Free Payment Gateway Integration*</h3>
+                        <p style="color: #b0b0b0; line-height: 1.8;">
+                            We provide professional Razorpay integration support at no additional integration cost for businesses onboarding through our partner workflow.
+                        </p>
+                        <div class="p-3 mt-4" style="background: rgba(0, 123, 255, 0.05); border-left: 3px solid #007bff; border-radius: 4px;">
+                            <strong>Your Customers Get:</strong> A smooth, modern, and highly secure checkout experience while your business receives reliable payment infrastructure.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-4">Included Integration Services:</h4>
+                        <div class="row text-white-50">
+                            <div class="col-md-6">
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Razorpay Account Setup Guidance</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Payment Gateway Integration</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Website Checkout Setup</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Test Mode Configuration</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Live Payment Activation</div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Payment Button Setup</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Basic Webhook Setup</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Mobile Responsive Checkout</div>
+                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Security Best Practices</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4: Why Businesses Choose Razorpay -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-12 text-center mb-5 wow fadeInUp">
+                    <div class="icon-badge">Trusted Payment Infrastructure</div>
+                    <h2 class="font-weight-800 text-white" style="font-size: 36px;">Why Businesses Choose Razorpay</h2>
+                    <p style="color: #b0b0b0; max-width: 700px; margin: 10px auto 0 auto;">Razorpay is one of India’s leading payment gateway platforms trusted by startups, brands, and enterprise businesses.</p>
+                </div>
+                
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-3">1. Fast Settlements</h4>
+                        <p style="color: #b0b0b0;">Keep your business cash flow healthy. Get settlements routed directly to your business account fast with transparent cycle times.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-3">2. Smart Features & Dashboard</h4>
+                        <p style="color: #b0b0b0;">Analyze real-time data, manage refunds easily, design instant payment links, and track multi-channel payment statistics effortlessly.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-3">3. Subscription Billing</h4>
+                        <p style="color: #b0b0b0;">Offer credit card/debit card recurring mandates, design membership subscriptions, and automate recurring pricing easily.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5: Platforms We Integrate Into -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-12 text-center mb-5 wow fadeInUp">
+                    <div class="icon-badge">Multi-Platform Compatibility</div>
+                    <h2 class="font-weight-800 text-white" style="font-size: 36px;">We Can Integrate Razorpay Into</h2>
+                </div>
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
+                    <div class="service-block-dark h-100" style="border-top: 3px solid #007bff;">
+                        <h4 class="font-weight-700 text-white mb-4"><i class="fa-solid fa-code text-orange mr-2"></i> Website Ecosystems</h4>
+                        <div class="d-flex flex-wrap mb-4">
+                            <span class="tech-pill">WordPress Websites</span>
+                            <span class="tech-pill">Shopify Stores</span>
+                            <span class="tech-pill">WooCommerce Stores</span>
+                            <span class="tech-pill">React Websites</span>
+                            <span class="tech-pill">Next.js Applications</span>
+                            <span class="tech-pill">Custom PHP Websites</span>
+                            <span class="tech-pill">Headless Commerce Stores</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="service-block-dark h-100" style="border-top: 3px solid #ff5e14;">
+                        <h4 class="font-weight-700 text-white mb-4"><i class="fa-solid fa-cubes text-orange mr-2"></i> Business & Education Platforms</h4>
+                        <div class="d-flex flex-wrap">
+                            <span class="tech-pill">LMS Platforms</span>
+                            <span class="tech-pill">Coaching Platforms</span>
+                            <span class="tech-pill">Membership Websites</span>
+                            <span class="tech-pill">SaaS Applications</span>
+                            <span class="tech-pill">ERP/CRM Systems</span>
+                            <span class="tech-pill">Booking Systems</span>
+                            <span class="tech-pill">Mobile Applications</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6: How It Works & Clarification -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-12 text-center mb-5 wow fadeInUp">
+                    <div class="icon-badge icon-badge-blue">Partner-Supported Integration Model</div>
+                    <h2 class="font-weight-800 text-white" style="font-size: 36px;">How Our Free Integration Offer Works</h2>
+                    <p style="color: #b0b0b0; max-width: 800px; margin: 10px auto 0 auto;">We are able to offer free payment integration support because of our Razorpay technology partnership ecosystem.</p>
+                </div>
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
+                    <div class="service-block-dark h-100" style="border-left: 4px solid #28a745; background: rgba(40,167,69,0.01);">
+                        <h4 class="font-weight-700 text-white mb-3">Free Integration Applies For:</h4>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-circle-check text-success"></i> Standard payment integration setups</div>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-circle-check text-success"></i> Websites compatible with Razorpay APIs and workflows</div>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-circle-check text-success"></i> Businesses onboarding through our supported process</div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="service-block-dark h-100" style="border-left: 4px solid #ff5e14; background: rgba(255, 94, 20, 0.01);">
+                        <h4 class="font-weight-700 text-white mb-3" style="color: #ff5e14;"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Important Clarification</h4>
+                        <p style="color: #b0b0b0; font-size: 14px; line-height: 1.8;">
+                            If a project requires complex custom backend setups, advanced API workflows, marketplace structures, split payments, multi-vendor configurations, or custom ERP automation, additional development charges may apply depending on technical complexity.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7: Features Standard vs Advanced -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-4"><i class="fa-solid fa-circle-check text-success mr-2"></i> Standard Features Included</h4>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Payment Collection</div>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Automated Checkout</div>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Payment Confirmation</div>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Refund Support</div>
+                        <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Transaction Tracking</div>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="service-block-dark h-100" style="border-color: rgba(0, 123, 255, 0.2);">
+                        <h4 class="font-weight-700 text-white mb-4" style="color: #007bff;"><i class="fa-solid fa-gem mr-2"></i> Advanced Capabilities Available</h4>
+                        <div class="feature-bullet-item feature-bullet-item-blue"><i class="fa-solid fa-star text-blue"></i> Subscription Billing & Recurring Payments</div>
+                        <div class="feature-bullet-item feature-bullet-item-blue"><i class="fa-solid fa-star text-blue"></i> Smart Payment Links & Invoices</div>
+                        <div class="feature-bullet-item feature-bullet-item-blue"><i class="fa-solid fa-star text-blue"></i> QR Code & WhatsApp Payments</div>
+                        <div class="feature-bullet-item feature-bullet-item-blue"><i class="fa-solid fa-star text-blue"></i> International Payment Processing</div>
+                        <div class="feature-bullet-item feature-bullet-item-blue"><i class="fa-solid fa-star text-blue"></i> Advanced API Webhooks & Automation</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8: Why Choose Synergy Brand Architect -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-12 text-center mb-5 wow fadeInUp">
+                    <div class="icon-badge">Technical + Business Support</div>
+                    <h2 class="font-weight-800 text-white" style="font-size: 36px;">Why Choose Synergy Brand Architect?</h2>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="100ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-3">Complete Digital Growth Partner</h4>
+                        <p style="color: #b0b0b0;">We don’t just integrate payment gateways. We help businesses create complete digital ecosystems including Website Development, eCommerce setups, funnel systems, CRM, and automation workflows.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="200ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-3">Fast & Professional Setup</h4>
+                        <p style="color: #b0b0b0;">Our technology team ensures smooth integration, secure transaction processing, robust end-to-end sandbox testing, mobile optimization, and a friction-free checkout experience.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="300ms">
+                    <div class="service-block-dark h-100">
+                        <h4 class="font-weight-700 text-white mb-3">Unified Growth Ecosystem</h4>
+                        <p style="color: #b0b0b0;">Say goodbye to managing multiple disconnected freelancers. We unify your web development, branding, digital marketing, analytics tracking, and automation infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9: Best For -->
+            <div class="row pt-50 mb-50">
+                <div class="col-lg-12 text-center wow fadeInUp">
+                    <div class="icon-badge">Ideal Alignment</div>
+                    <h2 class="font-weight-800 text-white" style="font-size: 36px;">Best For:</h2>
+                    <div class="d-flex flex-wrap justify-content-center mt-4">
+                        <span class="tech-pill">Startups</span>
+                        <span class="tech-pill">eCommerce Businesses</span>
+                        <span class="tech-pill">D2C Brands</span>
+                        <span class="tech-pill">Coaches & Creators</span>
+                        <span class="tech-pill">Agencies</span>
+                        <span class="tech-pill">SaaS Platforms</span>
+                        <span class="tech-pill">Subscription Businesses</span>
+                        <span class="tech-pill">Online Service Providers</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 10: CTA Banner -->
+            <div class="row pt-50">
+                <div class="col-lg-12">
+                    <div class="service-block-dark text-center" style="border: 1px solid rgba(0, 123, 255, 0.3); background: radial-gradient(circle, rgba(0,123,255,0.08) 0%, rgba(10,10,10,0.4) 100%);">
+                        <h2 class="font-weight-800 text-white mb-3" style="font-size: 32px;">Start Accepting Online Payments Today</h2>
+                        <p style="color: #cccccc; max-width: 800px; margin: 0 auto 25px auto; font-size: 16px; line-height: 1.8;">
+                            Collect payments professionally, improve customer checkout trust, automate transactions, enable instant online payment links, and build a scalable digital business.
+                        </p>
+                        <p style="color: #00d2ff; font-weight: 700; font-size: 18px; margin-bottom: 30px;">
+                            Contact Synergy Brand Architect today and get your payment gateway integration started.
+                        </p>
+                        <a class="theme-btn-main border-style-btn" href="contact.html">
+                            <span class="theme-btn-arrow-left theme-bg theme-color-white" style="background: #007b33;"><i class="fa-solid fa-arrow-left"></i></span>
+                            <span class="theme-btn theme-bg theme-color-white" style="background: #007bff;">Integrate Razorpay Now</span>
+                            <span class="theme-btn-arrow-right theme-bg theme-color-white" style="background: #007b33;"><i class="fa-solid fa-arrow-right"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section-3 theme-color-bg pb-60">
+        <div class="footer-main-wrapper">
+            <div class="footer-circle-shape">
+                <img loading="lazy" decoding="async" src="images/common/logos/footer-circle.webp" alt="img">
+            </div>
+            <div class="auto-container">
+                <div class="footer-widget-wrapper-3">
+                    <div class="row g-4">
+                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="footer-widget-single-items">
+                                <div class="widget-head">
+                                    <a href="index.html" class="footer-logo"><img src="images/common/logos/logo-header.webp" width="1132" height="303" alt="img"></a>
+                                </div>
+                                <div class="footer-content mt-4">
+                                    <p class="footer-text text-white-50">
+                                        Synergy is the Best Website Development & Digital Marketing Agency in Patna, dedicated to empowering businesses through innovative digital solutions and results-driven strategies.
+                                    </p>
+                                    <ul class="social-icon-two mt-4">
+                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        <li><a href="https://www.instagram.com/synergybrandarchitect/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                            <div class="footer-widget-single-items">
+                                <div class="widget-head">
+                                    <h4 class="widget-title">Company</h4>
+                                </div>
+                                <ul class="list-area">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="page-careers.html">Careers</a></li>
+                                    <li><a href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                            <div class="footer-widget-single-items">
+                                <div class="widget-head">
+                                    <h4 class="widget-title">Useful Links</h4>
+                                </div>
+                                <ul class="list-area">
+                                    <li><a href="services.html">Our Service</a></li>
+                                    <li><a href="news-grid.html">Latest Blog</a></li>
+                                    <li><a href="page-case-study.html">Case Study</a></li>
+                                    <li><a href="page-tech-stack.html">Technology Stack</a></li>
+                                    <li><a href="page-shopify-headless.html">Shopify Development</a></li>
+                                    <li><a href="page-payment-gateway.html">Payment Gateway</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".8s">
+                            <div class="footer-widget-single-items">
+                                <div class="widget-head">
+                                    <h4 class="widget-title">Legal</h4>
+                                </div>
+                                <ul class="list-area">
+                                    <li><a href="page-privacy.html">Privacy Policy</a></li>
+                                    <li><a href="page-terms.html">Terms of Service</a></li>
+                                    <li><a href="page-refund.html">Refund Policy</a></li>
+                                    <li><a href="sitemap.html">Sitemap</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="1s">
+                            <div class="footer-widget-single-items">
+                                <div class="widget-head">
+                                    <h4 class="widget-title">Contact Us</h4>
+                                </div>
+                                <div class="widget-content">
+                                    <div class="contact-info-box">
+                                        <div class="icon-box"><span class="icon fa fa-envelope"></span></div>
+                                        <div class="content-box">
+                                            <h6 class="title">Mail Us:</h6>
+                                            <div class="text"><a href="mailto:hello@synergybrandarchitect.in" class="link">hello@synergybrandarchitect.in</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-box">
+                                        <div class="icon-box"><span class="icon fa fa-map-marker-alt"></span></div>
+                                        <div class="content-box">
+                                            <h6 class="title">Address :</h6>
+                                            <div class="text">Patna, Bihar 801503</div>
+                                        </div>
+                                    </div>
+                                    <div class="contact-info-box mb-0">
+                                        <div class="icon-box"><span class="icon fa fa-phone"></span></div>
+                                        <div class="content-box">
+                                            <h6 class="title">Phone:</h6>
+                                            <div class="text"><a href="tel:+919525230232" class="link">+91 9525 230232</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="copyright-text wow fadeInUp" data-wow-delay=".3s">© 2026 Synergy Brand Architect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="js/jquery.js" defer></script>
+<script src="js/popper.min.js" defer></script>
+<script src="js/bootstrap.min.js" defer></script>
+<script src="js/jquery.fancybox.js" defer></script>
+<script src="js/bxslider.js" defer></script>
+<script src="js/jquery-ui.js" defer></script>
+<script src="js/wow.js" defer></script>
+<script src="js/select2.min.js" defer></script>
+<script src="js/appear.js" defer></script>
+<script src="js/knob.js" defer></script>
+<script src="js/swiper.min.js" defer></script>
+<script src="js/aos.js" defer></script>
+<script src="js/gsap.min.js" defer></script>
+<script src="js/ScrollTrigger.min.js" defer></script>
+<script src="js/splitType.js" defer></script>
+<script src="js/mixitup.js" defer></script>
+<script src="js/gsap-scroll-smoother.js" defer></script>
+<script src="js/gsap-scroll-to-plugin.js" defer></script>
+<script src="js/SplitText.min.js" defer></script>
+<script src="js/custom-gsap.js" defer></script>
+<script src="js/script.js" defer></script>
+<script src="js/ai-assistant.js" defer></script>
+<script src="js/particles-background.js" defer></script>
+
+<!-- Starry Canvas Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const canvas = document.getElementById("particles-canvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        let particles = [];
+
+        function resize() {
+            canvas.width = canvas.parentElement.offsetWidth;
+            canvas.height = canvas.parentElement.offsetHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.3 - 0.15;
+                this.speedY = Math.random() * 0.3 - 0.15;
+                this.alpha = Math.random() * 0.5 + 0.5;
+                this.fade = Math.random() * 0.005 + 0.002;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.alpha -= this.fade;
+                if (this.alpha <= 0 || this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) {
+                    this.reset();
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = "#00d2ff"; // Elegant Razorpay/Blue theme sparkle
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 60; i++) {
+            particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+    });
+</script>
+</body>
+</html>
