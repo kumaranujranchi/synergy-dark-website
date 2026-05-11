@@ -6355,6 +6355,10 @@ p.sec-descrption {
 .services-section .service-slider {
   margin-left: 0;
 }
+.service-slider .swiper-slide {
+  display: flex;
+  height: auto;
+}
 @media (max-width: 1199.98px) {
   .services-section .service-slider {
     margin-left: 0;
@@ -6367,6 +6371,10 @@ p.sec-descrption {
   position: relative;
   z-index: 1;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 @media (max-width: 1199.98px) {
   .service_single_item {
@@ -6385,6 +6393,14 @@ p.sec-descrption {
 }
 .service_single_item .service_icon img {
   width: inherit !important;
+}
+.service_single_item .service_content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.service_single_item .service-btn {
+  margin-top: auto;
 }
 .service_single_item .service_content .title {
   line-height: 32px;
