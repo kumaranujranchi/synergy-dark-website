@@ -125,6 +125,37 @@
             border-color: #ff5e14;
             transform: translateY(-2px);
         }
+        .payment-image-wrapper {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            background: rgba(0,0,0,0.4);
+            transition: all 0.5s ease;
+        }
+        .payment-image-wrapper:hover {
+            border-color: rgba(0, 123, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 123, 255, 0.15);
+        }
+        .payment-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .payment-image-wrapper:hover img {
+            transform: scale(1.03);
+        }
+        @keyframes floatAnim {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-image {
+            animation: floatAnim 6s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
@@ -296,34 +327,32 @@
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
                     <div class="icon-badge">Razorpay Technology Partner</div>
                     <h2 class="font-weight-800 text-white mb-4" style="font-size: 38px; line-height: 1.2;">Accept Online Payments Seamlessly & Securely</h2>
-                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify;">
+                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify; margin-bottom: 20px;">
                         At <strong>Synergy Brand Architect</strong>, we help businesses start accepting online payments easily, securely, and professionally.
                     </p>
-                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify;">
+                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify; margin-bottom: 25px;">
                         As a Razorpay Technology Partner, we provide <strong>FREE Payment Gateway Integration</strong> for eligible businesses through our partner support ecosystem.
                     </p>
-                    <p style="font-size: 16px; color: #b0b0b0; line-height: 1.8; text-align: justify;">
-                        Whether you run an eCommerce website, a coaching platform, subscription services, or custom application builds, we ensure a smooth onboarding workflow.
-                    </p>
-                </div>
-                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
-                    <div class="service-block-dark" style="border-left: 4px solid #007bff; background: rgba(0, 123, 255, 0.02);">
-                        <h4 class="font-weight-700 text-white mb-3">Whether you run:</h4>
-                        <div class="row">
+                    
+                    <div class="service-block-dark mb-0" style="border-left: 4px solid #007bff; background: rgba(0, 123, 255, 0.02); padding: 25px;">
+                        <h5 class="font-weight-700 text-white mb-3">Compatible with:</h5>
+                        <div class="row text-white-50" style="font-size: 15px;">
                             <div class="col-md-6">
-                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> An eCommerce Website</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A Service Business</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A Coaching Platform</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-circle-check"></i> eCommerce Stores</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-circle-check"></i> Service Agencies</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-circle-check"></i> Coaching Platforms</div>
                             </div>
                             <div class="col-md-6">
-                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A SaaS Product</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> A Subscription Platform</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-circle-check"></i> Booking / Custom Apps</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-circle-check"></i> SaaS & Subscription</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-circle-check"></i> Custom Booking Apps</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-circle-check"></i> Custom Web Applications</div>
                             </div>
                         </div>
-                        <p style="font-size: 15px; color: #cccccc; line-height: 1.8; margin-top: 20px; font-style: italic;">
-                            We help you integrate Razorpay payment systems smoothly into your website or application.
-                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
+                    <div class="payment-image-wrapper floating-image">
+                        <img src="images/common/razorpay_checkout_3d.png" alt="Razorpay 3D Checkout Mockup">
                     </div>
                 </div>
             </div>
@@ -367,35 +396,34 @@
             </div>
 
             <!-- Section 3: What We Offer -->
-            <div class="row pt-50 mb-50">
+            <div class="row align-items-center pt-50 mb-50">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="200ms">
-                    <div class="service-block-dark glow-card-blue h-100">
-                        <div class="icon-badge icon-badge-blue">Complimentary Gateway setup</div>
-                        <h3 class="font-weight-800 text-white mb-4">Free Payment Gateway Integration*</h3>
-                        <p style="color: #b0b0b0; line-height: 1.8;">
-                            We provide professional Razorpay integration support at no additional integration cost for businesses onboarding through our partner workflow.
-                        </p>
-                        <div class="p-3 mt-4" style="background: rgba(0, 123, 255, 0.05); border-left: 3px solid #007bff; border-radius: 4px;">
-                            <strong>Your Customers Get:</strong> A smooth, modern, and highly secure checkout experience while your business receives reliable payment infrastructure.
-                        </div>
+                    <div class="payment-image-wrapper">
+                        <img src="images/common/payment_flow_3d.png" alt="Secured Dashboard Analytics Flow Mockup">
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeInRight" data-wow-delay="400ms">
-                    <div class="service-block-dark h-100">
-                        <h4 class="font-weight-700 text-white mb-4">Included Integration Services:</h4>
-                        <div class="row text-white-50">
+                    <div class="service-block-dark glow-card-blue mb-4">
+                        <div class="icon-badge icon-badge-blue">Complimentary Gateway setup</div>
+                        <h3 class="font-weight-800 text-white mb-3">Free Payment Gateway Integration*</h3>
+                        <p style="color: #b0b0b0; line-height: 1.8; margin-bottom: 0;">
+                            We provide professional Razorpay integration support at no additional integration cost for eligible businesses onboarding through our partner support ecosystem.
+                        </p>
+                    </div>
+                    <div class="service-block-dark mb-0">
+                        <h4 class="font-weight-700 text-white mb-3">Included Services:</h4>
+                        <div class="row text-white-50" style="font-size: 14px;">
                             <div class="col-md-6">
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Razorpay Account Setup Guidance</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Payment Gateway Integration</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Website Checkout Setup</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Test Mode Configuration</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Live Payment Activation</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Account Setup Guidance</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Gateway API Integration</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Checkout Page Layout</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Sandbox Testing Mode</div>
                             </div>
                             <div class="col-md-6">
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Payment Button Setup</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Basic Webhook Setup</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Mobile Responsive Checkout</div>
-                                <div class="feature-bullet-item"><i class="fa-solid fa-check text-orange"></i> Security Best Practices</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Live Activation Support</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Secure Webhook Triggers</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Responsive Checkout</div>
+                                <div class="feature-bullet-item mb-2"><i class="fa-solid fa-check text-orange"></i> Best Security Protocols</div>
                             </div>
                         </div>
                     </div>
