@@ -6,13 +6,13 @@
   from = "/blog/:slug"
   to = "/blog-details.html?slug=:slug"
   status = 200
-  force = true
+  force = false
 
 [[redirects]]
   from = "/news/:slug"
   to = "/news-details.html?slug=:slug"
   status = 200
-  force = true
+  force = false
 
 [[redirects]]
   from = "/terms-of-service"

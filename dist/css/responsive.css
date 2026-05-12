@@ -1516,6 +1516,34 @@
 		left: 0;
 	}
 
+	.team-cards-row,
+	#dynamic-blogs-container {
+		display: flex !important;
+		flex-wrap: nowrap !important;
+		overflow-x: auto !important;
+		padding-bottom: 25px;
+		scrollbar-width: thin;
+		-webkit-overflow-scrolling: touch;
+		scroll-snap-type: x mandatory;
+	}
+	.team-cards-row::-webkit-scrollbar,
+	#dynamic-blogs-container::-webkit-scrollbar {
+		height: 6px;
+	}
+	.team-cards-row::-webkit-scrollbar-thumb,
+	#dynamic-blogs-container::-webkit-scrollbar-thumb {
+		background: rgba(240, 90, 40, 0.4);
+		border-radius: 4px;
+	}
+	.team-cards-row > div,
+	#dynamic-blogs-container > div {
+		flex: 0 0 46% !important;
+		max-width: 46% !important;
+		scroll-snap-align: start;
+	}
+
+
+
 	.contact-section .info-column {
 		margin-bottom: 40px;
 	}
@@ -1577,6 +1605,11 @@
 	.process-single-box::before {
 		display: none;
 	}
+
+	.process-section .process-border {
+		justify-content: center;
+	}
+
 
 	.news-block .content-box {
 		margin-left: 15px;

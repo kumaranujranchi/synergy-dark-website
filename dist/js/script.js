@@ -1,3 +1,57 @@
+// Dynamic Canonical Tag Injection for Search Engine Optimization (SEO)
+(function() {
+  try {
+    const canonicalHost = "https://synergybrandarchitect.in";
+    let pathname = window.location.pathname;
+    
+    // Remove trailing slash
+    if (pathname.endsWith("/") && pathname.length > 1) {
+      pathname = pathname.slice(0, -1);
+    }
+    
+    // Remove .html extension
+    if (pathname.endsWith(".html")) {
+      pathname = pathname.slice(0, -5);
+    }
+    
+    let canonicalUrl = canonicalHost + pathname;
+    
+    // Handle index page
+    if (pathname === "" || pathname === "/" || pathname === "/index") {
+      canonicalUrl = canonicalHost + "/";
+    }
+    
+    // Handle dynamic blog, news, and job-details pages
+    // These are served via blog-details.html, news-details.html, job-details.html
+    // but rewritten in URL as /blog/:slug, /news/:slug
+    if (pathname === "/blog-details" || pathname === "/news-details") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const slug = urlParams.get('slug');
+      if (slug) {
+        const type = pathname === "/blog-details" ? "blog" : "news";
+        canonicalUrl = `${canonicalHost}/${type}/${slug}`;
+      }
+    } else if (pathname === "/job-details") {
+      const urlParams = new URLSearchParams(window.location.search);
+      const jobId = urlParams.get('id');
+      if (jobId) {
+        canonicalUrl = `${canonicalHost}/job-details?id=${jobId}`;
+      }
+    }
+    
+    // Inject/Update Canonical Tag
+    let canonicalEl = document.querySelector('link[rel="canonical"]');
+    if (!canonicalEl) {
+      canonicalEl = document.createElement('link');
+      canonicalEl.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalEl);
+    }
+    canonicalEl.setAttribute('href', canonicalUrl);
+  } catch (e) {
+    console.warn("Failed to inject canonical tag:", e);
+  }
+})();
+
 var THEMEMASCOT = {};
 (function ($) {
   "use strict";

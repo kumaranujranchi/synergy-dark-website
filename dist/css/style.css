@@ -18260,3 +18260,129 @@ Sidebar
         font-size: 14px;
     }
 }
+
+/* ==========================================================================
+   Footer Partners Marquee Carousel (Premium Cinematic Logo Slider)
+   ========================================================================== */
+.footer-partners-section {
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: transparent;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+}
+
+.partners-inner {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 50px;
+}
+
+.partners-title {
+    font-family: var(--heading-font-family, 'Plus Jakarta Sans', sans-serif);
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ff5e14; /* Theme orange Accent */
+    white-space: nowrap;
+    position: relative;
+    z-index: 5;
+}
+
+.partners-carousel-wrapper {
+    flex-grow: 1;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Faded Cloud/Gradient Overlay on the Left Edge, creating entrance effect */
+.partners-carousel-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to right, var(--theme-color-black, #0a0a0a) 20%, rgba(10, 10, 10, 0) 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+.partners-track {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    width: max-content;
+    animation: marquee-scroll 22s linear infinite;
+}
+
+.partners-track:hover {
+    animation-play-state: paused;
+}
+
+/* Individual Partner Logo Box (Premium rounded rectangular styling matching uploaded reference) */
+.partner-logo-box {
+    width: 160px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    padding: 6px;
+    flex-shrink: 0;
+}
+
+.partner-logo-box:hover {
+    transform: scale(1.1) rotate(2deg);
+    border-color: #ff5e14;
+    box-shadow: 0 8px 24px rgba(255, 94, 20, 0.25);
+}
+
+.partner-logo-box img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+.partner-logo-box:hover img {
+    transform: scale(1.05);
+}
+
+/* Seamless infinite scroll animation */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.3333%); /* Shifts by exactly one full set of 5 logos */
+    }
+}
+
+/* Tablet & Mobile responsive styling */
+@media (max-width: 991.98px) {
+    .partners-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    .partners-title {
+        font-size: 16px;
+    }
+    .partners-carousel-wrapper {
+        width: 100%;
+    }
+    .partners-carousel-wrapper::before {
+        width: 80px;
+    }
+}
+

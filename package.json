@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "npx -y serve . -l 3000",
-    "build": "mkdir -p dist && cp -r css images js fonts case-studies *.html robots.txt _redirects dist/ && cd admin && npm install && npx convex deploy --yes && CONVEX_URL=$NEXT_PUBLIC_CONVEX_URL npx convex codegen && npm run build && cd .. && mkdir -p dist/admin && cp -r admin/out/* dist/admin/ && node generate-sitemap.js"
+    "build": "mkdir -p dist && cp -r css images js fonts case-studies *.html robots.txt _redirects dist/ && cd admin && npm install && npx convex deploy --yes && CONVEX_URL=$NEXT_PUBLIC_CONVEX_URL npx convex codegen && npm run build && cd .. && mkdir -p dist/admin && cp -r admin/out/* dist/admin/ && node generate-sitemap.js && node generate-static-pages.js"
   }
 }

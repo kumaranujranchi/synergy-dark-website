@@ -2,6 +2,11 @@
 // Designed with absolute native performance using Web APIs, zero dependencies.
 
 (function () {
+    if (window.innerWidth < 768) {
+        // Do not initialize dome gallery on mobile devices
+        return;
+    }
+
     const GALLERY_IMAGES = [
         // --- Web Development ---
         { src: 'images/tech-logos/web-development/react.webp', alt: 'React Development' },

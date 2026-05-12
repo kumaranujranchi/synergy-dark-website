@@ -1,5 +1,5 @@
-/blog/:slug   /blog-details.html?slug=:slug   200!
-/news/:slug   /news-details.html?slug=:slug   200!
+/blog/:slug   /blog-details.html?slug=:slug   200
+/news/:slug   /news-details.html?slug=:slug   200
 
 /terms-of-service   /page-terms   301
 /privacy-policy     /page-privacy   301

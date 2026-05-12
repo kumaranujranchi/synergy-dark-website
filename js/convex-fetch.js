@@ -44,10 +44,11 @@ async function mutationToConvex(funcName, args = {}) {
     }
 }
 
-// Helper to extract slug from URL path (e.g., /blog/some-slug) or query string (e.g., ?slug=some-slug)
 function getSlugFromUrl() {
     const path = window.location.pathname;
-    const pathParts = path.split('/');
+    // Strip trailing slash if present
+    const cleanPath = path.endsWith('/') ? path.slice(0, -1) : path;
+    const pathParts = cleanPath.split('/');
     
     // Check if the URL matches clean paths /blog/slug or /news/slug or sub-directories
     const isCleanPath = pathParts.includes('blog') || pathParts.includes('news') || pathParts.includes('blog-details') || pathParts.includes('news-details');
