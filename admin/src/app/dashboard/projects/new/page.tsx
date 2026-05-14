@@ -26,6 +26,7 @@ export default function NewProjectPage() {
     imageUrl: "",
     projectUrl: "",
     order: 0,
+    displayPage: "both",
   });
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -248,6 +249,19 @@ export default function NewProjectPage() {
                 value={formData.order}
                 onChange={(e) => setFormData({ ...formData, order: Number(e.target.value) })}
               />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">Display Page</label>
+              <select
+                className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:ring-2 focus:ring-orange-500 outline-none"
+                value={formData.displayPage}
+                onChange={(e) => setFormData({ ...formData, displayPage: e.target.value })}
+              >
+                <option value="both">Both Projects & Shopify Page</option>
+                <option value="projects">Projects Page Only</option>
+                <option value="shopify">Shopify Headless Page Only</option>
+              </select>
             </div>
 
             <button

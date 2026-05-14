@@ -65,9 +65,16 @@ export default function ProjectsPage() {
               </div>
             </div>
             <div className="p-5">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-bold text-slate-900">{project.title}</h3>
-                <Badge variant="outline">{project.category}</Badge>
+              <div className="flex justify-between items-start mb-2 gap-2">
+                <div>
+                  <h3 className="font-bold text-slate-900">{project.title}</h3>
+                  <div className="flex gap-1 mt-1">
+                    <Badge variant="outline" className="text-[10px]">{project.category}</Badge>
+                    <Badge variant="secondary" className="text-[10px] bg-slate-100 text-slate-600">
+                      Page: {project.displayPage === 'shopify' ? 'Shopify' : project.displayPage === 'projects' ? 'Projects' : 'Both'}
+                    </Badge>
+                  </div>
+                </div>
               </div>
               <p className="text-sm text-slate-500 line-clamp-2 mb-4">{project.description}</p>
               {project.projectUrl && (

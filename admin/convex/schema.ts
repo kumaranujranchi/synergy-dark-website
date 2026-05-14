@@ -48,6 +48,7 @@ export default defineSchema({
     projectUrl: v.optional(v.string()),
     features: v.optional(v.array(v.string())),
     order: v.number(), // For custom sorting
+    displayPage: v.optional(v.string()), // "projects", "shopify", "both"
   }).index("by_order", ["order"]),
 
   // Job Posting (Careers)

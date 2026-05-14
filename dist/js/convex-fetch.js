@@ -106,9 +106,10 @@ async function renderDynamicProjects() {
 
     try {
         const projects = await fetchFromConvex('projects/listProjects');
-        if (projects.length === 0) return;
+        const displayProjects = projects.filter(proj => proj.displayPage !== 'shopify');
+        if (displayProjects.length === 0) return;
 
-        container.innerHTML = projects.map(proj => `
+        container.innerHTML = displayProjects.map(proj => `
             <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 wow fadeInUp">
                 <div class="premium-project-card">
                     <div class="image-wrapper">
@@ -132,6 +133,43 @@ async function renderDynamicProjects() {
         `).join('');
     } catch (error) {
         console.error("Error rendering projects:", error);
+    }
+}
+
+// 2.5 Render Shopify Headless Projects
+async function renderShopifyProjects() {
+    const container = document.getElementById('dynamic-shopify-projects-container');
+    if (!container) return;
+
+    try {
+        const projects = await fetchFromConvex('projects/listProjects');
+        const shopifyProjects = projects.filter(proj => proj.displayPage === 'shopify' || proj.displayPage === 'both');
+        if (shopifyProjects.length === 0) return;
+
+        container.innerHTML = shopifyProjects.map(proj => `
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 wow fadeInUp">
+                <div class="premium-project-card">
+                    <div class="image-wrapper">
+                        <span class="category-badge">${proj.category}</span>
+                        <img src="${proj.imageUrl}" alt="${proj.title}">
+                    </div>
+                    <div class="content">
+                        <h3 class="title">${proj.title}</h3>
+                        <p class="description">${proj.description}</p>
+                        <ul class="features-list">
+                            ${(proj.features && proj.features.length > 0 ? proj.features : ['Modern UI/UX Design', 'Full-stack Development', 'Performance Optimized']).map(f => `
+                                <li><i class="fas fa-check-circle"></i> ${f}</li>
+                            `).join('')}
+                        </ul>
+                        <a href="${proj.projectUrl || '#'}" target="_blank" class="visit-btn">
+                            Visit Website <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error("Error rendering shopify projects:", error);
     }
 }
 
@@ -745,6 +783,7 @@ async function renderSingleJobDetails() {
 document.addEventListener('DOMContentLoaded', () => {
     renderDynamicBlogs();
     renderDynamicProjects();
+    renderShopifyProjects();
     renderDynamicJobs();
     renderDynamicCaseStudies();
     renderBlogsGrid();

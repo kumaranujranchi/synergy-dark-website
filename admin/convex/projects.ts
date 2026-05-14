@@ -17,6 +17,7 @@ export const addProject = mutation({
     projectUrl: v.optional(v.string()),
     features: v.optional(v.array(v.string())),
     order: v.number(),
+    displayPage: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     return await ctx.db.insert("projects", args);
