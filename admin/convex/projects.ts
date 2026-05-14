@@ -46,3 +46,40 @@ export const deleteProject = mutation({
     await ctx.db.delete(args.id);
   },
 });
+
+// Get a single project by ID
+export const getProject = query({
+  args: { id: v.id("projects") },
+  handler: async (ctx, args) => {
+    const project = await ctx.db.get(args.id);
+    if (!project) return null;
+    return {
+      ...project,
+      imageUrl: project.imageUrl.startsWith("http")
+        ? project.imageUrl
+        : (await ctx.storage.getUrl(project.imageUrl as any)) || project.imageUrl,
+      rawImageUrl: project.imageUrl,
+    };
+  },
+});
+
+// Update an existing project
+export const updateProject = mutation({
+  args: {
+    id: v.id("projects"),
+    title: v.string(),
+    description: v.string(),
+    category: v.string(),
+    imageUrl: v.string(),
+    client: v.optional(v.string()),
+    projectUrl: v.optional(v.string()),
+    features: v.optional(v.array(v.string())),
+    order: v.number(),
+    displayPage: v.optional(v.string()),
+  },
+  handler: async (ctx, args) => {
+    const { id, ...updates } = args;
+    await ctx.db.patch(id, updates);
+  },
+});
+
