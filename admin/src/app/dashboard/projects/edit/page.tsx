@@ -1,19 +1,19 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Suspense } from "react";
 import { useQuery, useMutation } from "convex/react";
-import { api } from "../../../../../../convex/_generated/api";
-import { useRouter, useParams } from "next/navigation";
+import { api } from "../../../../../convex/_generated/api";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ChevronLeft, Save, UploadCloud, X } from "lucide-react";
 import Link from "next/link";
-import { Id } from "../../../../../../convex/_generated/dataModel";
+import { Id } from "../../../../../convex/_generated/dataModel";
 
-export default function EditProjectPage() {
+function EditProjectContent() {
   const router = useRouter();
-  const params = useParams();
-  const projectId = params.id as Id<"projects">;
+  const searchParams = useSearchParams();
+  const projectId = searchParams.get("id") as Id<"projects"> | null;
 
-  const project = useQuery(api.projects.getProject, { id: projectId });
+  const project = useQuery(api.projects.getProject, projectId ? { id: projectId } : "skip");
   const generateUploadUrl = useMutation(api.projects.generateUploadUrl);
   const updateProject = useMutation(api.projects.updateProject);
   
@@ -90,6 +90,7 @@ export default function EditProjectPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!projectId) return;
     setLoading(true);
     
     try {
@@ -124,6 +125,10 @@ export default function EditProjectPage() {
       setLoading(false);
     }
   };
+
+  if (!projectId) {
+    return <div className="flex items-center justify-center h-64 text-slate-500">No project ID provided.</div>;
+  }
 
   if (project === undefined) {
     return <div className="flex items-center justify-center h-64 text-slate-500">Loading project details...</div>;
@@ -306,5 +311,13 @@ export default function EditProjectPage() {
         </div>
       </form>
     </div>
+  );
+}
+
+export default function EditProjectPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-64 text-slate-500">Loading edit page...</div>}>
+      <EditProjectContent />
+    </Suspense>
   );
 }

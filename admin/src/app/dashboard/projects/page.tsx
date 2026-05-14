@@ -57,7 +57,7 @@ export default function ProjectsPage() {
               )}
               <div className="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
                 <Link 
-                  href={`/dashboard/projects/edit/${project._id}`}
+                  href={`/dashboard/projects/edit?id=${project._id}`}
                   className="p-2 bg-white/90 text-slate-600 rounded-full hover:bg-slate-100"
                 >
                   <Pencil className="w-4 h-4" />
