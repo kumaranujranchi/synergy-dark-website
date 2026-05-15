@@ -9,8 +9,21 @@ import Link from "next/link";
 import dynamic from 'next/dynamic';
 import 'react-quill-new/dist/quill.snow.css';
 
-// Dynamically import ReactQuill to avoid SSR issues
-const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
+// Dynamically import ReactQuill and image resize module to avoid SSR issues
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill-new");
+    if (typeof window !== "undefined") {
+      window.Quill = RQ.Quill;
+      const { default: ImageResize } = await import("quill-image-resize-module-react");
+      RQ.Quill.register("modules/imageResize", ImageResize);
+    }
+    return function ForwardedQuill(props: any) {
+      return <RQ {...props} />;
+    };
+  },
+  { ssr: false }
+);
 
 export default function NewContentPage() {
   const router = useRouter();
@@ -96,6 +109,14 @@ export default function NewContentPage() {
       ['link', 'image', 'video'],
       ['clean']
     ],
+    imageResize: {
+      parchment: {
+        image: {
+          attribute: ['width', 'height']
+        }
+      },
+      modules: ['Resize', 'DisplaySize']
+    }
   };
 
   return (

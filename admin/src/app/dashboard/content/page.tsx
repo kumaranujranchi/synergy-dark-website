@@ -17,7 +17,21 @@ import {
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 
-const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
+// Dynamically import ReactQuill and image resize module to avoid SSR issues
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill-new");
+    if (typeof window !== "undefined") {
+      window.Quill = RQ.Quill;
+      const { default: ImageResize } = await import("quill-image-resize-module-react");
+      RQ.Quill.register("modules/imageResize", ImageResize);
+    }
+    return function ForwardedQuill(props: any) {
+      return <RQ {...props} />;
+    };
+  },
+  { ssr: false }
+);
 
 type ContentItem = {
   _id: any;
@@ -140,6 +154,14 @@ export default function ContentPage() {
       ['link', 'image', 'video'],
       ['clean']
     ],
+    imageResize: {
+      parchment: {
+        image: {
+          attribute: ['width', 'height']
+        }
+      },
+      modules: ['Resize', 'DisplaySize']
+    }
   };
 
   if (content === undefined) {
