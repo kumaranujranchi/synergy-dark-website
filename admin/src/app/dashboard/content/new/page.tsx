@@ -200,7 +200,7 @@ export default function NewContentPage() {
                 <ReactQuill 
                   theme="snow"
                   value={formData.body}
-                  onChange={(content) => setFormData({...formData, body: content})}
+                  onChange={(content: string) => setFormData({...formData, body: content})}
                   modules={modules}
                   className="bg-white"
                   placeholder="Write your amazing article here..."
