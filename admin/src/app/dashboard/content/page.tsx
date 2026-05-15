@@ -196,11 +196,12 @@ export default function ContentPage() {
               <div>
                 <label className="block text-sm font-semibold text-slate-700 mb-1">Content <span className="text-red-500">*</span></label>
                 <style dangerouslySetInnerHTML={{__html: `
-                  .quill-custom-container .ql-toolbar { position: sticky; top: 0; z-index: 50; background-color: white; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; }
-                  .quill-custom-container .ql-container { resize: vertical; overflow-y: auto; min-height: 400px; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+                  .quill-custom-container { max-height: 600px; overflow-y: auto; }
+                  .quill-custom-container .ql-toolbar { position: sticky; top: 0; z-index: 50; background-color: white; border-top-left-radius: 0.5rem; border-top-right-radius: 0.5rem; border-bottom: 1px solid #e2e8f0; }
+                  .quill-custom-container .ql-container { min-height: 400px; border-bottom-left-radius: 0.5rem; border-bottom-right-radius: 0.5rem; border: none; }
                   .quill-custom-container .ql-editor { min-height: 400px; }
                 `}} />
-                <div className="rounded-lg overflow-hidden border border-slate-200 quill-custom-container">
+                <div className="rounded-lg border border-slate-200 quill-custom-container relative">
                   <ReactQuill
                     theme="snow"
                     value={formData.body}

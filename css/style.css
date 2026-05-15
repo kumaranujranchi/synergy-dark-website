@@ -18386,3 +18386,26 @@ Sidebar
     }
 }
 
+
+/* Blog Content Table Styles */
+#details-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+#details-body table th,
+#details-body table td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    text-align: left;
+}
+#details-body table th {
+    background-color: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+}
+#details-body table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
