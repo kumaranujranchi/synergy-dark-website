@@ -22,7 +22,7 @@ const ReactQuill = dynamic(
   async () => {
     const { default: RQ } = await import("react-quill-new");
     if (typeof window !== "undefined") {
-      window.Quill = RQ.Quill;
+      (window as any).Quill = RQ.Quill;
       const { default: ImageResize } = await import("quill-image-resize-module-react");
       RQ.Quill.register("modules/imageResize", ImageResize);
     }
