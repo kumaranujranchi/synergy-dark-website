@@ -150,7 +150,8 @@ export default function NewContentPage() {
               
               <style dangerouslySetInnerHTML={{__html: `
                 .quill-custom-container {
-                  max-height: 600px;
+                  height: 600px;
+                  resize: vertical;
                   overflow-y: auto;
                 }
                 .quill-custom-container .ql-toolbar {
