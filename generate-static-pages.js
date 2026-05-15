@@ -65,7 +65,7 @@ async function preRenderPage(post, type) {
     const pageUrl = `${DOMAIN}/${type}/${post.slug}`;
 
     // 1. Update Title tag
-    html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metaTitle} | Synergy Brand Architect</title>`);
+    html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metaTitle}</title>`);
 
     // 2. Update meta description tag
     html = html.replace(/<meta\s+name="description"\s+content="[\s\S]*?"/i, `<meta name="description" content="${metaDesc}">`);
