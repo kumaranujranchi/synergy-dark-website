@@ -6,3 +6,6 @@
 /refund-policy      /page-refund   301
 /startup-plan       /industry-startups   301
 /resources          /blog   301
+/page-contact.html  /contact.html   301
+/page-team-details.html /about.html   301
+/cdn-cgi/l/email-protection /contact.html  301
