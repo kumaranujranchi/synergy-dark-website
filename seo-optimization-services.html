@@ -2,9 +2,9 @@
 <html  lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Contact Us | Best Digital Marketing Agency in Patna</title>
-    <meta name="description" content="Get in touch with Synergy Brand Architect, the best digital marketing company in Patna. Contact us for a free consultation and let's discuss how to grow your business online.">
-    <meta name="keywords" content="Best Website Development & Digital Marketing Agency in Patna, Best Website Development Agency in Patna, Best Digital Marketing Agency in Patna, Contact synergy brand architect, Digital marketing agency contact, Patna marketing agency office, Best SEO company contact">
+    <title>SEO Company Patna | Search Engine Optimization</title>
+    <meta name="description" content="Boost your search rankings with the best SEO agency in Patna. Our expert SEO services include technical audits, keyword research, and high-authority link building to dominate search results.">
+    <meta name="keywords" content="Best Website Development & Digital Marketing Agency in Patna, Best Website Development Agency in Patna, Best Digital Marketing Agency in Patna, Seo company in patna, Seo agency in patna, Seo service in patna, Best seo company in patna, Digital marketing agency patna">
     <!-- Stylesheets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,24 +27,132 @@
     <!-- Responsive -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .services-details__content p {
+            text-align: justify;
+        }
 
-    <!-- Dynamic AI SEO Optimizer -->
+        /* Ticker Wrapper containing all 2 rows */
+        .ticker-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Faded side effects */
+        .ticker-wrapper::before,
+        .ticker-wrapper::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 150px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .ticker-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, #0f0f0f 0%, rgba(15, 15, 15, 0) 100%);
+        }
+        .ticker-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, #0f0f0f 0%, rgba(15, 15, 15, 0) 100%);
+        }
+
+        /* Single row styles */
+        .ticker-row {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ticker-track {
+            display: flex;
+            width: max-content;
+            gap: 30px;
+        }
+
+        /* Item block containing single logo */
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 85px;
+            width: 185px; /* Uniform dimension */
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 8px 15px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .ticker-item:hover {
+            transform: translateY(-5px);
+            border-color: #ff5e14;
+            background: #ffffff;
+            box-shadow: 0 12px 24px rgba(255, 94, 20, 0.25);
+        }
+        .ticker-item img {
+            max-height: 85%;
+            max-width: 90%;
+            object-fit: contain;
+            filter: none;
+            transition: all 0.3s ease;
+        }
+        .ticker-item:hover img {
+            transform: scale(1.08);
+        }
+
+        /* Infinite Ticker Animations */
+        @keyframes scroll-ltr {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        @keyframes scroll-rtl {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .ticker-row:nth-child(1) .ticker-track {
+            animation: scroll-ltr 25s linear infinite;
+        }
+        .ticker-row:nth-child(2) .ticker-track {
+            animation: scroll-rtl 35s linear infinite;
+        }
+
+        /* Pause scroll on hover */
+        .ticker-wrapper:hover .ticker-track {
+            animation-play-state: paused;
+        }
+    </style>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://synergybrandarchitect.in/contact">
-    <meta property="og:title" content="Contact Us | Best Digital Marketing Agency in Patna">
-    <meta property="og:description" content="Get in touch with Synergy Brand Architect, the best digital marketing company in Patna. Contact us for a free consultation and let's discuss how to grow your business online.">
+    <meta property="og:url" content="https://synergybrandarchitect.in/page-seo">
+    <meta property="og:title" content="SEO Company Patna | Search Engine Optimization">
+    <meta property="og:description" content="Boost your search rankings with the best SEO agency in Patna. Our expert SEO services include technical audits, keyword research, and high-authority link building to dominate search results.">
     <meta property="og:image" content="https://synergybrandarchitect.in/images/common/logos/logo-header.webp">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://synergybrandarchitect.in/contact">
-    <meta property="twitter:title" content="Contact Us | Best Digital Marketing Agency in Patna">
-    <meta property="twitter:description" content="Get in touch with Synergy Brand Architect, the best digital marketing company in Patna. Contact us for a free consultation and let's discuss how to grow your business online.">
+    <meta property="twitter:url" content="https://synergybrandarchitect.in/page-seo">
+    <meta property="twitter:title" content="SEO Company Patna | Search Engine Optimization">
+    <meta property="twitter:description" content="Boost your search rankings with the best SEO agency in Patna. Our expert SEO services include technical audits, keyword research, and high-authority link building to dominate search results.">
     <meta property="twitter:image" content="https://synergybrandarchitect.in/images/common/logos/logo-header.webp">
 
-    <link rel="canonical" href="https://synergybrandarchitect.in/contact">
+    <link rel="canonical" href="https://synergybrandarchitect.in/seo-optimization-services">
 </head>
 <body><div class="page-wrapper">
     <div class="preloader">
@@ -171,7 +279,6 @@
                                         </li>
     </ul>
     </li>
-    <li><a href="pricing.html">Pricing</a></li>
     <li><a href="contact.html">Contact</a></li>
 </ul>              </nav>
               <!-- Main Menu End-->
@@ -231,8 +338,8 @@
                 <!-- Contact Info Box -->
                 <div class="contact-info-box">
                   <span class="icon lnr-icon-clock"></span>
-                  <span class="title">Business Hours</span>
-                  Mon - Sat 9:00 - 6:00, Sunday - CLOSED
+                  <span class="title">Send Email</span>
+                  Mon - Sat 8:00 - 6:30, Sunday - CLOSED
                 </div>
               </li>
             </ul>
@@ -293,182 +400,198 @@
 
     <div style="position: relative; z-index: 2;" class="auto-container">
         <div class="title-outer text-center">
-            <h1 class="title">Contact Us</h1>
+            <h1 class="title">SEO Optimization Services</h1>
             <ul class="page-breadcrumb">
                 <li><a href="index.html">Home</a></li>
-                <li>Contact</li>
+                <li><a href="services.html">Services</a></li>
+                <li>SEO Optimization</li>
             </ul>
         </div>
     </div>
 </section>
-<!-- end main-content -->
-<!--Contact Details Start-->
-<section class="contact-details" style="background: #0f0f0f; color: #fff;">
-	<div class="container pt-110 pb-70">
-		<div class="row">
-			<div class="col-xl-7 col-lg-6">
-				<div class="sec-title">
-				<h2 class="text-white">Feel free to write</h2>
-				</div>
-				<!-- Contact Form -->
-				<form id="contact_form" name="contact_form" action="#" method="post">
-				<div class="row">
-					<div class="col-sm-6">
-					<div class="mb-3">
-						<input name="form_name" class="form-control" type="text" placeholder="Enter Name" style="background: #1a1a1a; border: 1px solid #333; color: #fff;">
-					</div>
-					</div>
-					<div class="col-sm-6">
-					<div class="mb-3">
-						<input name="form_email" class="form-control required email" type="email" placeholder="Enter Email" style="background: #1a1a1a; border: 1px solid #333; color: #fff;">
-					</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-					<div class="mb-3">
-						<input name="form_subject" class="form-control required" type="text" placeholder="Enter Subject" style="background: #1a1a1a; border: 1px solid #333; color: #fff;">
-					</div>
-					</div>
-					<div class="col-sm-6">
-					<div class="mb-3">
-						<input name="form_phone" class="form-control" type="text" placeholder="Enter Phone" style="background: #1a1a1a; border: 1px solid #333; color: #fff;">
-					</div>
-					</div>
-				</div>
-				<div class="mb-3">
-					<textarea name="form_message" class="form-control required" rows="7" placeholder="Enter Message" style="background: #1a1a1a; border: 1px solid #333; color: #fff;"></textarea>
-				</div>
-				<div class="mb-5">
-					<input name="form_botcheck" class="form-control" type="hidden" value="" />
-					<button type="submit" class="theme-btn btn-style-one" style="background: #ff5e14; border: none;"><span class="btn-title">Send message</span></button>
-					<button type="reset" class="theme-btn btn-style-one" style="background: #333; border: none;"><span class="btn-title">Reset</span></button>
-				</div>
-				</form>
-			</div>
-			<div class="col-xl-5 col-lg-6">
-				<div class="contact-details__right p-4" style="background: #1a1a1a; border-radius: 20px;">
-				<div class="sec-title">
-					<h2 class="text-white">Get in touch with us</h2>
-					<div class="text text-white-50">Your one-stop digital marketing partner in Patna for strategic brand building and growth-focused marketing solutions.</div>
-				</div>
-				<ul class="list-unstyled contact-details__info">
-					<li class="mb-4">
-					<div class="icon" style="background: #ff5e14; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; float: left; margin-right: 15px;">
-						<span class="fa-classic fa-light fa-phone-plus"></span>
-					</div>
-					<div class="text">
-						<h6 class="mb-1 text-white">Have any question?</h6>
-						<a href="tel:+919525230232" class="text-white-50">+91 9525 230232</a>
-					</div>
-					</li>
-					<li class="mb-4">
-					<div class="icon" style="background: #ff5e14; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; float: left; margin-right: 15px;">
-						<span class="fal fa-envelope"></span>
-					</div>
-					<div class="text">
-						<h6 class="mb-1 text-white">Write email</h6>
-						<a href="mailto:hello@synergybrandarchitect.in" class="text-white-50">hello@synergybrandarchitect.in</a>
-					</div>
-					</li>
-					<li>
-					<div class="icon" style="background: #ff5e14; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; float: left; margin-right: 15px;">
-						<span class="fal fa-location-arrow"></span>
-					</div>
-					<div class="text">
-						<h6 class="mb-1 text-white">Visit anytime</h6>
-						<span class="text-white-50">East Gola Road, Vivek Vihar Colony, Patna 801503</span>
-					</div>
-					</li>
-				</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<!-- FAQ Section Start -->
-<section class="faq-section pb-90" style="background: #0f0f0f;">
+<!-- end main-content --><!--Start Services Details-->
+<section class="services-details">
 	<div class="container">
-		<div class="sec-title text-center mb-5">
-			<span class="sub-title" style="color: #ff5e14;">FAQ</span>
-			<h2 class="text-white">Frequently Asked Questions</h2>
-		</div>
-		<div class="row justify-content-center">
-			<div class="col-lg-10">
-				<div class="accordion" id="accordionExample">
-					<div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #333;">
-						<h2 class="accordion-header" id="headingOne">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background: #1a1a1a; color: #fff; box-shadow: none;">
-								How quickly can you start working on my project?
-							</button>
-						</h2>
-						<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-							<div class="accordion-body text-white-50">
-								We typically onboard new clients within 3-5 business days after the initial consultation and agreement. For urgent requirements, we can expedite this process.
-							</div>
-						</div>
+		<div class="row">
+		<!--Start Services Details Content-->
+		<div class="col-xl-12 col-lg-12">
+			<div class="services-details__content">
+			<img loading="lazy" decoding="async" src="images/common/menus/service/seo-1.webp" alt="Synergy Brand Architect - Best SEO Optimization Services in Patna Bihar Semrush Search Engine Optimization" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); object-position: top;" />
+			<h3 class="mt-4">Dominating Search Landscapes with Authority-First SEO</h3>
+			<p>In the age of AI-driven search, simple keyword stuffing is dead. <a href="index.html" style="color: #ff5e14; font-weight: 600;">Synergy Brand Architect</a> is the <strong><a href="seo-optimization-services.html" style="color: #ff5e14; font-weight: 600;">best seo company in patna</a></strong>, specializing in "Authority SEO"—a comprehensive approach that combines <a href="website-development-services.html" style="color: #ff5e14; font-weight: 600;">technical website development excellence</a>, semantic content architecture, and high-impact digital PR. We don't just aim for page one; we aim for market dominance.</p>
+			<p>Our <strong>seo agency in patna</strong> understands the unique search behavior of the Bihar market while adhering to global Google standards. Whether you need <strong>seo service in patna</strong> to dominate local searches or you're scaling a national brand, we provide the <strong><a href="performance-marketing-services.html" style="color: #ff5e14; font-weight: 600;">seo in digital marketing</a></strong> expertise required to turn search engines into your most reliable revenue source.</p>
+			<div class="content mt-40">
+				<div class="text">
+				<h3>The Semantic Search Advantage: Ranking for Intent</h3>
+				<p>Our philosophy as a premier <strong>seo agency in patna</strong> is built on understanding user intent. Search engines no longer just look for words; they look for entities and answers. We build content clusters that establish your brand as the "topical authority" in your niche, making it nearly impossible for competitors to outrank you.</p>
+				<p>We combine this with "Forensic Technical SEO," ensuring your site is perfectly crawlable, incredibly fast, and fully optimized for Core Web Vitals. This dual approach makes us the <strong>best seo company in patna</strong> for businesses that demand long-term, sustainable growth.</p>
+			<blockquote class="blockquote-one">SEO is a marathon, not a sprint. We provide the <strong>seo service in patna</strong> that builds long-term asset value for your digital presence, ensuring you stay at the top long after the initial campaign.</blockquote>
+				</div>
+				<div class="feature-list mt-4">
+				<div class="row clearfix">
+					<div class="col-lg-6 col-md-6 col-sm-12 column">
+					<img loading="lazy" decoding="async" class="mb-3" src="images/common/menus/service/seo-2.webp" alt="Synergy Brand Architect - Advanced Keyword Research and Content Architecture Services Patna" style="border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);" />
+					<p><span style="color: #ff5e14; font-weight: 700;">Technical & Forensic SEO:</span> We fix the "under the hood" issues that hold your site back. From schema markup to site architecture, we ensure search engines love your site as much as your users do.</p>
 					</div>
-					<div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #333;">
-						<h2 class="accordion-header" id="headingTwo">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background: #1a1a1a; color: #fff; box-shadow: none;">
-								What services do you offer for digital marketing?
-							</button>
-						</h2>
-						<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-							<div class="accordion-body text-white-50">
-								We offer a complete suite: SEO, Social Media Marketing, Google & Meta Ads (Performance Marketing), Brand Building, Website Design & Development, and Workflow Automation.
-							</div>
-						</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 column">
+					<img loading="lazy" decoding="async" class="mb-3" src="images/common/menus/service/seo-3.webp" alt="Synergy Brand Architect - Technical SEO Audits Website Speed Optimization and Schema Bihar" style="border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);" />
+					<p><span style="color: #ff5e14; font-weight: 700;">Semantic Content Architecture:</span> We build content clusters that answer every possible question your customer might have, establishing your brand as the definitive source of truth in your industry.</p>
 					</div>
-					<div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #333;">
-						<h2 class="accordion-header" id="headingThree">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="background: #1a1a1a; color: #fff; box-shadow: none;">
-								Do you work with brands outside Patna?
-							</button>
-						</h2>
-						<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-							<div class="accordion-body text-white-50">
-								Absolutely! While we are based in Patna, we work with clients across India and internationally. We serve diverse industries with the same quality and dedication.
-							</div>
-						</div>
+				</div>
+				<div class="row clearfix mt-4">
+					<div class="col-lg-6 col-md-6 col-sm-12 column">
+					<p><span style="color: #ff5e14; font-weight: 700;">Digital PR & Authority Backlinks:</span> We don't just build links; we build reputation. We earn high-authority mentions from reputable sources that boost your domain's credibility and rankings.</p>
 					</div>
-                    <div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #333;">
-						<h2 class="accordion-header" id="headingFour">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="background: #1a1a1a; color: #fff; box-shadow: none;">
-								What is the minimum budget required to get started?
-							</button>
-						</h2>
-						<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-							<div class="accordion-body text-white-50">
-								Our packages are tailored to suit businesses of all sizes. We have starter plans from ₹10,000/month. Book a free consultation and we'll recommend the best fit for your budget and goals.
-							</div>
-						</div>
+					<div class="col-lg-6 col-md-6 col-sm-12 column">
+					<p><span style="color: #ff5e14; font-weight: 700;">Local SEO & GMB Mastery:</span> For businesses in Patna, local visibility is everything. We optimize your Google Business Profile and local citations to ensure you dominate "near me" searches.</p>
 					</div>
-                    <div class="accordion-item mb-3" style="background: #1a1a1a; border: 1px solid #333;">
-						<h2 class="accordion-header" id="headingFive">
-							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="background: #1a1a1a; color: #fff; box-shadow: none;">
-								Will I get a dedicated account manager?
-							</button>
-						</h2>
-						<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-							<div class="accordion-body text-white-50">
-								Yes! Every client gets a dedicated account manager who will be your primary point of contact for all communication, updates, and strategy discussions.
-							</div>
-						</div>
+				</div>
+				</div>
+			</div>
+			
+			<!-- Dynamic Case Study Spotlight Banner -->
+			<div class="row clearfix mt-4 mb-4">
+				<div class="col-lg-12">
+					<div style="background: rgba(255, 94, 20, 0.05); border-left: 4px solid #ff5e14; padding: 25px 30px; border-radius: 0 16px 16px 0; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); margin: 20px 0;">
+						<span style="color: #ff5e14; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 8px;">Success Spotlight</span>
+						<h4 style="color: #fff; font-weight: 700; margin-bottom: 8px; font-size: 20px;">Expanding Organic Outreach for The Helping Hand</h4>
+						<p style="margin-bottom: 15px; font-size: 15px; color: #b0b0b0; line-height: 1.6;">Explore how our advanced semantic SEO content clusters, social media tribal branding, and automated digital PR scaled organic search visibility for Bihar's leading social welfare organization.</p>
+						<a href="case-studies/the-helping-hand.html" style="color: #ff5e14; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; transition: gap 0.3s ease; text-decoration: none;" onmouseover="this.style.gap='12px'" onmouseout="this.style.gap='8px'">
+							Read Case Study <i class="fa-solid fa-arrow-right" style="font-size: 13px;"></i>
+						</a>
 					</div>
 				</div>
 			</div>
+			<div class=" mt-25">
+				<h3>The Synergy Ranking Methodology</h3>
+				<p>We follow a disciplined 4-stage process to ensure your brand moves from obscurity to industry-leading visibility.</p>
+				<ul class="accordion-box wow fadeInRight">
+				<!--Block-->
+				<li class="accordion block px-0 active-block">
+					<div class="acc-btn d-flex justify-content-between align-items-center active">Stage 1: Forensic Site Audit
+					<div class="icon fa fa-plus"></div>
+					</div>
+					<div class="acc-content current">
+					<div class="content">
+						<div class="text mw-100 p-3">We perform a 200+ point check on your site's health. We find every hidden error, crawl block, and performance bottleneck that is preventing you from ranking.</div>
+					</div>
+					</div>
+				</li>
+				<!--Block-->
+				<li class="accordion block px-0">
+					<div class="acc-btn d-flex justify-content-between align-items-center">Stage 2: Strategic Keyword Intelligence
+					<div class="icon fa fa-plus"></div>
+					</div>
+					<div class="acc-content">
+					<div class="content">
+						<div class="text mw-100 p-3">We don't just look for high-volume words; we look for high-conversion intent. We map out the entire search landscape to find where your brand can win the fastest.</div>
+					</div>
+					</div>
+				</li>
+				<!--Block-->
+				<li class="accordion block px-0">
+					<div class="acc-btn d-flex justify-content-between align-items-center">Stage 3: Content Velocity & Optimization
+					<div class="icon fa fa-plus"></div>
+					</div>
+					<div class="acc-content">
+					<div class="content">
+						<div class="text mw-100 p-3">We implement our semantic content strategy, producing high-quality assets that fulfill user intent and satisfy search engine algorithms simultaneously.</div>
+					</div>
+					</div>
+				</li>
+				<!--Block-->
+				<li class="accordion block px-0">
+					<div class="acc-btn d-flex justify-content-between align-items-center">Stage 4: Authority Amplification
+					<div class="icon fa fa-plus"></div>
+					</div>
+					<div class="acc-content">
+					<div class="content">
+						<div class="text mw-100 p-3">We build your site's "trust score" through strategic digital PR and link-earning campaigns, ensuring your rankings are resilient and long-lasting.</div>
+					</div>
+					</div>
+				</li>
+				</ul>
+			</div>
+			</div>
+		</div>
+		<!--End Services Details Content-->
 		</div>
 	</div>
 </section>
-<!-- FAQ Section End -->
+<!--End Services Details-->
 
-<!-- Map Section-->
-<section class="map-section" style="filter: grayscale(1) invert(0.9) contrast(1.2);">
-	<iframe class="map w-100" src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=Vivek%20Vihar%20Colony,%20Danapur%20Nizamat,%20Patna,%20Bihar%20801503+(Synergy%20Brand%20Architect)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+<!-- Start Tech Stack Carousel Section -->
+<section class="tech-logos-section pt-50 pb-80" style="background-color: #0f0f0f; border-top: 1px solid #1a1a1a;">
+    <div class="auto-container">
+        <div class="sec-title text-center mb-5">
+            <span class="sub-title" style="color: #ff5e14; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">SEO Toolset</span>
+            <h2 style="font-weight: 800; color: #fff; margin-top: 10px; font-size: 36px;">Our Core Search & SEO Stack</h2>
+        </div>
+    </div>
+        
+    <div class="ticker-wrapper">
+        <!-- Row 1: Left to Right -->
+        <div class="ticker-row ltr">
+            <div class="ticker-track">
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ahref.webp" alt="Ahrefs"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/gsc.webp" alt="Google Search Console"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/screaming frog.webp" alt="Screaming Frog"></div>
+                
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ahref.webp" alt="Ahrefs"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/gsc.webp" alt="Google Search Console"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/screaming frog.webp" alt="Screaming Frog"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ahref.webp" alt="Ahrefs"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/gsc.webp" alt="Google Search Console"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/screaming frog.webp" alt="Screaming Frog"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ahref.webp" alt="Ahrefs"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/gsc.webp" alt="Google Search Console"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/screaming frog.webp" alt="Screaming Frog"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ahref.webp" alt="Ahrefs"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/gsc.webp" alt="Google Search Console"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/screaming frog.webp" alt="Screaming Frog"></div>
+            </div>
+        </div>
+
+        <!-- Row 2: Right to Left -->
+        <div class="ticker-row rtl">
+            <div class="ticker-track">
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/semrush.webp" alt="SEMrush"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ubersuggest.webp" alt="Ubersuggest"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/yost.webp" alt="Yoast SEO"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/semrush.webp" alt="SEMrush"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ubersuggest.webp" alt="Ubersuggest"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/yost.webp" alt="Yoast SEO"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/semrush.webp" alt="SEMrush"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ubersuggest.webp" alt="Ubersuggest"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/yost.webp" alt="Yoast SEO"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/semrush.webp" alt="SEMrush"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ubersuggest.webp" alt="Ubersuggest"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/yost.webp" alt="Yoast SEO"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/semrush.webp" alt="SEMrush"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ubersuggest.webp" alt="Ubersuggest"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/yost.webp" alt="Yoast SEO"></div>
+                <div class="ticker-item"><img loading="lazy" decoding="async" src="images/tech-logos/seo/ga4.webp" alt="Google Analytics 4"></div>
+            </div>
+        </div>
+    </div>
 </section>
-<!--End Map Section-->
+<!-- End Tech Stack Carousel Section -->
 
 <footer class="footer-section-3 theme-color-bg pb-60">
   <div class="footer-main-wrapper">
@@ -598,9 +721,6 @@
     <script src="js/SplitText.min.js" defer></script>
     <script src="js/custom-gsap.js" defer></script>
     <script src="js/script.js" defer></script>
-    <!-- Convex Integration -->
-    <script src="js/convex-config.js" defer></script>
-    <script src="js/convex-integration.js" defer></script>
       <script src="js/ai-assistant.js" defer></script>
       <!-- Particles Background -->
     <script src="js/particles-background.js" defer></script>

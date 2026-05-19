@@ -1,11 +1,47 @@
 /blog/:slug   /blog-details.html?slug=:slug   200
 /news/:slug   /news-details.html?slug=:slug   200
 
-/terms-of-service   /page-terms   301
-/privacy-policy     /page-privacy   301
-/refund-policy      /page-refund   301
-/startup-plan       /industry-startups   301
-/resources          /blog   301
+
 /page-contact.html  /contact.html   301
 /page-team-details.html /about.html   301
 /cdn-cgi/l/email-protection /contact.html  301
+
+# SEO URL Updates
+/industry-automotive-bikes /digital-marketing-for-bike-showrooms 301
+/industry-automotive-cars /digital-marketing-for-car-dealerships 301
+/industry-automotive /automotive-digital-marketing 301
+/industry-corporate-b2b /b2b-digital-marketing-agency 301
+/industry-corporate-manufacturing /digital-marketing-for-manufacturing 301
+/industry-corporate /corporate-digital-marketing 301
+/industry-ecommerce /ecommerce-digital-marketing 301
+/industry-education /digital-marketing-for-education 301
+/industry-healthcare /digital-marketing-for-healthcare 301
+/industry-hospitality-hotels /digital-marketing-for-hotels 301
+/industry-hospitality-travel /digital-marketing-for-travel-agencies 301
+/industry-hospitality /hospitality-digital-marketing 301
+/industry-local-business /local-business-digital-marketing 301
+/industry-local-gyms /digital-marketing-for-gyms 301
+/industry-local-restaurants /digital-marketing-for-restaurants 301
+/industry-local-salons /digital-marketing-for-salons 301
+/industry-professional-agencies /digital-marketing-for-agencies 301
+/industry-professional-ca /digital-marketing-for-ca-firms 301
+/industry-professional-lawyers /digital-marketing-for-lawyers 301
+/industry-professional-services /professional-services-marketing 301
+/industry-real-estate /real-estate-digital-marketing 301
+/industry-startups-saas /saas-marketing-agency 301
+/industry-startups-tech /tech-startup-marketing 301
+/industry-startups /startup-digital-marketing 301
+/page-automation /marketing-automation-services 301
+/page-brand-building /brand-building-services 301
+/page-careers /careers 301
+/page-payment-gateway /payment-gateway-integration 301
+/page-performance-marketing /performance-marketing-services 301
+/page-privacy /privacy-policy 301
+/page-project-details /digital-marketing-case-study 301
+/page-refund /refund-policy 301
+/page-seo /seo-optimization-services 301
+/page-shopify-headless /shopify-headless-development 301
+/page-social-media /social-media-marketing-services 301
+/page-tech-stack /technology-stack 301
+/page-terms /terms-of-service 301
+/page-website-dev /website-development-services 301

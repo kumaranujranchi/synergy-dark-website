@@ -4,6 +4,16 @@ const https = require('https');
 
 const DOMAIN = 'https://synergybrandarchitect.in';
 
+function truncateTitle(title) {
+    if (!title || title.length <= 60) return title;
+    let truncated = title.substring(0, 57);
+    const lastSpace = truncated.lastIndexOf(' ');
+    if (lastSpace > 40) {
+        truncated = truncated.substring(0, lastSpace);
+    }
+    return truncated + '...';
+}
+
 function fetchFromConvex(funcName, args = {}) {
     return new Promise((resolve, reject) => {
         const formattedName = funcName.replace(':', '/');
@@ -59,7 +69,8 @@ async function preRenderPage(post, type) {
 
     let html = fs.readFileSync(templatePath, 'utf8');
 
-    const metaTitle = post.metaTitle || post.title;
+    let metaTitle = post.metaTitle || post.title;
+    metaTitle = truncateTitle(metaTitle);
     const metaDesc = post.metaDescription || post.title;
     const imageUrl = post.imageUrl || 'https://synergybrandarchitect.in/images/common/logos/logo-header.webp';
     const pageUrl = `${DOMAIN}/${type}/${post.slug}`;
