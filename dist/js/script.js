@@ -1635,6 +1635,9 @@ var THEMEMASCOT = {};
     handlePreloader();
     TM_Pricing_Switcher_Smart();
     TM_Pricing_Switcher_Btn();
+    if (typeof ScrollTrigger !== 'undefined') {
+      ScrollTrigger.refresh();
+    }
   });
   // Dynamically load search-engine.js to enable global instant search
   (function() {
