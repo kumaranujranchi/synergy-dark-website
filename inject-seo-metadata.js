@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DOMAIN = 'https://synergybrandarchitect.in';
-const LOGO_URL = 'https://synergybrandarchitect.in/images/common/logos/logo-header.webp';
+const LOGO_URL = 'https://synergybrandarchitect.in/images/common/logos/SBA-logo.webp';
 
 function getHtmlFiles(dir, fileList = []) {
     if (!fs.existsSync(dir)) return fileList;

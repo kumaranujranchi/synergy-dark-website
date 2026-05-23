@@ -72,7 +72,7 @@ async function preRenderPage(post, type) {
     let metaTitle = post.metaTitle || post.title;
     metaTitle = truncateTitle(metaTitle);
     const metaDesc = post.metaDescription || post.title;
-    const imageUrl = post.imageUrl || 'https://synergybrandarchitect.in/images/common/logos/logo-header.webp';
+    const imageUrl = post.imageUrl || 'https://synergybrandarchitect.in/images/common/logos/SBA-logo.webp';
     const pageUrl = `${DOMAIN}/${type}/${post.slug}`;
 
     // 1. Update Title tag
