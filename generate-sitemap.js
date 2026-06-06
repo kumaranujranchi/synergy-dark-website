@@ -96,7 +96,7 @@ async function main() {
         console.log(`📝 Retrieved ${blogs.length} published blogs.`);
         for (const blog of blogs) {
             urls.push({
-                loc: `${DOMAIN}/blog/${blog.slug}`,
+                loc: `${DOMAIN}/blog/${blog.slug}/`,
                 changefreq: 'weekly',
                 priority: '0.7',
                 lastmod: new Date(blog.publishedAt).toISOString().split('T')[0]
@@ -107,7 +107,7 @@ async function main() {
         console.log(`📰 Retrieved ${news.length} published news items.`);
         for (const item of news) {
             urls.push({
-                loc: `${DOMAIN}/news/${item.slug}`,
+                loc: `${DOMAIN}/news/${item.slug}/`,
                 changefreq: 'weekly',
                 priority: '0.7',
                 lastmod: new Date(item.publishedAt).toISOString().split('T')[0]

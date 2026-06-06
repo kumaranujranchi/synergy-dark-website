@@ -45,3 +45,8 @@
 /page-tech-stack /technology-stack 301
 /page-terms /terms-of-service 301
 /page-website-dev /website-development-services 301
+
+# Legacy redirects to resolve 404s
+/resources /blog 301
+/startup-plan /industry-startups 301
+/portfolio /projects 301

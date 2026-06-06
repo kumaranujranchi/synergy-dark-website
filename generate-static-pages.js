@@ -73,7 +73,7 @@ async function preRenderPage(post, type) {
     metaTitle = truncateTitle(metaTitle);
     const metaDesc = post.metaDescription || post.title;
     const imageUrl = post.imageUrl || 'https://synergybrandarchitect.in/images/common/logos/SBA-logo.webp';
-    const pageUrl = `${DOMAIN}/${type}/${post.slug}`;
+    const pageUrl = `${DOMAIN}/${type}/${post.slug}/`;
 
     // 1. Update Title tag
     html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${metaTitle}</title>`);
@@ -95,6 +95,15 @@ async function preRenderPage(post, type) {
     html = html.replace(/<meta\s+property="twitter:image"\s+content="[\s\S]*?"/i, `<meta property="twitter:image" content="${imageUrl}">`);
     html = html.replace(/<meta\s+name="twitter:image"\s+content="[\s\S]*?"/i, `<meta name="twitter:image" content="${imageUrl}">`);
 
+    // 4.5. Update or Inject Canonical Tag
+    const canonicalLink = `<link rel="canonical" href="${pageUrl}">`;
+    if (html.includes('rel="canonical"')) {
+        html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i, canonicalLink);
+        html = html.replace(/<link\s+href="[^"]*"\s+rel="canonical"\s*\/?>/i, canonicalLink);
+    } else {
+        html = html.replace('</head>', `    ${canonicalLink}\n</head>`);
+    }
+
     // 5. Pre-render body elements for ultra-fast loading & SEO parsing
     // Breadcrumb Title
     html = html.replace(/<h1 class="title" id="breadcrumb-title">[\s\S]*?<\/h1>/i, `<h1 class="title" id="breadcrumb-title">${post.title}</h1>`);
@@ -103,7 +112,7 @@ async function preRenderPage(post, type) {
     // Details Title
     html = html.replace(/<h3 class="blog-details__title" id="details-title">[\s\S]*?<\/h3>/i, `<h3 class="blog-details__title" id="details-title">${post.title}</h3>`);
     // Details Author
-    html = html.replace(/<li id="details-author">[\s\S]*?<\/li>/i, `<li id="details-author"><a href="/${type}/${post.slug}"><i class="fas fa-user-circle"></i> ${post.author || 'Admin'}</a></li>`);
+    html = html.replace(/<li id="details-author">[\s\S]*?<\/li>/i, `<li id="details-author"><a href="/${type}/${post.slug}/"><i class="fas fa-user-circle"></i> ${post.author || 'Admin'}</a></li>`);
     
     // Details Date
     const date = new Date(post.publishedAt || Date.now());
