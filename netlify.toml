@@ -15,23 +15,23 @@
   force = false
 
 [[redirects]]
-  from = "/terms-of-service"
-  to = "/page-terms"
+  from = "/page-terms"
+  to = "/terms-of-service"
   status = 301
 
 [[redirects]]
-  from = "/privacy-policy"
-  to = "/page-privacy"
+  from = "/page-privacy"
+  to = "/privacy-policy"
   status = 301
 
 [[redirects]]
-  from = "/refund-policy"
-  to = "/page-refund"
+  from = "/page-refund"
+  to = "/refund-policy"
   status = 301
 
 [[redirects]]
   from = "/startup-plan"
-  to = "/industry-startups"
+  to = "/startup-digital-marketing"
   status = 301
 
 [[redirects]]
