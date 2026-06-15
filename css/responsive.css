@@ -137,6 +137,20 @@
 		font-size: 14px !important;
 	}
 
+	.main-menu .navigation > li > ul > li > a,
+	.sticky-header .main-menu .navigation > li > ul > li > a {
+		font-size: 15px !important;
+		padding: 9px 0px 10px !important;
+		margin: 0 25px !important;
+	}
+
+	.main-menu .navigation > li > ul > li > ul > li > a,
+	.sticky-header .main-menu .navigation > li > ul > li > ul > li > a {
+		font-size: 13px !important;
+		padding: 10px 0 !important;
+		margin: 0 25px !important;
+	}
+
 	.banner-section {
 		padding: 0 110px 0;
 	}
@@ -380,6 +394,20 @@
 	.header-btn-main .header-btn-arrow-right {
 		font-size: 13px !important;
 		margin-left: 6px !important;
+	}
+
+	.main-menu .navigation > li > ul > li > a,
+	.sticky-header .main-menu .navigation > li > ul > li > a {
+		font-size: 14px !important;
+		padding: 7px 0px 8px !important;
+		margin: 0 20px !important;
+	}
+
+	.main-menu .navigation > li > ul > li > ul > li > a,
+	.sticky-header .main-menu .navigation > li > ul > li > ul > li > a {
+		font-size: 12px !important;
+		padding: 8px 0 !important;
+		margin: 0 20px !important;
 	}
 
 	.banner-section {
