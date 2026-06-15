@@ -103,8 +103,29 @@
 		padding: 16px 20px;
 	}
 
+	.main-menu .navigation>li,
+	.sticky-header .main-menu .navigation>li {
+		margin-right: 28px !important;
+	}
+
+	.main-menu .navigation>li>a,
+	.sticky-header .main-menu .navigation>li>a {
+		font-size: 16px !important;
+	}
+
+	.main-menu .navigation > li.dropdown > a,
+	.sticky-header .main-menu .navigation > li.dropdown > a {
+		margin-right: 0px !important;
+		padding-right: 15px !important;
+	}
+
+	.main-menu .navigation > li.dropdown > a:after,
+	.sticky-header .main-menu .navigation > li.dropdown > a:after {
+		right: 0px !important;
+	}
+
 	.banner-section {
-		padding: 0 60px 0;
+		padding: 0 110px 0;
 	}
 
 	.banner-section .content-box .title {
@@ -117,11 +138,11 @@
 	}
 
 	.banner-section .email-link {
-		left: -31px;
+		left: -50px;
 	}
 
 	.banner-section .email-line {
-		left: 26px;
+		left: 20px;
 	}
 
 	.banner-section .hero-img {
@@ -314,11 +335,11 @@
 	}
 
 	.main-menu .navigation>li {
-		margin-right: 30px !important;
+		margin-right: 22px !important;
 	}
 
 	.main-menu .navigation>li>a {
-		font-size: 16px !important;
+		font-size: 15px !important;
 	}
 
 	.main-menu .navigation > li.dropdown > a,
@@ -341,11 +362,11 @@
 	}
 
 	.sticky-header .main-menu .navigation>li {
-		margin-right: 30px !important;
+		margin-right: 22px !important;
 	}
 
 	.sticky-header .main-menu .navigation>li>a {
-		font-size: 16px !important;
+		font-size: 15px !important;
 	}
 
 	.banner-section {
