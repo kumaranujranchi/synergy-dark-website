@@ -113,14 +113,14 @@
 		font-size: 15px !important;
 	}
 
-	.main-menu .navigation > li.dropdown > a,
-	.sticky-header .main-menu .navigation > li.dropdown > a {
+	.main-menu .navigation>li.dropdown>a,
+	.sticky-header .main-menu .navigation>li.dropdown>a {
 		margin-right: 0px !important;
 		padding-right: 15px !important;
 	}
 
-	.main-menu .navigation > li.dropdown > a:after,
-	.sticky-header .main-menu .navigation > li.dropdown > a:after {
+	.main-menu .navigation>li.dropdown>a:after,
+	.sticky-header .main-menu .navigation>li.dropdown>a:after {
 		right: 0px !important;
 	}
 
@@ -137,15 +137,15 @@
 		font-size: 14px !important;
 	}
 
-	.main-menu .navigation > li > ul > li > a,
-	.sticky-header .main-menu .navigation > li > ul > li > a {
+	.main-menu .navigation>li>ul>li>a,
+	.sticky-header .main-menu .navigation>li>ul>li>a {
 		font-size: 15px !important;
 		padding: 9px 0px 10px !important;
 		margin: 0 25px !important;
 	}
 
-	.main-menu .navigation > li > ul > li > ul > li > a,
-	.sticky-header .main-menu .navigation > li > ul > li > ul > li > a {
+	.main-menu .navigation>li>ul>li>ul>li>a,
+	.sticky-header .main-menu .navigation>li>ul>li>ul>li>a {
 		font-size: 13px !important;
 		padding: 10px 0 !important;
 		margin: 0 25px !important;
@@ -169,7 +169,7 @@
 	}
 
 	.banner-section .email-line {
-		left: 20px;
+		left: 74px;
 	}
 
 	.banner-section .hero-img {
@@ -371,14 +371,14 @@
 		font-size: 14px !important;
 	}
 
-	.main-menu .navigation > li.dropdown > a,
-	.sticky-header .main-menu .navigation > li.dropdown > a {
+	.main-menu .navigation>li.dropdown>a,
+	.sticky-header .main-menu .navigation>li.dropdown>a {
 		margin-right: 0px !important;
 		padding-right: 15px !important;
 	}
 
-	.main-menu .navigation > li.dropdown > a:after,
-	.sticky-header .main-menu .navigation > li.dropdown > a:after {
+	.main-menu .navigation>li.dropdown>a:after,
+	.sticky-header .main-menu .navigation>li.dropdown>a:after {
 		right: 0px !important;
 	}
 
@@ -396,15 +396,15 @@
 		margin-left: 6px !important;
 	}
 
-	.main-menu .navigation > li > ul > li > a,
-	.sticky-header .main-menu .navigation > li > ul > li > a {
+	.main-menu .navigation>li>ul>li>a,
+	.sticky-header .main-menu .navigation>li>ul>li>a {
 		font-size: 14px !important;
 		padding: 7px 0px 8px !important;
 		margin: 0 20px !important;
 	}
 
-	.main-menu .navigation > li > ul > li > ul > li > a,
-	.sticky-header .main-menu .navigation > li > ul > li > ul > li > a {
+	.main-menu .navigation>li>ul>li>ul>li>a,
+	.sticky-header .main-menu .navigation>li>ul>li>ul>li>a {
 		font-size: 12px !important;
 		padding: 8px 0 !important;
 		margin: 0 20px !important;
@@ -634,7 +634,7 @@
 		bottom: -8%;
 	}
 
-	
+
 
 	.why-choose-us-section .column-right {
 		padding-left: 42px;
@@ -687,6 +687,7 @@
 		margin-left: 130px;
 		width: 77%;
 	}
+
 	.skill-section .skill-sp2 {
 		display: none;
 	}
@@ -763,14 +764,14 @@
 		font-size: 15px !important;
 	}
 
-	.main-menu .navigation > li.dropdown > a,
-	.sticky-header .main-menu .navigation > li.dropdown > a {
+	.main-menu .navigation>li.dropdown>a,
+	.sticky-header .main-menu .navigation>li.dropdown>a {
 		margin-right: 0px !important;
 		padding-right: 15px !important;
 	}
 
-	.main-menu .navigation > li.dropdown > a:after,
-	.sticky-header .main-menu .navigation > li.dropdown > a:after {
+	.main-menu .navigation>li.dropdown>a:after,
+	.sticky-header .main-menu .navigation>li.dropdown>a:after {
 		right: 0px !important;
 	}
 
@@ -1654,17 +1655,20 @@
 		-webkit-overflow-scrolling: touch;
 		scroll-snap-type: x mandatory;
 	}
+
 	.team-cards-row::-webkit-scrollbar,
 	#dynamic-blogs-container::-webkit-scrollbar {
 		height: 6px;
 	}
+
 	.team-cards-row::-webkit-scrollbar-thumb,
 	#dynamic-blogs-container::-webkit-scrollbar-thumb {
 		background: rgba(240, 90, 40, 0.4);
 		border-radius: 4px;
 	}
-	.team-cards-row > div,
-	#dynamic-blogs-container > div {
+
+	.team-cards-row>div,
+	#dynamic-blogs-container>div {
 		flex: 0 0 46% !important;
 		max-width: 46% !important;
 		scroll-snap-align: start;
@@ -4607,83 +4611,85 @@
 
 /* Home Page Mobile Optimization - Added to prevent overlap issues in hero section */
 @media (max-width: 767px) {
-    /* Fix for sub-title overlapping logo */
-    .banner-section .content-box .sub-title {
-        margin-top: 50px !important; 
-        font-size: 11px !important;
-        line-height: 1.4 !important;
-        padding-top: 20px !important;
-        white-space: normal !important;
-    }
 
-    /* Adjust hero title size for better readability on small screens */
-    .banner-section .content-box .title {
-        font-size: 28px !important;
-        line-height: 1.2 !important;
-        margin-top: 15px !important;
-    }
+	/* Fix for sub-title overlapping logo */
+	.banner-section .content-box .sub-title {
+		margin-top: 50px !important;
+		font-size: 11px !important;
+		line-height: 1.4 !important;
+		padding-top: 20px !important;
+		white-space: normal !important;
+	}
 
-    /* Description and support text adjustments */
-    .banner-section .content-box .hero-desc {
-        font-size: 15px !important;
-        margin-bottom: 20px !important;
-    }
+	/* Adjust hero title size for better readability on small screens */
+	.banner-section .content-box .title {
+		font-size: 28px !important;
+		line-height: 1.2 !important;
+		margin-top: 15px !important;
+	}
 
-    .banner-section .content-box .hero-support {
-        font-size: 13px !important;
-        margin-bottom: 25px !important;
-    }
+	/* Description and support text adjustments */
+	.banner-section .content-box .hero-desc {
+		font-size: 15px !important;
+		margin-bottom: 20px !important;
+	}
 
-    /* Stack buttons vertically on mobile to prevent overflow */
-    .banner-section .btn-box {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 15px !important;
-    }
+	.banner-section .content-box .hero-support {
+		font-size: 13px !important;
+		margin-bottom: 25px !important;
+	}
 
-    .banner-section .btn-box .theme-btn-main {
-        margin-right: 0 !important;
-        margin-bottom: 0 !important;
-        width: 100% !important;
-        text-align: center !important;
-    }
-    
-    .banner-section .btn-box .theme-btn-main .theme-btn {
-        width: 100% !important;
-        padding: 12px 20px !important;
-    }
+	/* Stack buttons vertically on mobile to prevent overflow */
+	.banner-section .btn-box {
+		display: flex !important;
+		flex-direction: column !important;
+		align-items: stretch !important;
+		gap: 15px !important;
+	}
 
-    /* Hide the circular element on mobile as it overlaps with buttons and clutter the view */
-    .banner-section .banner_icon-bx2 {
-        display: none !important;
-    }
+	.banner-section .btn-box .theme-btn-main {
+		margin-right: 0 !important;
+		margin-bottom: 0 !important;
+		width: 100% !important;
+		text-align: center !important;
+	}
 
-    /* Fix for preloader text wrapping on mobile */
-    .preloader .preloader-heading .load-text {
-        font-size: 13px !important;
-        letter-spacing: 1px !important;
-        white-space: nowrap !important;
-    }
+	.banner-section .btn-box .theme-btn-main .theme-btn {
+		width: 100% !important;
+		padding: 12px 20px !important;
+	}
 
-    /* Ensure banner section has enough space */
-    .banner-section {
-        padding: 120px 0 60px !important;
-        height: auto !important;
-        min-height: 100vh !important;
-        background-attachment: scroll !important; /* Better performance on mobile */
-    }
+	/* Hide the circular element on mobile as it overlaps with buttons and clutter the view */
+	.banner-section .banner_icon-bx2 {
+		display: none !important;
+	}
 
-    /* Site-wide sticky header mobile spacing fix */
-    .sticky-header {
-        padding: 10px 20px !important;
-    }
-    
-    .sticky-header .logo img {
-        max-width: 180px !important;
-    }
+	/* Fix for preloader text wrapping on mobile */
+	.preloader .preloader-heading .load-text {
+		font-size: 13px !important;
+		letter-spacing: 1px !important;
+		white-space: nowrap !important;
+	}
 
-    .sticky-header .mobile-nav-toggler {
-        margin-right: 0 !important;
-    }
+	/* Ensure banner section has enough space */
+	.banner-section {
+		padding: 120px 0 60px !important;
+		height: auto !important;
+		min-height: 100vh !important;
+		background-attachment: scroll !important;
+		/* Better performance on mobile */
+	}
+
+	/* Site-wide sticky header mobile spacing fix */
+	.sticky-header {
+		padding: 10px 20px !important;
+	}
+
+	.sticky-header .logo img {
+		max-width: 180px !important;
+	}
+
+	.sticky-header .mobile-nav-toggler {
+		margin-right: 0 !important;
+	}
 }
