@@ -188,9 +188,20 @@ async function renderDynamicJobs() {
             return;
         }
 
-        const getJobDetailsUrl = (id) => {
+        const slugify = (text) => {
+            return text
+                .toString()
+                .toLowerCase()
+                .trim()
+                .replace(/\s+/g, '-')           // Replace spaces with -
+                .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                .replace(/\-\-+/g, '-');        // Replace multiple - with single -
+        };
+
+        const getJobDetailsUrl = (job) => {
             const hasHtml = window.location.pathname.endsWith('.html');
-            return hasHtml ? `job-details.html?id=${id}` : `job-details?id=${id}`;
+            const slug = slugify(job.title);
+            return hasHtml ? `job-details.html?slug=${slug}` : `/careers/${slug}`;
         };
 
         const render = (filtered) => {
@@ -199,7 +210,7 @@ async function renderDynamicJobs() {
                 return;
             }
             container.innerHTML = filtered.map(job => `
-                <div class="col-lg-4 col-md-6 wow fadeInUp" onclick="window.location.href = '${getJobDetailsUrl(job._id)}'" style="cursor: pointer;">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" onclick="window.location.href = '${getJobDetailsUrl(job)}'" style="cursor: pointer;">
                     <div class="glowing-job-card-wrapper" style="height: 100%;">
                         <div class="job-card p-4 p-md-5" style="background: #1a1a1a; border-radius: 31px; transition: 0.3s; height: 100%; display: flex; flex-direction: column;">
                             <div class="d-flex justify-content-between align-items-start mb-4">
@@ -698,10 +709,18 @@ async function renderSingleJobDetails() {
     const titleEl = document.getElementById('job-detail-title');
     if (!titleEl) return;
 
-    // Get job ID from URL query parameters (e.g., ?id=abcdef)
+    // Get job ID or slug
     const urlParams = new URLSearchParams(window.location.search);
     const jobId = urlParams.get('id');
-    if (!jobId) {
+    const querySlug = urlParams.get('slug');
+    
+    let jobSlug = querySlug;
+    const pathParts = window.location.pathname.split('/').filter(Boolean);
+    if (!jobSlug && pathParts.length >= 2 && pathParts[0] === 'careers') {
+        jobSlug = pathParts[1].replace('.html', '');
+    }
+
+    if (!jobId && !jobSlug) {
         titleEl.innerText = "Job not found";
         return;
     }
@@ -714,7 +733,22 @@ async function renderSingleJobDetails() {
         });
         const result = await response.json();
         const activeJobs = result.value || [];
-        const job = activeJobs.find(j => j._id === jobId);
+
+        const slugify = (text) => {
+            return text
+                .toString()
+                .toLowerCase()
+                .trim()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-');
+        };
+
+        const job = activeJobs.find(j => {
+            if (jobId) return j._id === jobId;
+            if (jobSlug) return slugify(j.title) === jobSlug;
+            return false;
+        });
 
         if (!job) {
             titleEl.innerText = "Job not found";

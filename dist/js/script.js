@@ -31,10 +31,18 @@
         const type = pathname === "/blog-details" ? "blog" : "news";
         canonicalUrl = `${canonicalHost}/${type}/${slug}`;
       }
-    } else if (pathname === "/job-details") {
+    } else if (pathname.startsWith("/careers/") && pathname !== "/careers/" && pathname !== "/careers") {
+      const parts = pathname.split('/').filter(Boolean);
+      if (parts.length >= 2) {
+        canonicalUrl = `${canonicalHost}/careers/${parts[1]}`;
+      }
+    } else if (pathname === "/job-details" || pathname === "/job-details.html") {
       const urlParams = new URLSearchParams(window.location.search);
       const jobId = urlParams.get('id');
-      if (jobId) {
+      const slug = urlParams.get('slug');
+      if (slug) {
+        canonicalUrl = `${canonicalHost}/careers/${slug}`;
+      } else if (jobId) {
         canonicalUrl = `${canonicalHost}/job-details?id=${jobId}`;
       }
     }

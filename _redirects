@@ -1,5 +1,6 @@
 /blog/:slug   /blog-details.html?slug=:slug   200
 /news/:slug   /news-details.html?slug=:slug   200
+/careers/:slug  /job-details.html?slug=:slug   200
 
 
 /page-contact.html  /contact.html   301
