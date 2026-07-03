@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
 import { api } from "../../../../convex/_generated/api";
 import { format } from "date-fns";
-import { Mail, Phone, ExternalLink, User, Calendar, Briefcase, FileText, Check } from "lucide-react";
+import { Mail, Phone, ExternalLink, User, Calendar, Briefcase, FileText, Check, Trash2 } from "lucide-react";
 
 export default function ApplicationsPage() {
   const applications = useQuery(api.jobs.listApplications, {});
@@ -12,6 +12,7 @@ export default function ApplicationsPage() {
 
   const updateStatus = useMutation(api.jobs.updateApplicationStatus);
   const updateNotes = useMutation(api.jobs.updateApplicationNotes);
+  const deleteApp = useMutation(api.jobs.deleteApplication);
 
   const [savingStatus, setSavingStatus] = useState<Record<string, "saving" | "saved" | null>>({});
 
@@ -33,6 +34,18 @@ export default function ApplicationsPage() {
     } catch (err) {
       console.error("Error updating status:", err);
       alert("Failed to update status. Please try again.");
+    }
+  };
+
+  const handleDelete = async (appId: any, name: string) => {
+    if (!window.confirm(`Are you sure you want to delete ${name}'s application?`)) {
+      return;
+    }
+    try {
+      await deleteApp({ id: appId });
+    } catch (err) {
+      console.error("Error deleting application:", err);
+      alert("Failed to delete application. Please try again.");
     }
   };
 
@@ -84,24 +97,34 @@ export default function ApplicationsPage() {
                     </div>
                   </div>
                   <div className="flex flex-col items-end gap-2">
-                    <select
-                      value={app.status}
-                      onChange={(e) => handleStatusChange(app._id, e.target.value)}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider border cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${
-                        app.status === "pending" ? "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-100" :
-                        app.status === "hired" ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-100" :
-                        app.status === "interviewing" ? "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100" :
-                        app.status === "reviewed" ? "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100" :
-                        app.status === "rejected" ? "bg-red-50 text-red-700 border-red-200 hover:bg-red-100" :
-                        "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
-                      }`}
-                    >
-                      <option value="pending" className="bg-white text-slate-700">Pending</option>
-                      <option value="reviewed" className="bg-white text-slate-700">Reviewed</option>
-                      <option value="interviewing" className="bg-white text-slate-700">Interviewing</option>
-                      <option value="hired" className="bg-white text-slate-700">Hired</option>
-                      <option value="rejected" className="bg-white text-slate-700">Rejected</option>
-                    </select>
+                    <div className="flex items-center gap-2">
+                      <select
+                        value={app.status}
+                        onChange={(e) => handleStatusChange(app._id, e.target.value)}
+                        className={`px-3 py-1.5 rounded-lg text-xs font-bold uppercase tracking-wider border cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all ${
+                          app.status === "pending" ? "bg-yellow-50 text-yellow-700 border-yellow-200 hover:bg-yellow-100" :
+                          app.status === "hired" ? "bg-green-50 text-green-700 border-green-200 hover:bg-green-100" :
+                          app.status === "interviewing" ? "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100" :
+                          app.status === "reviewed" ? "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100" :
+                          app.status === "rejected" ? "bg-red-50 text-red-700 border-red-200 hover:bg-red-100" :
+                          "bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100"
+                        }`}
+                      >
+                        <option value="pending" className="bg-white text-slate-700">Pending</option>
+                        <option value="reviewed" className="bg-white text-slate-700">Reviewed</option>
+                        <option value="interviewing" className="bg-white text-slate-700">Interviewing</option>
+                        <option value="hired" className="bg-white text-slate-700">Hired</option>
+                        <option value="rejected" className="bg-white text-slate-700">Rejected</option>
+                      </select>
+
+                      <button
+                        onClick={() => handleDelete(app._id, app.name)}
+                        className="p-1.5 rounded-lg text-slate-400 hover:text-red-600 hover:bg-red-50 border border-slate-200 hover:border-red-200 transition-all focus:outline-none focus:ring-2 focus:ring-red-500"
+                        title="Delete Application"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
                     <div className="flex items-center text-xs text-slate-400 mt-1">
                       <Calendar className="w-3 h-3 mr-1" />
                       {format(app.appliedAt, "MMM dd, yyyy • p")}

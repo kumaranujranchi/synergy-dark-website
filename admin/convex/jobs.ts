@@ -114,3 +114,13 @@ export const updateApplicationNotes = mutation({
     return await ctx.db.patch(args.id, { notes: args.notes });
   },
 });
+
+// Delete a job application
+export const deleteApplication = mutation({
+  args: {
+    id: v.id("jobApplications"),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.delete(args.id);
+  },
+});
