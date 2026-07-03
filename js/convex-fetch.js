@@ -805,7 +805,7 @@ async function renderSingleJobDetails() {
         // Setup apply button
         const applyBtn = document.getElementById('job-detail-apply-btn');
         if (applyBtn) {
-            applyBtn.onclick = () => openApplyModal(jobId);
+            applyBtn.onclick = () => openApplyModal(job._id);
         }
 
     } catch (error) {
