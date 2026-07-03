@@ -94,6 +94,7 @@ export default defineSchema({
     portfolioUrl: v.optional(v.string()),
     message: v.optional(v.string()),
     status: v.string(), // "pending", "reviewed", "interviewing", "hired", "rejected"
+    notes: v.optional(v.string()),
     appliedAt: v.number(),
     answers: v.optional(
       v.array(

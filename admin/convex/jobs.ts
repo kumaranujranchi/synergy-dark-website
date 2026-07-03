@@ -92,3 +92,25 @@ export const listApplications = query({
     return await ctx.db.query("jobApplications").order("desc").collect();
   },
 });
+
+// Update job application status
+export const updateApplicationStatus = mutation({
+  args: {
+    id: v.id("jobApplications"),
+    status: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.patch(args.id, { status: args.status });
+  },
+});
+
+// Update job application notes
+export const updateApplicationNotes = mutation({
+  args: {
+    id: v.id("jobApplications"),
+    notes: v.string(),
+  },
+  handler: async (ctx, args) => {
+    return await ctx.db.patch(args.id, { notes: args.notes });
+  },
+});
